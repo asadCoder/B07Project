@@ -22,6 +22,7 @@ public class Register extends AppCompatActivity {
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
+    Button mCheckadmin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class Register extends AppCompatActivity {
         mRegisterBtn = findViewById(R.id.RegisterButton);
         mLoginBtn = findViewById(R.id.createText);
         mPassword = findViewById(R.id.Password);
-
+        mCheckadmin = findViewById(R.id.AdminCheck);
         fAuth = FirebaseAuth.getInstance();
         if(fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
@@ -59,7 +60,11 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(Register.this,"User Created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            if (mCheckadmin.isEnabled()){
+                                startActivity(new Intent(getApplicationContext(),AdminMain.class));
+                            }else {
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
                         }
                         else{
                             Toast.makeText(Register.this, "Error" + task.getException().getMessage(),Toast.LENGTH_SHORT).show();

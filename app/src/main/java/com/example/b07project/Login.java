@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class Login extends AppCompatActivity {
     Button mLoginBtn;
     TextView mCreateBtn;
     FirebaseAuth fAuth;
+    Button mAdmincheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class Login extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         mLoginBtn = findViewById(R.id.LoginButton);
         mCreateBtn =  findViewById(R.id.createText);
-
+        mAdmincheck = findViewById(R.id.AdminSwitch);
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,8 +59,12 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(Login.this,"Logged in Succefully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            Toast.makeText(Login.this,"Logged in Successfully",Toast.LENGTH_SHORT).show();
+                            if (mAdmincheck.isEnabled()){
+                                startActivity(new Intent(getApplicationContext(),AdminMain.class));
+                            }else {
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
                         }
                         else{
                             Toast.makeText(Login.this, "Error!"+task.getException(), Toast.LENGTH_SHORT).show();

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">B07Project</string>
     <string name="login">Login</string>
+    <string name="login_as_admin">Login as admin</string>
 </resources>
