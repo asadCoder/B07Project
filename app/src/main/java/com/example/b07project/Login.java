@@ -84,7 +84,6 @@ public class Login extends AppCompatActivity {
                                 SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                 editor.putBoolean("value",false);
                                 editor.apply();
-
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             }
 
