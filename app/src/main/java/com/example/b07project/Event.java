@@ -9,4 +9,5 @@ public class Event {
     int capacity;
     String date;
     String location;
+
 }

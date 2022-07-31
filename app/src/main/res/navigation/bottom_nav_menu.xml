@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_menu"
+    app:startDestination="@id/myEventsFragment">
+
+    <fragment
+        android:id="@+id/myEventsFragment"
+        android:name="com.example.b07project.MyEventsFragment"
+        android:label="fragment_my_events"
+        tools:layout="@layout/fragment_my_events" />
+    <fragment
+        android:id="@+id/viewVenuesFragment"
+        android:name="com.example.b07project.ViewVenuesFragment"
+        android:label="fragment_view_venues"
+        tools:layout="@layout/fragment_view_venues" />
+    <fragment
+        android:id="@+id/upcomingFragment"
+        android:name="com.example.b07project.UpcomingFragment"
+        android:label="fragment_upcoming"
+        tools:layout="@layout/fragment_upcoming" />
+</navigation>
