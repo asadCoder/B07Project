@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,16 +23,16 @@ public class Register extends AppCompatActivity {
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
-    Button mCheckadmin;
+    Switch mCheckadmin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mEmail = findViewById(R.id.Email);
-        mRegisterBtn = findViewById(R.id.RegisterButton);
+        mRegisterBtn = (Button) findViewById(R.id.RegisterButton);
         mLoginBtn = findViewById(R.id.createText);
         mPassword = findViewById(R.id.Password);
-        mCheckadmin = findViewById(R.id.AdminCheck);
+        mCheckadmin = (Switch)findViewById(R.id.AdminCheck);
         fAuth = FirebaseAuth.getInstance();
         if(fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
@@ -60,7 +61,7 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(Register.this,"User Created", Toast.LENGTH_SHORT).show();
-                            if (mCheckadmin.isEnabled()){
+                            if (mCheckadmin.isChecked()){
                                 startActivity(new Intent(getApplicationContext(),AdminMain.class));
                             }else {
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
