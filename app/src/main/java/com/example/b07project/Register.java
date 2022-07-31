@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -62,8 +63,14 @@ public class Register extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Toast.makeText(Register.this,"User Created", Toast.LENGTH_SHORT).show();
                             if (mCheckadmin.isChecked()){
+                                SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+                                editor.putBoolean("value",true);
+                                editor.apply();
                                 startActivity(new Intent(getApplicationContext(),AdminMain.class));
                             }else {
+                                SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+                                editor.putBoolean("value",false);
+                                editor.apply();
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             }
                         }

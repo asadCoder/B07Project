@@ -22,6 +22,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.sql.SQLOutput;
+import android.content.SharedPreferences;
 
 public class Login extends AppCompatActivity {
     EditText mEmail, mPassword;
@@ -42,7 +43,7 @@ public class Login extends AppCompatActivity {
         mCreateBtn =  findViewById(R.id.createText);
         mAdmin = (Switch) findViewById(R.id.admlogin);
 
-        Log.d("buttonstart", Boolean.toString(mAdmin.isEnabled()));
+
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -67,13 +68,22 @@ public class Login extends AppCompatActivity {
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        SharedPreferences sharedPreferences=getSharedPreferences("save",MODE_PRIVATE);
+
                         if (task.isSuccessful()){
                             Toast.makeText(Login.this,"Logged in Successfully",Toast.LENGTH_SHORT).show();
 
                             if(mAdmin.isChecked()){
+                                SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+                                editor.putBoolean("value",true);
+                                editor.apply();
+
                                 startActivity(new Intent(getApplicationContext(), AdminMain.class));
                             }
                             else {
+                                SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+                                editor.putBoolean("value",false);
+                                editor.apply();
 
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             }
