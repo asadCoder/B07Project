@@ -4,8 +4,10 @@ import java.util.HashSet;
 
 public class Event {
     String eventName;
-    int startTime; //24 hour format
-    int endTime; //24 Hour format
+    int startHour; //24 hour format
+    int startMin;
+    int endHour; //24 Hour format
+    int endMin;
     int capacity;
     String date;
     String location;
@@ -13,10 +15,13 @@ public class Event {
 
     }
 
-    public Event(String eventName, int startTime, int endTime, int capacity, String date, String location) {
+
+    public Event(String eventName, int startHour, int startMin, int endHour, int endMin, int capacity, String date, String location) {
         this.eventName = eventName;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startHour = startHour;
+        this.startMin = startMin;
+        this.endHour = endHour;
+        this.endMin = endMin;
         this.capacity = capacity;
         this.date = date;
         this.location = location;
@@ -26,12 +31,36 @@ public class Event {
         this.eventName = eventName;
     }
 
-    public void setStartTime(int startTime) {
-        this.startTime = startTime;
+    public int getStartHour() {
+        return startHour;
     }
 
-    public void setEndTime(int endTime) {
-        this.endTime = endTime;
+    public void setStartHour(int startHour) {
+        this.startHour = startHour;
+    }
+
+    public int getStartMin() {
+        return startMin;
+    }
+
+    public void setStartMin(int startMin) {
+        this.startMin = startMin;
+    }
+
+    public int getEndHour() {
+        return endHour;
+    }
+
+    public void setEndHour(int endHour) {
+        this.endHour = endHour;
+    }
+
+    public int getEndMin() {
+        return endMin;
+    }
+
+    public void setEndMin(int endMin) {
+        this.endMin = endMin;
     }
 
     public void setCapacity(int capacity) {
@@ -50,13 +79,6 @@ public class Event {
         return eventName;
     }
 
-    public int getStartTime() {
-        return startTime;
-    }
-
-    public int getEndTime() {
-        return endTime;
-    }
 
     public int getCapacity() {
         return capacity;

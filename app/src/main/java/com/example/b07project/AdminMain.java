@@ -59,35 +59,35 @@ public class AdminMain extends AppCompatActivity {
         });
 
         //The following code loops through the database and creates objects from the database
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
-                    String hashCode = snapshot.getKey();
-                    System.out.println(hashCode);
-                    String date = snapshot.child("date").getValue().toString();
-                    int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
-                    int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
-                    int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
-                    int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
-                    String venueName = snapshot.child("venueName").getValue().toString();
-//                    String location = snapshot.child("location").getValue().toString();
-
-                    //Eventually a sorting alorithm will go here so that the location is priority
-                    Venue obj = new Venue(venueName, hashCode, startHour, startMin, endHour, endMin, date, null, null);
-                    venues.add(obj);
-
-
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+//                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+//                    String hashCode = snapshot.getKey();
+//                    System.out.println(hashCode);
+//                    String date = snapshot.child("date").getValue().toString();
+//                    int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
+//                    int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
+//                    int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
+//                    int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
+//                    String venueName = snapshot.child("venueName").getValue().toString();
+////                    String location = snapshot.child("location").getValue().toString();
+//
+//                    //Eventually a sorting alorithm will go here so that the location is priority
+//                    Venue obj = new Venue(hashCode, venueName, startHour, startMin, endHour, endMin, date, null, null);
+//                    venues.add(obj);
+//
+//
+//
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//            }
+//        });
 
         createEtemp = findViewById(R.id.CreaEvent);
         createEtemp.setOnClickListener(new View.OnClickListener() {
