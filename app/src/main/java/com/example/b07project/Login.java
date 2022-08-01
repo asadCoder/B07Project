@@ -23,6 +23,21 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.sql.SQLOutput;
 import android.content.SharedPreferences;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity {
     EditText mEmail, mPassword;
@@ -72,16 +87,18 @@ public class Login extends AppCompatActivity {
 
                         if (task.isSuccessful()){
                             Toast.makeText(Login.this,"Logged in Successfully",Toast.LENGTH_SHORT).show();
-
+                            SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+                            editor.putString("email",email);
+                            editor.apply();
                             if(mAdmin.isChecked()){
-                                SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+                                editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                 editor.putBoolean("value",true);
                                 editor.apply();
 
                                 startActivity(new Intent(getApplicationContext(), AdminMain.class));
                             }
                             else {
-                                SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+                                editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                 editor.putBoolean("value",false);
                                 editor.apply();
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));

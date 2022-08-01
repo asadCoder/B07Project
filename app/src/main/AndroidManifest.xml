@@ -16,12 +16,23 @@
         android:theme="@style/Theme.B07Project"
         tools:targetApi="31">
         <activity
+            android:name=".ViewVenue"
+            android:exported="false" />
+        <activity
+            android:name=".CreateVenue"
+            android:exported="false" />
+        <activity
+            android:name=".CreateEvent"
+            android:exported="false" />
+        <activity
+            android:name=".ShowEvent"
+            android:exported="false" />
+        <activity
             android:name=".loggedAs"
             android:exported="false" />
         <activity
             android:name=".AdminMain"
             android:exported="true" />
-
         <activity
             android:name=".Login"
             android:exported="false" />
@@ -36,10 +47,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            />
-
-
+            android:exported="false" />
     </application>
 
 </manifest>
