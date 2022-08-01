@@ -1,14 +1,22 @@
 package com.example.b07project;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
@@ -18,14 +26,21 @@ public class CreateVenue extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     Venue venue;
     TextView vename;
+
+    FirebaseDatabase database;
+    DatabaseReference reference;
+    Button createbut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_venue);
+        createbut = findViewById(R.id.CV);
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference().child("Venues").push();
         venue = new Venue();
-        vename = findViewById(R.id.CreateVenuetxt);
+        vename = findViewById(R.id.Vename);
 
-        String venuename = vename.getText().toString();
+
 
         Date = findViewById(R.id.Date);
         Date.setOnClickListener(new View.OnClickListener() {
@@ -56,5 +71,22 @@ public class CreateVenue extends AppCompatActivity {
             }
         };
 
+        createbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String venuename = vename.getText().toString().trim();
+                venue.venueName = venuename;
+                reference.setValue(venue).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(CreateVenue.this,"Data added", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                startActivity(new Intent(getApplicationContext(), AdminMain.class));
+            }
+        });
+
+            }
+
+
     }
-}
