@@ -33,6 +33,8 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
         holder.venuname.setText(ven.getVenueName());
         holder.location.setText(ven.getLocation());
         holder.date.setText(ven.getDate());
+        holder.starttime.setText(ven.starttime());
+        holder.endtime.setText(ven.endtime());
 
     }
 
@@ -42,13 +44,16 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView venuname, location, date;
+        TextView venuname, location, date, endtime, starttime;
 
         public MyViewHolder (@NonNull View itemView){
             super(itemView);
             venuname = itemView.findViewById(R.id.venuename);
             location = itemView.findViewById(R.id.locationf);
             date = itemView.findViewById(R.id.venuedate);
+            endtime = itemView.findViewById(R.id.endtim);
+            starttime = itemView.findViewById(R.id.starttim);
+
         }
     }
 }

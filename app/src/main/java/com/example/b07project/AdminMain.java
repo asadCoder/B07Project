@@ -2,6 +2,8 @@ package com.example.b07project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +26,7 @@ public class AdminMain extends AppCompatActivity {
     Button viewV;
     Myadapter myadapter;
     ArrayList<Venue> venlist;
+    RecyclerView recyclerView;
     Button createEtemp;
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Venues");
     ArrayList<Venue> venues = new ArrayList<>();
@@ -45,10 +48,7 @@ public class AdminMain extends AppCompatActivity {
 
             }
         });
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(myadapter);
-        myadapter = new Myadapter(this,venues);
+
         //The following method will be triggered when any venue is clicked
         viewV = findViewById(R.id.ViewVenue);
         viewV.setOnClickListener(new View.OnClickListener(){
@@ -76,20 +76,28 @@ public class AdminMain extends AppCompatActivity {
 //                    String location = snapshot.child("location").getValue().toString();
 
                     //Eventually a sorting alorithm will go here so that the location is priority
-                    Venue obj = new Venue(venueName, hashCode, startHour, startMin, endHour, endMin, date, null, null);
+                    Venue obj = new Venue(hashCode, venueName, startHour, startMin, endHour, endMin, date, null, null);
                     venues.add(obj);
 
 
 
 
                 }
+                myadapter.notifyDataSetChanged();
 
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+        recyclerView = findViewById(R.id.Venuelist);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        myadapter = new Myadapter(this,venues);
+        recyclerView.setAdapter(myadapter);
+
 
 
     }

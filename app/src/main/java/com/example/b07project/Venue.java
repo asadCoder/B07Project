@@ -65,6 +65,34 @@ public class Venue {
     public String getVenueName() {
         return venueName;
     }
+    public String endtime(){
+        String em=  String.valueOf(getEndMin()).trim();
+        String eh = String.valueOf(getEndHour()).trim();
+        if (em.length() == 1) {
+            em = "0"+em;
+        }
+        if (eh.length()==1){
+            eh = "0"+eh;
+        }
+
+
+        String ti = eh + ":"+em;
+        return ti;
+    }
+    public String starttime(){
+        String em=  String.valueOf(getStartMin()).trim();
+        String eh = String.valueOf(getStartHour()).trim();
+        if (em.length() == 1) {
+            em = "0"+em;
+        }
+        if (eh.length()==1){
+            eh = "0"+eh;
+        }
+
+
+        String ti = eh + ":"+em;
+        return ti;
+    }
 
     public String getVenueHashCode() {
         return venueHashCode;
