@@ -14,7 +14,8 @@ public class DB_Write {
     private static final FirebaseDatabase db = FirebaseDatabase.getInstance();
 
     public static void createAdmin( Admin u){
-        DatabaseReference ref = db.getReference().child("Admins").child(u.getEmail());
+        DatabaseReference ref = db.getReference(("Admins"));
+
         ref.setValue(u);
         // creates a user by adding it to the database
         // type of user can only be either "customers" or "owners"

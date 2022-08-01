@@ -10,7 +10,11 @@ public class Venue {
     String location;
     HashSet<Event> events;
     public Venue(){
-
+        this.venueName = venueName;
+        
+        this.date = date;
+        this.location = location;
+        this.events = events;
     }
     public Venue(String venueName, int startTime, int endTime, String date, String location, HashSet<Event> events) {
         this.venueName = venueName;

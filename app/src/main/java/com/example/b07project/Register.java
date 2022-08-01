@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+
 public class Register extends AppCompatActivity {
     EditText mEmail, mPassword;
     Button mRegisterBtn;
@@ -67,8 +69,12 @@ public class Register extends AppCompatActivity {
                                 SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                 editor.putBoolean("value",true);
                                 editor.apply();
+                                Admin a = new Admin(email,null);
+                                ArrayList<Venue> v = new ArrayList<Venue>();
+                                v.add(new Venue());
+                                a.setVenues(v);
 //
-
+                                DB_Write.createAdmin(a);
                                 startActivity(new Intent(getApplicationContext(),AdminMain.class));
                             }else {
                                 SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
@@ -100,8 +106,5 @@ public class Register extends AppCompatActivity {
 
     }
 
-    public void Create(View view){
-        Admin a = new Admin(mEmail.getText().toString().trim(),null);
-        DB_Write.createAdmin(a);
-    }
+
 }
