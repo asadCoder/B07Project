@@ -5,23 +5,61 @@ import java.util.HashSet;
 public class Venue {
     String venueHashCode;
     String venueName;
-    int startTime; //24 hour format
-    int endTime; //24 Hour format
+    int startHour; //24 hour format
+    int startMin;
+    int endHour; //24 Hour format
+    int endMin;
     String date;
     String location;
     HashSet<Event> events;
+
+    public Venue(String venueHashCode, String venueName, int starthour, int startmin, int endhour, int endmin, String date, String location, HashSet<Event> events) {
+        this.venueHashCode = venueHashCode;
+        this.venueName = venueName;
+        this.startHour = starthour;
+        this.startMin = startmin;
+        this.endHour = endhour;
+        this.endMin = endmin;
+        this.date = date;
+        this.location = location;
+        this.events = events;
+    }
+
+
     public Venue(){
 
     }
-    public Venue(String venueName, int startTime, int endTime, String date, String location, String hashCode, HashSet<Event> events) {
 
-        this.venueName = venueName;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.date = date;
-        this.location = location;
-        this.venueHashCode = hashCode;
-        this.events = events;
+    public int getStartHour() {
+        return startHour;
+    }
+
+    public void setStartHour(int startHour) {
+        this.startHour = startHour;
+    }
+
+    public int getStartMin() {
+        return startMin;
+    }
+
+    public void setStartMin(int startMin) {
+        this.startMin = startMin;
+    }
+
+    public int getEndHour() {
+        return endHour;
+    }
+
+    public void setEndHour(int endHour) {
+        this.endHour = endHour;
+    }
+
+    public int getEndMin() {
+        return endMin;
+    }
+
+    public void setEndMin(int endMin) {
+        this.endMin = endMin;
     }
 
     public String getVenueName() {
@@ -36,21 +74,11 @@ public class Venue {
         this.venueName = venueName;
     }
 
-    public int getStartTime() {
-        return startTime;
+    public void setVenueHashCode(String venueHashCode) {
+        this.venueHashCode = venueHashCode;
     }
 
-    public void setStartTime(int startTime) {
-        this.startTime = startTime;
-    }
 
-    public int getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(int endTime) {
-        this.endTime = endTime;
-    }
 
     public String getDate() {
         return date;
