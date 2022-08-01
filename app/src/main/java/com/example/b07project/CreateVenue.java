@@ -41,7 +41,6 @@ public class CreateVenue extends AppCompatActivity {
         vename = findViewById(R.id.Vename);
 
 
-
         Date = findViewById(R.id.Date);
         Date.setOnClickListener(new View.OnClickListener() {
             @Override

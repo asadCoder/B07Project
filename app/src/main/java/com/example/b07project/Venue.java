@@ -3,6 +3,7 @@ package com.example.b07project;
 import java.util.HashSet;
 
 public class Venue {
+    String venueHashCode;
     String venueName;
     int startTime; //24 hour format
     int endTime; //24 Hour format
@@ -12,17 +13,23 @@ public class Venue {
     public Venue(){
 
     }
-    public Venue(String venueName, int startTime, int endTime, String date, String location, HashSet<Event> events) {
+    public Venue(String venueName, int startTime, int endTime, String date, String location, String hashCode, HashSet<Event> events) {
+
         this.venueName = venueName;
         this.startTime = startTime;
         this.endTime = endTime;
         this.date = date;
         this.location = location;
+        this.venueHashCode = hashCode;
         this.events = events;
     }
 
     public String getVenueName() {
         return venueName;
+    }
+
+    public String getVenueHashCode() {
+        return venueHashCode;
     }
 
     public void setVenueName(String venueName) {
@@ -68,4 +75,6 @@ public class Venue {
     public void setEvents(HashSet<Event> events) {
         this.events = events;
     }
+
+    public void addEvent(Event event) { events.add(event); }
 }
