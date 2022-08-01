@@ -37,6 +37,9 @@ public class AdminMain extends AppCompatActivity {
         createV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 startActivity(new Intent(getApplicationContext(), CreateVenue.class));
                 //Link to Create Venues page but set to an arbitary venue for now
 
