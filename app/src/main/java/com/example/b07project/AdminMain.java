@@ -2,8 +2,6 @@ package com.example.b07project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,11 +19,12 @@ import com.google.firebase.database.DataSnapshot;
 import java.util.ArrayList;
 
 public class AdminMain extends AppCompatActivity {
-    RecyclerView recyclerView;
+
     Button createV;
     Button viewV;
     Myadapter myadapter;
     ArrayList<Venue> venlist;
+    Button createEtemp;
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Venues");
     ArrayList<Venue> venues = new ArrayList<>();
     @Override
@@ -69,20 +68,21 @@ public class AdminMain extends AppCompatActivity {
                     String hashCode = snapshot.getKey();
                     System.out.println(hashCode);
                     String date = snapshot.child("date").getValue().toString();
-                    int endTime = Integer.parseInt(snapshot.child("endTime").getValue().toString());
-                    int startTime = Integer.parseInt(snapshot.child("startTime").getValue().toString());
+                    int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
+                    int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
+                    int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
+                    int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
                     String venueName = snapshot.child("venueName").getValue().toString();
 //                    String location = snapshot.child("location").getValue().toString();
 
                     //Eventually a sorting alorithm will go here so that the location is priority
-                    Venue obj = new Venue(venueName, startTime, endTime, date, null, hashCode, null);
+                    Venue obj = new Venue(venueName, hashCode, startHour, startMin, endHour, endMin, date, null, null);
                     venues.add(obj);
 
 
 
 
                 }
-                myadapter.notifyDataSetChanged();
 
             }
 

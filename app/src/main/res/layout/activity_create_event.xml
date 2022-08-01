@@ -45,4 +45,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <Button
+        android:id="@+id/startTime"
+        android:onClick="popTimePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Start Time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EventName" />
+
+    <Button
+        android:id="@+id/endTime"
+        android:onClick="popTimePicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:text="End Time"
+        app:layout_constraintBottom_toTopOf="@+id/eventName2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startTime" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

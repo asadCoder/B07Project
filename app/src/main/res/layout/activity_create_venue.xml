@@ -39,10 +39,12 @@
         android:id="@+id/Date"
         android:layout_width="234dp"
         android:layout_height="48dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"
         android:hint="Click to Select Date"
         android:textAlignment="center"
         android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/startTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,12 +54,41 @@
         android:id="@+id/CV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="144dp"
+        android:layout_marginBottom="76dp"
         android:text="Create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Date"
-        app:layout_constraintVertical_bias="0.917" />
+        app:layout_constraintTop_toBottomOf="@+id/endTime" />
+
+    <Button
+        android:id="@+id/endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="76dp"
+        android:onClick="popTimePicker2"
+        android:text="End Time"
+        app:layout_constraintBottom_toTopOf="@+id/CV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startTime"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/startTime"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="30dp"
+        android:onClick="popTimePicker1"
+        android:text="Start Time"
+        app:layout_constraintBottom_toTopOf="@+id/endTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
