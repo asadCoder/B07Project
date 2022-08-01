@@ -2,8 +2,6 @@ package com.example.b07project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,9 +22,6 @@ public class AdminMain extends AppCompatActivity {
 
     Button createV;
     Button viewV;
-    Myadapter myadapter;
-    ArrayList<Venue> venlist;
-    RecyclerView recyclerView;
     Button createEtemp;
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Venues");
     ArrayList<Venue> venues = new ArrayList<>();
@@ -43,6 +38,9 @@ public class AdminMain extends AppCompatActivity {
         createV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 startActivity(new Intent(getApplicationContext(), CreateVenue.class));
                 //Link to Create Venues page but set to an arbitary venue for now
 
@@ -98,7 +96,13 @@ public class AdminMain extends AppCompatActivity {
         myadapter = new Myadapter(this,venues);
         recyclerView.setAdapter(myadapter);
 
-
+        createEtemp = findViewById(R.id.CreaEvent);
+        createEtemp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), CreateEvent.class));
+            }
+        });
 
     }
 

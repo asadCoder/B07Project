@@ -34,6 +34,7 @@ public class CreateVenue extends AppCompatActivity {
     private TextView Date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     Venue venue;
+    TextView location;
     TextView vename;
     boolean stime;
     boolean etime;
@@ -52,6 +53,7 @@ public class CreateVenue extends AppCompatActivity {
         venue = new Venue();
         vename = findViewById(R.id.Vename);
 
+        location = findViewById(R.id.Vlocation);
         sTime = findViewById(R.id.startTime);
         eTime = findViewById(R.id.endTime);
         Date = findViewById(R.id.Date);
@@ -87,14 +89,17 @@ public class CreateVenue extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String venuename = vename.getText().toString().trim();
-                if(TextUtils.isEmpty(venuename) || TextUtils.isEmpty(venue.getDate()) || !stime || !etime){
+                String loc = location.getText().toString().trim();
+                if(TextUtils.isEmpty(venuename) || TextUtils.isEmpty(venue.getDate()) || TextUtils.isEmpty(loc) || !stime || !etime){
                     Toast.makeText(CreateVenue.this,"No fields can be empty", Toast.LENGTH_SHORT).show();
                 }
-                else if(venue.getStartHour()>venue.getEndHour() || ((venue.getStartHour()==venue.getEndHour()) && venue.getStartMin()>venue.getEndMin())){
+                else if(venue.getStartHour()>venue.getEndHour() || ((venue.getStartHour()==venue.getEndHour()) && venue.getStartMin()>=venue.getEndMin())){
                     Toast.makeText(CreateVenue.this,"Enter valid start and end times", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    venue.venueName = venuename;
+                    venue.setVenueName(venuename);
+                    venue.setLocation(loc);
+                    //Add to users set of created events
                     reference.setValue(venue).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {

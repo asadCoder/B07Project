@@ -7,17 +7,32 @@
     tools:context=".CreateEvent">
 
     <EditText
-        android:id="@+id/eventName2"
+        android:id="@+id/Ecapacity"
         android:layout_width="326dp"
         android:layout_height="54dp"
-        android:layout_marginBottom="184dp"
+        android:layout_marginBottom="212dp"
         android:ems="10"
         android:hint="Maximum Number of People"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/Elocation"
+        android:layout_width="326dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Location"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/ExampleLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Ecapacity"
+        app:layout_constraintVertical_bias="0.1" />
 
     <TextView
         android:id="@+id/textView"
@@ -36,7 +51,7 @@
         android:id="@+id/EventName"
         android:layout_width="326dp"
         android:layout_height="60dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
@@ -47,25 +62,51 @@
 
     <Button
         android:id="@+id/startTime"
-        android:onClick="popTimePicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="popTimePicker1"
         android:text="Start Time"
+        app:layout_constraintBottom_toTopOf="@+id/endTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EventName" />
 
     <Button
         android:id="@+id/endTime"
-        android:onClick="popTimePicker2"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
+        android:onClick="popTimePicker2"
         android:text="End Time"
-        app:layout_constraintBottom_toTopOf="@+id/eventName2"
+        app:layout_constraintBottom_toTopOf="@+id/Ecapacity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startTime" />
+
+    <TextView
+        android:id="@+id/ExampleLocation"
+        android:layout_width="151dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="88dp"
+        android:text="Example: Court 1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.161"
+
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Ecreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Elocation"
+        app:layout_constraintVertical_bias="0.506" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
