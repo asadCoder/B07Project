@@ -2,6 +2,8 @@ package com.example.b07project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,7 +21,8 @@ import com.google.firebase.database.DataSnapshot;
 import java.util.ArrayList;
 
 public class AdminMain extends AppCompatActivity {
-
+    RecyclerView recyclerView;
+    Myadapter myadapter;
     Button createV;
     Button viewV;
     Button createEtemp;
@@ -46,6 +49,7 @@ public class AdminMain extends AppCompatActivity {
 
             }
         });
+
 
         //The following method will be triggered when any venue is clicked
         viewV = findViewById(R.id.ViewVenue);
@@ -90,19 +94,22 @@ public class AdminMain extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
         recyclerView = findViewById(R.id.Venuelist);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myadapter = new Myadapter(this,venues);
         recyclerView.setAdapter(myadapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        createEtemp = findViewById(R.id.CreaEvent);
-        createEtemp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), CreateEvent.class));
-            }
-        });
+
+        //uncomment incase create event
+//        createEtemp = findViewById(R.id.CreaEvent);
+//        createEtemp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getApplicationContext(), CreateEvent.class));
+//            }
+//        });
 
     }
 
