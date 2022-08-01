@@ -3,6 +3,7 @@ package com.example.b07project;
 import java.util.ArrayList;
 
 public class Admin {
+    String username;
     String email;
     ArrayList<Venue> Venues;
 
@@ -10,10 +11,18 @@ public class Admin {
         super();
     }
 
-    public Admin(String email, ArrayList<Venue> venues) {
-
+    public Admin(String username, String email, ArrayList<Venue> venues) {
+        this.username = username;
         this.email = email;
         Venues = venues;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

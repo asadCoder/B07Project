@@ -2,6 +2,8 @@ package com.example.b07project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,9 +21,11 @@ import com.google.firebase.database.DataSnapshot;
 import java.util.ArrayList;
 
 public class AdminMain extends AppCompatActivity {
-
+    RecyclerView recyclerView;
     Button createV;
     Button viewV;
+    Myadapter myadapter;
+    ArrayList<Venue> venlist;
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Venues");
     ArrayList<Venue> venues = new ArrayList<>();
     @Override
@@ -42,7 +46,10 @@ public class AdminMain extends AppCompatActivity {
 
             }
         });
-
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(myadapter);
+        myadapter = new Myadapter(this,venues);
         //The following method will be triggered when any venue is clicked
         viewV = findViewById(R.id.ViewVenue);
         viewV.setOnClickListener(new View.OnClickListener(){
@@ -75,6 +82,7 @@ public class AdminMain extends AppCompatActivity {
 
 
                 }
+                myadapter.notifyDataSetChanged();
 
             }
 

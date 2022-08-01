@@ -3,29 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_admin_main.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_create_event.xml" value="0.2" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_create_venue.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_logged_as.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_login.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_show_event.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_admin_main.xml" value="0.259375" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_create_event.xml" value="0.259375" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_create_venue.xml" value="0.2" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_main.xml" value="0.259375" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_show_event.xml" value="0.259375" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_view_venue.xml" value="0.2453125" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/content_view_venue.xml" value="0.2453125" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_first.xml" value="0.259375" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_second.xml" value="0.259375" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.153" />
         <entry key="app/src/main/res/layout/activity_admin_main.xml" value="0.19444444444444445" />
+        <entry key="app/src/main/res/layout/activity_create_event.xml" value="0.17408752441406253" />
+        <entry key="app/src/main/res/layout/activity_create_venue.xml" value="0.2120208740234375" />
         <entry key="app/src/main/res/layout/activity_logged_as.xml" value="0.10648148148148148" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26979980468749987" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25259515570934254" />
+        <entry key="app/src/main/res/layout/activity_show_event.xml" value="0.19985198974609375" />
+        <entry key="app/src/main/res/layout/activity_venuetest.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_view_venue.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.2111852010091146" />
+        <entry key="app/src/main/res/layout/venuess.xml" value="0.25425845313009954" />
+        <entry key="app/src/main/res/layout/venuestest.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/menu/menu_scrolling.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>

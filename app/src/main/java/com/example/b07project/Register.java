@@ -19,6 +19,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -28,6 +33,8 @@ public class Register extends AppCompatActivity {
     TextView mLoginBtn;
     FirebaseAuth fAuth;
     Switch mCheckadmin;
+    EditText mUsername;
+    private static final FirebaseDatabase db = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +44,9 @@ public class Register extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.createText);
         mPassword = findViewById(R.id.Password);
         mCheckadmin = (Switch)findViewById(R.id.AdminCheck);
+        mUsername = findViewById(R.id.Username);
         fAuth = FirebaseAuth.getInstance();
+
         if(fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
@@ -47,10 +56,22 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
+                String username = mUsername.getText().toString().trim();
+
                 if (TextUtils.isEmpty(email)){
                     mEmail.setError("Email is required");
                     return;
                 }
+                if (TextUtils.isEmpty(username)){
+                    mUsername.setError("Username is required");
+                    return;
+                }
+
+
+
+
+
+
 
                 if (TextUtils.isEmpty(password)) {
                     mPassword.setError("Password is required");
@@ -60,43 +81,75 @@ public class Register extends AppCompatActivity {
                     mPassword.setError("Password has to be >= 6 characters");
                 }
                 // register user
-                fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                DatabaseReference rootRef = db.getReference();
+                rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(Register.this,"User Created", Toast.LENGTH_SHORT).show();
-                            Admin a = new Admin(email,null);
-                            ArrayList<Venue> v = new ArrayList<Venue>();
-                            a.setVenues(v);
-//
-                            ArrayList<Event> e = new ArrayList<Event>();
-                            DB_Write.createAdmin(a);
-                            Customer c = new Customer(email,e);
-                            DB_Write.createCustomer(c);
-                            SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
-                            editor.putString("email",email);
-                            editor.apply();
-                            if (mCheckadmin.isChecked()){
-                                 editor=getSharedPreferences("save",MODE_PRIVATE).edit();
-                                editor.putBoolean("value",true);
-                                editor.apply();
-                                Toast.makeText(Register.this, email, Toast.LENGTH_SHORT).show();
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        boolean b = false;
+                        if (snapshot.exists()){
+                            for(DataSnapshot user: snapshot.child("Admins").getChildren()){
+                                if(user.child("username").getValue().toString().equals(username) ){
+                                    Log.i("console", "username found!");
+                                    b = true;
+                                }
 
-
-                                startActivity(new Intent(getApplicationContext(),AdminMain.class));
-                            }else {
-                                 editor=getSharedPreferences("save",MODE_PRIVATE).edit();
-                                editor.putBoolean("value",false);
-                                editor.apply();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            }
-                        }
+                            }}
                         else{
-                            Toast.makeText(Register.this, "Error" + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            Log.i("console", "snapshot doesnt exist");
+                        }
+                        if(!b ){
+                            DB_Write.write_username(username);
+                            fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(Register.this,"User Created", Toast.LENGTH_SHORT).show();
+                                        Admin a = new Admin(username,email,null);
+                                        ArrayList<Venue> v = new ArrayList<Venue>();
+                                        a.setVenues(v);
+//
+                                        ArrayList<Event> e = new ArrayList<Event>();
+                                        DB_Write.createAdmin(a,Register.this);
+                                        Customer c = new Customer(username,email,e);
+                                        DB_Write.createCustomer(c,Register.this);
+                                        SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+                                        editor.putString("email",email);
+                                        editor.apply();
+                                        if (mCheckadmin.isChecked()){
+                                            editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+                                            editor.putBoolean("value",true);
+                                            editor.apply();
+                                            Toast.makeText(Register.this, email, Toast.LENGTH_SHORT).show();
+
+
+                                            startActivity(new Intent(getApplicationContext(),AdminMain.class));
+                                        }else {
+                                            editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+                                            editor.putBoolean("value",false);
+                                            editor.apply();
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                        }
+                                    }
+                                    else{
+                                        Toast.makeText(Register.this, "Error" + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            });
+                        }
+                        else {
+                            mUsername.setError("Username is in Use");
+
                         }
                     }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
                 });
+
 
             }
 
