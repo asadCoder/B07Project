@@ -1,6 +1,8 @@
 package com.example.b07project;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +22,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class CreateVenue extends AppCompatActivity {
-
+    Button sTime, eTime;
+    int shour, sminute;
+    int ehour, eminute;
     private TextView Date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     Venue venue;
@@ -32,6 +38,7 @@ public class CreateVenue extends AppCompatActivity {
     Button createbut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_venue);
         createbut = findViewById(R.id.CV);
@@ -40,7 +47,8 @@ public class CreateVenue extends AppCompatActivity {
         venue = new Venue();
         vename = findViewById(R.id.Vename);
 
-
+        sTime = findViewById(R.id.startTime);
+        eTime = findViewById(R.id.endTime);
         Date = findViewById(R.id.Date);
         Date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +93,40 @@ public class CreateVenue extends AppCompatActivity {
             }
         });
 
-            }
+    }
+    public void popTimePicker1(View view) {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hour, int minutes) {
+                shour = hour;
+                sminute = minutes;
+                sTime.setText(String.format(Locale.getDefault(), "%02d:%02d", shour, sminute));
 
+            }
+        };
+        int style = AlertDialog.THEME_HOLO_DARK;
+        TimePickerDialog picker = new TimePickerDialog(this, style, onTimeSetListener, shour, sminute, true);
+        picker.setTitle("Select Start Time");
+        picker.show();
 
     }
+
+    public void popTimePicker2(View view) {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hour, int minutes) {
+                ehour = hour;
+                eminute = minutes;
+                eTime.setText(String.format(Locale.getDefault(), "%02d:%02d", ehour, eminute));
+
+            }
+        };
+        int style = AlertDialog.THEME_HOLO_DARK;
+        TimePickerDialog picker = new TimePickerDialog(this, style, onTimeSetListener, ehour, eminute, true);
+        picker.setTitle("Select End Time");
+        picker.show();
+
+    }
+
+
+}
