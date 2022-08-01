@@ -62,8 +62,7 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(Register.this,"User Created", Toast.LENGTH_SHORT).show();
-                            Admin a = new Admin(email,null);
-                          DB_Write.createAdmin(a);
+
                             if (mCheckadmin.isChecked()){
                                 SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                 editor.putBoolean("value",true);
@@ -99,4 +98,10 @@ public class Register extends AppCompatActivity {
         });
 
 
-    }}
+    }
+
+    public void Create(View view){
+        Admin a = new Admin(mEmail.getText().toString().trim(),null);
+        DB_Write.createAdmin(a);
+    }
+}

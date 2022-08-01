@@ -11,11 +11,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class DB_Write {
-    private static final FirebaseDatabase db = FirebaseDatabase.getInstance("https://b07newproject-default-rtdb.firebaseio.com/");
+    private static final FirebaseDatabase db = FirebaseDatabase.getInstance();
 
     public static void createAdmin( Admin u){
+        DatabaseReference ref = db.getReference().child("Admins").child(u.getEmail());
+        ref.setValue(u);
         // creates a user by adding it to the database
         // type of user can only be either "customers" or "owners"
- 
+
     }
 }
