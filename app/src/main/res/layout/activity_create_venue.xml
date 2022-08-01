@@ -10,20 +10,21 @@
         android:id="@+id/CreateVenuetxt"
         android:layout_width="241dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Create a Venue"
         android:textAlignment="center"
         android:textSize="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/Vename"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/Vename"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Venue Name"
@@ -32,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="193dp" />
+        app:layout_constraintTop_toBottomOf="@+id/CreateVenuetxt" />
 
     <TextView
         android:id="@+id/Date"
@@ -45,6 +46,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/Vename" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,11 +16,16 @@ public class CreateVenue extends AppCompatActivity {
 
     private TextView Date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-
+    Venue venue;
+    TextView vename;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_venue);
+        venue = new Venue();
+        vename = findViewById(R.id.CreateVenuetxt);
+
+        String venuename = vename.getText().toString();
 
         Date = findViewById(R.id.Date);
         Date.setOnClickListener(new View.OnClickListener() {
@@ -40,12 +45,14 @@ public class CreateVenue extends AppCompatActivity {
                 dialog.show();
             }
         });
-        
+
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-
+                String date = month + "/" + day + "/" + year;
+                venue.date = date;
+                Date.setText(date);
             }
         };
 
