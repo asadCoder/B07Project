@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -142,6 +141,6 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
         editor.putInt("vendM", v.getEndMin());
         editor.apply();
 
-        startActivity(new Intent(getApplicationContext(), SpecificVenue.class));
+        startActivity(new Intent(getApplicationContext(), SpecificVenueAdmin.class));
     }
 }

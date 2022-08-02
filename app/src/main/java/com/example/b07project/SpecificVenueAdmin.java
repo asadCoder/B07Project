@@ -9,14 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SpecificVenue extends AppCompatActivity {
+public class SpecificVenueAdmin extends AppCompatActivity {
     Button Ecreate;
     TextView venName;
     Venue v;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_specific_venue);
+        setContentView(R.layout.activity_specific_venue_admin);
         v = (Venue) getIntent().getParcelableExtra("venue");
         Ecreate = findViewById(R.id.createE);
         venName = findViewById(R.id.VenName);

@@ -18,7 +18,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class CreateEvent extends AppCompatActivity {
@@ -92,7 +91,7 @@ public class CreateEvent extends AppCompatActivity {
                         }
                     });
 
-                    startActivity(new Intent(getApplicationContext(), SpecificVenue.class));
+                    startActivity(new Intent(getApplicationContext(), SpecificVenueAdmin.class));
 
                 }
 

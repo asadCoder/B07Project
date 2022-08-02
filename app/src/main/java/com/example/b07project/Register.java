@@ -130,13 +130,15 @@ public class Register extends AppCompatActivity {
 
                                             startActivity(new Intent(getApplicationContext(),AdminMain.class));
                                         }else {
-                                            Intent intent = new Intent(Register.this, CreateVenue.class);
+                                            Intent intent = new Intent(Register.this, ViewVenuesUser.class);
                                             editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                             editor.putBoolean("value",false);
                                             editor.apply();
                                             intent.putExtra("Customer",c);
                                             startActivity(intent);
-                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                                            //asad changed
+                                            startActivity(new Intent(getApplicationContext(), ViewVenuesUser.class));
                                         }
                                     }
                                     else{

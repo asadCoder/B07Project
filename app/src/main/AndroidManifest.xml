@@ -16,7 +16,16 @@
         android:theme="@style/Theme.B07Project"
         tools:targetApi="31">
         <activity
-            android:name=".SpecificVenue"
+            android:name=".ViewVenuesAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".SpecificVenueUser"
+            android:exported="false" />
+        <activity
+            android:name=".ViewVenuesUser"
+            android:exported="false" />
+        <activity
+            android:name=".SpecificVenueAdmin"
             android:exported="false" />
         <activity
             android:name=".ViewVenue"
