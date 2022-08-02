@@ -99,7 +99,7 @@ public class Register extends AppCompatActivity {
                             Log.i("console", "snapshot doesnt exist");
                         }
                         if(!b ){
-                            DB_Write.write_username(username);
+                            DB_Write.write_username(username,email);
                             fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
