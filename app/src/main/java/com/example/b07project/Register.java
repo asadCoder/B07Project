@@ -68,6 +68,11 @@ public class Register extends AppCompatActivity {
                 }
 
 
+
+
+
+
+
                 if (TextUtils.isEmpty(password)) {
                     mPassword.setError("Password is required");
                     return;
@@ -94,7 +99,7 @@ public class Register extends AppCompatActivity {
                             Log.i("console", "snapshot doesnt exist");
                         }
                         if(!b ){
-
+                            DB_Write.write_username(username,email);
                             fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -103,7 +108,6 @@ public class Register extends AppCompatActivity {
                                         Admin a = new Admin(username,email,null);
                                         ArrayList<Venue> v = new ArrayList<Venue>();
                                         a.setVenues(v);
-                                        DB_Write.write_username(username);
 //
                                         ArrayList<Event> e = new ArrayList<Event>();
                                         DB_Write.createAdmin(a,Register.this);
