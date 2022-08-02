@@ -58,10 +58,12 @@ public class AdminMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminMain.this, ViewVenue.class);
-                intent.putExtra("hashCode", venues.get(0).getVenueHashCode());
+                intent.putExtra("hashCode", venues.get(0).getLocation());
                 startActivity(intent);
             }
         });
+        myadapter = new Myadapter(this,venues);
+
         ref = FirebaseDatabase.getInstance().getReference().child("Admins/"+use+"/Venues");
         //The following code loops through the database and creates objects from the database
         ref.addValueEventListener(new ValueEventListener() {
@@ -82,9 +84,6 @@ public class AdminMain extends AppCompatActivity {
                     Venue obj = new Venue(hashCode, venueName, startHour, startMin, endHour, endMin, date, location, null);
                     venues.add(obj);
 
-
-
-
                 }
                 myadapter.notifyDataSetChanged();
 
@@ -97,7 +96,7 @@ public class AdminMain extends AppCompatActivity {
         });
 
         recyclerView = findViewById(R.id.Venuelist);
-        myadapter = new Myadapter(this,venues);
+//        myadapter = new Myadapter(this,venues);
         recyclerView.setAdapter(myadapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
