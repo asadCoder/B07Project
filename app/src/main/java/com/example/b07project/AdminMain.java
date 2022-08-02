@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -63,7 +64,7 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
                 startActivity(intent);
             }
         });
-        myadapter = new Myadapter(this,venues);
+        myadapter = new Myadapter(this,venues,this::selectedvenue);
 
         ref = FirebaseDatabase.getInstance().getReference().child("Admins/"+use+"/Venues");
         //The following code loops through the database and creates objects from the database
@@ -127,5 +128,20 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
     @Override
     public void selectedvenue(Venue v) {
         Toast.makeText(AdminMain.this, v.venueName,Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(AdminMain.this, SpecificVenue.class);
+//        intent.putExtra("venue", v);
+//        startActivity(intent);
+        SharedPreferences.Editor editor=getSharedPreferences("venue",MODE_PRIVATE).edit();
+        editor.putString("vname", v.getVenueName());
+        editor.putString("vdate", v.getDate());
+        editor.putString("vlocation", v.getLocation());
+        editor.putString("vdate", v.getDate());
+        editor.putInt("vstartH", v.getStartHour());
+        editor.putInt("vstartM", v.getStartMin());
+        editor.putInt("vendH", v.getEndHour());
+        editor.putInt("vendM", v.getEndMin());
+        editor.apply();
+
+        startActivity(new Intent(getApplicationContext(), SpecificVenue.class));
     }
 }

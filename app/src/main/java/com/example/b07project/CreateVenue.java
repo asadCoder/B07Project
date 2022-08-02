@@ -111,7 +111,7 @@ public class CreateVenue extends AppCompatActivity {
                     reference.setValue(venue).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Toast.makeText(CreateVenue.this, "Data added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateVenue.this, "Venue added", Toast.LENGTH_SHORT).show();
                         }
                     });
                     SharedPreferences sharedPref = getSharedPreferences("save",MODE_PRIVATE);

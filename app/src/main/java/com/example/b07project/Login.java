@@ -88,7 +88,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Toast.makeText(Login.this,"Logged in Successfully",Toast.LENGTH_SHORT).show();
                             SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
-                            editor.putString("username",email);
+                            editor.putString("username", "str"); //Should be username instead of email?
                             editor.apply();
                             if(mAdmin.isChecked()){
                                 editor=getSharedPreferences("save",MODE_PRIVATE).edit();
