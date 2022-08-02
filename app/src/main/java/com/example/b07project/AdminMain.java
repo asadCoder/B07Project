@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
@@ -20,7 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
 
-public class AdminMain extends AppCompatActivity {
+public class AdminMain extends AppCompatActivity implements Myadapter.venclickListener{
     RecyclerView recyclerView;
     Myadapter myadapter;
     Button createV;
@@ -58,7 +59,7 @@ public class AdminMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminMain.this, ViewVenue.class);
-                intent.putExtra("hashCode", venues.get(0).getLocation());
+                intent.putExtra("hashCode", venues.get(0).getVenueHashCode());
                 startActivity(intent);
             }
         });
@@ -83,6 +84,9 @@ public class AdminMain extends AppCompatActivity {
                     //Eventually a sorting alorithm will go here so that the location is priority
                     Venue obj = new Venue(hashCode, venueName, startHour, startMin, endHour, endMin, date, location, null);
                     venues.add(obj);
+
+
+
 
                 }
                 myadapter.notifyDataSetChanged();
@@ -118,5 +122,10 @@ public class AdminMain extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(),Login.class));
         finish();
+    }
+
+    @Override
+    public void selectedvenue(Venue v) {
+        Toast.makeText(AdminMain.this, v.venueName,Toast.LENGTH_SHORT).show();
     }
 }
