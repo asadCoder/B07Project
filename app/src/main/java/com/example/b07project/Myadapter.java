@@ -14,10 +14,16 @@ import java.util.ArrayList;
 public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
     Context context;
     ArrayList<Venue> venlist;
+    public venclickListener vlistenr;
 
-    public Myadapter(Context context, ArrayList<Venue> venlist) {
+    public Myadapter(Context context, ArrayList<Venue> venlist, venclickListener vlistener) {
         this.context = context;
         this.venlist = venlist;
+        this.vlistenr = vlistener;
+    }
+    public interface venclickListener{
+        void selectedvenue(Venue v);
+
     }
 
     @NonNull
@@ -35,6 +41,12 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
         holder.date.setText(ven.getDate());
         holder.starttime.setText(ven.starttime());
         holder.endtime.setText(ven.endtime());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vlistenr.selectedvenue(ven);
+            }
+        });
 
     }
 

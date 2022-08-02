@@ -16,6 +16,9 @@
         android:theme="@style/Theme.B07Project"
         tools:targetApi="31">
         <activity
+            android:name=".SpecificVenue"
+            android:exported="false" />
+        <activity
             android:name=".ViewVenue"
             android:exported="false" />
         <activity

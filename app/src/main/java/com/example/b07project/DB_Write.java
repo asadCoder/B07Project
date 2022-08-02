@@ -43,9 +43,9 @@ public class DB_Write {
 
 
     }
-    public static void write_username(String Username){
+    public static void write_username(String Username,String email){
         DatabaseReference ref = db.getReference("Usernames/"+Username);
-        ref.setValue(Username);
+        ref.setValue(email);
     }
 
 }

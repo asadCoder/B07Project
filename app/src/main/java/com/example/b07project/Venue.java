@@ -1,8 +1,11 @@
 package com.example.b07project;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.HashSet;
 
-public class Venue {
+public class Venue implements Parcelable {
     String venueHashCode;
     String venueName;
     int startHour; //24 hour format
@@ -29,6 +32,29 @@ public class Venue {
     public Venue(){
 
     }
+
+    protected Venue(Parcel in) {
+        venueHashCode = in.readString();
+        venueName = in.readString();
+        startHour = in.readInt();
+        startMin = in.readInt();
+        endHour = in.readInt();
+        endMin = in.readInt();
+        date = in.readString();
+        location = in.readString();
+    }
+
+    public static final Creator<Venue> CREATOR = new Creator<Venue>() {
+        @Override
+        public Venue createFromParcel(Parcel in) {
+            return new Venue(in);
+        }
+
+        @Override
+        public Venue[] newArray(int size) {
+            return new Venue[size];
+        }
+    };
 
     public int getStartHour() {
         return startHour;
@@ -133,4 +159,21 @@ public class Venue {
     }
 
     public void addEvent(Event event) { events.add(event); }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(venueHashCode);
+        parcel.writeString(venueName);
+        parcel.writeInt(startHour);
+        parcel.writeInt(startMin);
+        parcel.writeInt(endHour);
+        parcel.writeInt(endMin);
+        parcel.writeString(date);
+        parcel.writeString(location);
+    }
 }

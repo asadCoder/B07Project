@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
@@ -20,13 +22,13 @@ import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
 
-public class AdminMain extends AppCompatActivity {
+public class AdminMain extends AppCompatActivity implements Myadapter.venclickListener{
     RecyclerView recyclerView;
     Myadapter myadapter;
     Button createV;
     Button viewV;
     Button createEtemp;
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Venues");
+    DatabaseReference ref;
     ArrayList<Venue> venues = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class AdminMain extends AppCompatActivity {
         if (!isadmin){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
+        String use = sharedPref.getString("username","f");
         createV = findViewById(R.id.CreateVenue);
         createV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +64,9 @@ public class AdminMain extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        myadapter = new Myadapter(this,venues,this::selectedvenue);
 
+        ref = FirebaseDatabase.getInstance().getReference().child("Admins/"+use+"/Venues");
         //The following code loops through the database and creates objects from the database
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -75,10 +80,10 @@ public class AdminMain extends AppCompatActivity {
                     int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
                     int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
                     String venueName = snapshot.child("venueName").getValue().toString();
-//                    String location = snapshot.child("location").getValue().toString();
+                    String location = snapshot.child("location").getValue().toString();
 
                     //Eventually a sorting alorithm will go here so that the location is priority
-                    Venue obj = new Venue(hashCode, venueName, startHour, startMin, endHour, endMin, date, null, null);
+                    Venue obj = new Venue(hashCode, venueName, startHour, startMin, endHour, endMin, date, location, null);
                     venues.add(obj);
 
 
@@ -96,7 +101,7 @@ public class AdminMain extends AppCompatActivity {
         });
 
         recyclerView = findViewById(R.id.Venuelist);
-        myadapter = new Myadapter(this,venues);
+//        myadapter = new Myadapter(this,venues);
         recyclerView.setAdapter(myadapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -118,5 +123,25 @@ public class AdminMain extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(),Login.class));
         finish();
+    }
+
+    @Override
+    public void selectedvenue(Venue v) {
+        Toast.makeText(AdminMain.this, v.venueName,Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(AdminMain.this, SpecificVenue.class);
+//        intent.putExtra("venue", v);
+//        startActivity(intent);
+        SharedPreferences.Editor editor=getSharedPreferences("venue",MODE_PRIVATE).edit();
+        editor.putString("vname", v.getVenueName());
+        editor.putString("vdate", v.getDate());
+        editor.putString("vlocation", v.getLocation());
+        editor.putString("vdate", v.getDate());
+        editor.putInt("vstartH", v.getStartHour());
+        editor.putInt("vstartM", v.getStartMin());
+        editor.putInt("vendH", v.getEndHour());
+        editor.putInt("vendM", v.getEndMin());
+        editor.apply();
+
+        startActivity(new Intent(getApplicationContext(), SpecificVenue.class));
     }
 }

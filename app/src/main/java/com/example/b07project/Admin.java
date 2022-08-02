@@ -1,8 +1,12 @@
 package com.example.b07project;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Admin {
+public class Admin implements Parcelable {
     String username;
     String email;
     ArrayList<Venue> Venues;
@@ -16,6 +20,23 @@ public class Admin {
         this.email = email;
         Venues = venues;
     }
+
+    protected Admin(Parcel in) {
+        username = in.readString();
+        email = in.readString();
+    }
+
+    public static final Creator<Admin> CREATOR = new Creator<Admin>() {
+        @Override
+        public Admin createFromParcel(Parcel in) {
+            return new Admin(in);
+        }
+
+        @Override
+        public Admin[] newArray(int size) {
+            return new Admin[size];
+        }
+    };
 
     public String getUsername() {
         return username;
@@ -39,5 +60,16 @@ public class Admin {
 
     public void setVenues(ArrayList<Venue> venues) {
         Venues = venues;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(username);
+        parcel.writeString(email);
     }
 }

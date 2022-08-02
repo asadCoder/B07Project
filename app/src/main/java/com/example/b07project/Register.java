@@ -99,7 +99,7 @@ public class Register extends AppCompatActivity {
                             Log.i("console", "snapshot doesnt exist");
                         }
                         if(!b ){
-                            DB_Write.write_username(username);
+                            DB_Write.write_username(username,email);
                             fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -114,20 +114,28 @@ public class Register extends AppCompatActivity {
                                         Customer c = new Customer(username,email,e);
                                         DB_Write.createCustomer(c,Register.this);
                                         SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
-                                        editor.putString("email",email);
+
+
+
+                                        editor.putString("username",a.getUsername());
                                         editor.apply();
                                         if (mCheckadmin.isChecked()){
                                             editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                             editor.putBoolean("value",true);
                                             editor.apply();
                                             Toast.makeText(Register.this, email, Toast.LENGTH_SHORT).show();
-
+                                            Intent intent = new Intent(Register.this, CreateVenue.class);
+                                            intent.putExtra("admin",a);
+                                            startActivity(intent);
 
                                             startActivity(new Intent(getApplicationContext(),AdminMain.class));
                                         }else {
+                                            Intent intent = new Intent(Register.this, CreateVenue.class);
                                             editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                             editor.putBoolean("value",false);
                                             editor.apply();
+                                            intent.putExtra("Customer",c);
+                                            startActivity(intent);
                                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                         }
                                     }

@@ -20,6 +20,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.SQLOutput;
 import android.content.SharedPreferences;
@@ -45,6 +50,7 @@ public class Login extends AppCompatActivity {
     TextView mCreateBtn;
     FirebaseAuth fAuth;
     Switch mAdmin;
+    private static final FirebaseDatabase db = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,17 +85,56 @@ public class Login extends AppCompatActivity {
                     mPassword.setError("Password has to be >= 6 characters");
                 }
 
+                DatabaseReference rootRef = db.getReference();
+                rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        boolean b = false;
+                        String U="";
+                        if (snapshot.exists()){
+                            for(DataSnapshot user: snapshot.child("Admins").getChildren()){
+                                if(user.child("email").getValue().toString().equals(email) ){
+                                    Log.i("console", "email found!");
+                                    b = true;
+                                    U = user.child("username").getValue().toString();
+                                }
+
+                            }
+
+                        }
+                        else{
+                            Log.i("console", "snapshot doesnt exist");
+                            U="not";
+                        }
+                        Log.i("console", U);
+                        if(b){
+                            Log.i("console", U);
+                            SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+
+
+
+                            editor.putString("username",U);
+                            editor.apply();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        SharedPreferences sharedPreferences=getSharedPreferences("save",MODE_PRIVATE);
+
 
                         if (task.isSuccessful()){
+
+
                             Toast.makeText(Login.this,"Logged in Successfully",Toast.LENGTH_SHORT).show();
                             SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
-                            editor.putString("email",email);
-                            editor.apply();
+
                             if(mAdmin.isChecked()){
                                 editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                 editor.putBoolean("value",true);
