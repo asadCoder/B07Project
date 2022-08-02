@@ -1,8 +1,9 @@
 package com.example.b07project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Customer {
+public class Customer implements Serializable {
     String username;
     String email;
     ArrayList<Event> myevents;

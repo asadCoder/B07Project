@@ -26,7 +26,7 @@ public class AdminMain extends AppCompatActivity {
     Button createV;
     Button viewV;
     Button createEtemp;
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Venues");
+    DatabaseReference ref;
     ArrayList<Venue> venues = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class AdminMain extends AppCompatActivity {
         if (!isadmin){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
+        String use = sharedPref.getString("username","f");
         createV = findViewById(R.id.CreateVenue);
         createV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +62,7 @@ public class AdminMain extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        ref = FirebaseDatabase.getInstance().getReference().child("Admins/"+use+"/Venues");
         //The following code loops through the database and creates objects from the database
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -75,10 +76,10 @@ public class AdminMain extends AppCompatActivity {
                     int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
                     int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
                     String venueName = snapshot.child("venueName").getValue().toString();
-//                    String location = snapshot.child("location").getValue().toString();
+                    String location = snapshot.child("location").getValue().toString();
 
                     //Eventually a sorting alorithm will go here so that the location is priority
-                    Venue obj = new Venue(hashCode, venueName, startHour, startMin, endHour, endMin, date, null, null);
+                    Venue obj = new Venue(hashCode, venueName, startHour, startMin, endHour, endMin, date, location, null);
                     venues.add(obj);
 
 

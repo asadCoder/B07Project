@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -38,6 +40,7 @@ public class CreateVenue extends AppCompatActivity {
     TextView vename;
     boolean stime;
     boolean etime;
+    Admin a;
 
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -100,12 +103,22 @@ public class CreateVenue extends AppCompatActivity {
                     venue.setVenueName(venuename);
                     venue.setLocation(loc);
                     //Add to users set of created events
+
+
+//                    ArrayList<Venue> ss = new ArrayList<Venue>();
+//                    ss.add(venue);
+//                    a.setVenues(ss);
                     reference.setValue(venue).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(CreateVenue.this, "Data added", Toast.LENGTH_SHORT).show();
                         }
                     });
+                    SharedPreferences sharedPref = getSharedPreferences("save",MODE_PRIVATE);
+                    String use = sharedPref.getString("username","false");
+                    DatabaseReference reference2 = database.getReference("Admins/"+use);
+                    reference2.child("Venues").child(venue.venueName).setValue(venue);
+
                     startActivity(new Intent(getApplicationContext(), AdminMain.class));
                 }
             }
