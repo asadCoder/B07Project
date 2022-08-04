@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -36,7 +37,7 @@ public class ViewVenuesAdmin extends AppCompatActivity implements ViewVenuesInte
         sportsAll.add("soccer");
         sportsAll.add("football");
 
-        HashSet<Event> eventsAll = new HashSet<Event>() {};
+        ArrayList<Event> eventsAll = new ArrayList<Event>() {};
         eventsAll.add(new Event("Emirates Stadium", 8,  0, 10,  5, 7, "july", "panam"));
         eventsAll.add(new Event("Bernabue", 8,  0, 10,  5, 7, "july", "panam"));
 

@@ -1,8 +1,9 @@
 package com.example.b07project;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class Event {
+public class Event implements Serializable {
     String eventName;
     int startHour; //24 hour format
     int startMin;
@@ -11,6 +12,7 @@ public class Event {
     int capacity;
     String date;
     String location;
+
     public Event(){
 
     }

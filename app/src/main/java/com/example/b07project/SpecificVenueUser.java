@@ -6,14 +6,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SpecificVenueUser extends AppCompatActivity {
+public class SpecificVenueUser extends AppCompatActivity implements Serializable {
 
     ArrayList<Event> venueEvents = new ArrayList<Event>();
 
     //have to wait for ahmads code for this to work
- /*   AdapterMyEvents adapter;
+    AdapterMyEvents adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +28,5 @@ public class SpecificVenueUser extends AppCompatActivity {
         adapter = new AdapterMyEvents(this, venueEvents);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }*/
+    }
 }

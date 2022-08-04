@@ -3,9 +3,11 @@ package com.example.b07project;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Venue implements Parcelable {
+public class Venue implements Parcelable, Serializable {
     String venueHashCode;
     String venueName;
     int startHour; //24 hour format
@@ -14,9 +16,9 @@ public class Venue implements Parcelable {
     int endMin;
     String date;
     String location;
-    HashSet<Event> events;
+    ArrayList<Event> events;
 
-    public Venue(String venueHashCode, String venueName, int starthour, int startmin, int endhour, int endmin, String date, String location, HashSet<Event> events) {
+    public Venue(String venueHashCode, String venueName, int starthour, int startmin, int endhour, int endmin, String date, String location, ArrayList<Event> events) {
         this.venueHashCode = venueHashCode;
         this.venueName = venueName;
         this.startHour = starthour;
@@ -150,11 +152,11 @@ public class Venue implements Parcelable {
         this.location = location;
     }
 
-    public HashSet<Event> getEvents() {
+    public ArrayList<Event> getEvents() {
         return events;
     }
 
-    public void setEvents(HashSet<Event> events) {
+    public void ArrayList(ArrayList<Event> events) {
         this.events = events;
     }
 

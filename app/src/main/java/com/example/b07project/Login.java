@@ -140,7 +140,7 @@ public class Login extends AppCompatActivity {
                                 editor.putBoolean("value",true);
                                 editor.apply();
 
-                                startActivity(new Intent(getApplicationContext(), ViewVenuesAdmin.class));
+                                startActivity(new Intent(getApplicationContext(), AdminMain.class));
                             }
                             else {
                                 editor=getSharedPreferences("save",MODE_PRIVATE).edit();

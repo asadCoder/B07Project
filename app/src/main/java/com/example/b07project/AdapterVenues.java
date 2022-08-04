@@ -9,8 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-public class AdapterVenues extends RecyclerView.Adapter<AdapterVenues.MyViewHolder>{
+public class AdapterVenues extends RecyclerView.Adapter<AdapterVenues.MyViewHolder> implements Serializable {
 
     private final RecycleViewInterface recycleViewInterface;
     Context context;

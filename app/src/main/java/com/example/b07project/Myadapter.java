@@ -23,7 +23,6 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
     }
     public interface venclickListener{
         void selectedvenue(Venue v);
-
     }
 
     @NonNull
