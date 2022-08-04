@@ -28,7 +28,7 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
     public AdapterMyEvents.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.eventss, parent,false);
+        View view = inflater.inflate(R.layout.event_my, parent,false);
         return new AdapterMyEvents.MyViewHolder(view).linkAdapter(this);
     }
 
@@ -36,11 +36,11 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
     public void onBindViewHolder(@NonNull AdapterMyEvents.MyViewHolder holder, int position) {
         Event event = events.get(position);
         holder.makan.setText(event.getLocation());
-        holder.ryada.setText(event.getEventName());
+        holder.ryada.setText(event.getSport());
         holder.wa2t.setText(event.getStartHour()+":00-"+event.getEndHour()+":00");
         holder.av.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getCapacity());
-        holder.butt.setText("Cancel");
+        holder.butt.setText("X");
 //        if(event.getSpotsLeft() == 0) {
 //            holder.butt.setText("Unavailable");
 //            holder.butt.setClickable(false);
@@ -64,12 +64,12 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            makan = itemView.findViewById(R.id.venue);
-            ryada = itemView.findViewById(R.id.sport);
-            wa2t = itemView.findViewById(R.id.timee);
-            av = itemView.findViewById(R.id.capacity);
-            sLeft = itemView.findViewById(R.id.spots);
-            butt = itemView.findViewById(R.id.button5);
+            makan = itemView.findViewById(R.id.venue_my);
+            ryada = itemView.findViewById(R.id.sport_my);
+            wa2t = itemView.findViewById(R.id.timee_my);
+            av = itemView.findViewById(R.id.capacity_my);
+            sLeft = itemView.findViewById(R.id.spots_my);
+            butt = itemView.findViewById(R.id.button_my);
             butt.setOnClickListener(view -> {
                 adapter.events.remove(getAbsoluteAdapterPosition());
                 adapter.notifyItemRemoved(getAbsoluteAdapterPosition());

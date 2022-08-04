@@ -16,11 +16,48 @@ import com.google.firebase.database.core.view.View;
 import android.content.SharedPreferences;
 public class MainActivity extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
-
-    MyEventsFragment myEvents = new MyEventsFragment();
-    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
-    UpcomingFragment notificationFragment = new UpcomingFragment();
+//    BottomNavigationView bottomNavigationView;
+//
+//    MyEventsFragment myEvents = new MyEventsFragment();
+//    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
+//    UpcomingFragment notificationFragment = new UpcomingFragment();
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
+//        SharedPreferences sharedPref = getSharedPreferences("save",MODE_PRIVATE);
+//        boolean isadmin = sharedPref.getBoolean("value",false);
+//        if (isadmin){
+//            startActivity(new Intent(getApplicationContext(), AdminMain.class));
+//        }
+//
+//
+//        bottomNavigationView  = findViewById(R.id.bottom_navigation);
+//
+//        getSupportFragmentManager().beginTransaction().replace(R.id.container, myEvents).commit();
+//
+//
+//        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(MenuItem item) {
+//                switch (item.getItemId()){
+//                    case R.id.venues:
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.container, myEvents).commit();
+//                        return true;
+//                    case R.id.upcoming:
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.container,notificationFragment).commit();
+//                        return true;
+//                    case R.id.myevents:
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.container,settingsFragment).commit();
+//                        return true;
+//                }
+//
+//                return false;
+//            }
+//        });
+//
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,34 +67,17 @@ public class MainActivity extends AppCompatActivity {
         boolean isadmin = sharedPref.getBoolean("value",false);
         if (isadmin){
             startActivity(new Intent(getApplicationContext(), AdminMain.class));
+        }else{
+            Intent intent = new Intent(getApplicationContext(), Scroll.class);
+            intent.putExtra("ind", "up");
+            startActivity(intent);
         }
 
 
-        bottomNavigationView  = findViewById(R.id.bottom_navigation);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, myEvents).commit();
-
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.venues:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, myEvents).commit();
-                        return true;
-                    case R.id.upcoming:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,notificationFragment).commit();
-                        return true;
-                    case R.id.myevents:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,settingsFragment).commit();
-                        return true;
-                }
-
-                return false;
-            }
-        });
-
     }
+
+
+
 
 
 

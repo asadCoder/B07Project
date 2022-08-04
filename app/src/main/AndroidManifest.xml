@@ -16,6 +16,9 @@
         android:theme="@style/Theme.B07Project"
         tools:targetApi="31">
         <activity
+            android:name=".Scroll"
+            android:exported="false" />
+        <activity
             android:name=".ViewVenuesAdmin"
             android:exported="false" />
         <activity
@@ -38,9 +41,6 @@
             android:exported="false" />
         <activity
             android:name=".ShowEvent"
-            android:exported="false" />
-        <activity
-            android:name=".loggedAs"
             android:exported="false" />
         <activity
             android:name=".AdminMain"
