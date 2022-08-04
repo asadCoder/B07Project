@@ -11,63 +11,39 @@ import java.util.Objects;
 
 public class Event implements Serializable, Comparable<Event> {
     String eventName;
-    String sport;
     int startHour; //24 hour format
     int startMin;
     int endHour; //24 Hour format
     int endMin;
     int capacity;
     int spotsLeft;
-    LocalDate date;
     String location;
-    String dateS;
+    String date;
+
     public Event(){
 
     }
 
-
-    public Event(String eventName, String location, String sport, int startHour, int startMin, int endHour, int endMin, int capacity, int spotsLeft, LocalDate date) {
+    public Event(String eventName, int startHour, int startMin, int endHour, int endMin,
+                 int capacity, int spotsLeft, String location, String date) {
         this.eventName = eventName;
-        this.sport = sport;
         this.startHour = startHour;
         this.startMin = startMin;
         this.endHour = endHour;
         this.endMin = endMin;
         this.capacity = capacity;
         this.spotsLeft = spotsLeft;
+        this.location = location;
         this.date = date;
-        this.location = location;
     }
 
-    public Event(String eventName, int startHour, int startMin, int endHour, int endMin, int capacity, String location, String dateS) {
-        this.eventName = eventName;
-        this.startHour = startHour;
-        this.startMin = startMin;
-        this.endHour = endHour;
-        this.endMin = endMin;
-        this.capacity = capacity;
-        this.location = location;
-        this.dateS = dateS;
-    }
 
-    public Event(String eventName, int startHour, int startMin, int endHour, int endMin, int capacity, int spotsLeft, String location, String dateS) {
-        this.eventName = eventName;
-        this.startHour = startHour;
-        this.startMin = startMin;
-        this.endHour = endHour;
-        this.endMin = endMin;
-        this.capacity = capacity;
-        this.spotsLeft = spotsLeft;
-        this.location = location;
-        this.dateS = dateS;
+    public String getEventName() {
+        return eventName;
     }
-
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
-    }
-    public void setSport(String sport) {
-        this.sport = sport;
     }
 
     public int getStartHour() {
@@ -102,76 +78,93 @@ public class Event implements Serializable, Comparable<Event> {
         this.endMin = endMin;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public void setSpotsLeft(int spotsLeft) {
-        this.spotsLeft = spotsLeft;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getEventName() {
-        return eventName;
-    }
-
-    public String getSport() {
-        return sport;
-    }
-
-
     public int getCapacity() {
         return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public int getSpotsLeft() {
         return spotsLeft;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public void setSpotsLeft(int spotsLeft) {
+        this.spotsLeft = spotsLeft;
     }
 
     public String getLocation() {
         return location;
     }
 
-
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Event)) return false;
-        Event event = (Event) o;
-        return startHour == event.startHour && startMin == event.startMin && endHour == event.endHour && endMin == event.endMin && capacity == event.capacity && spotsLeft == event.spotsLeft && eventName.equals(event.eventName) && sport.equals(event.sport) && date.equals(event.date) && location.equals(event.location) && dateS.equals(event.dateS);
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(eventName, sport, startHour, startMin, endHour, endMin, capacity, spotsLeft, location, dateS);
+    public String getDate() {
+        return date;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String endtime(){
+        String em=  String.valueOf(getEndMin()).trim();
+        String eh = String.valueOf(getEndHour()).trim();
+        if (em.length() == 1) {
+            em = "0"+em;
+        }
+        if (eh.length()==1){
+            eh = "0"+eh;
+        }
+
+
+        String ti = eh + ":"+em;
+        return ti;
+    }
+
+    public String starttime(){
+        String em=  String.valueOf(getStartMin()).trim();
+        String eh = String.valueOf(getStartHour()).trim();
+        if (em.length() == 1) {
+            em = "0"+em;
+        }
+        if (eh.length()==1){
+            eh = "0"+eh;
+        }
+
+
+        String ti = eh + ":"+em;
+        return ti;
+    }
+
+
     @Override
     public int compareTo(Event event) {
-                if (this.date.compareTo(event.date) > 0) return 1;
-        else if (this.date.compareTo(event.date) < 0) return -1;
-        else{
-            if(this.startHour > event.startHour) return 1;
-            else if(this.startHour< event.startHour) return -1;
-            else {
-                if(this.startMin > event.startMin) return 1;
-                else if(this.startMin< event.startMin) return -1;
-                else return 0;
-            }
-        }
+//        int day;
+//        int month;
+//        int year;
+        String[] mainDates = this.date.trim().split("/");
+        String[] comparedDates = event.date.trim().split("/");
+        int mainDay = Integer.parseInt(mainDates[1]);
+        int mainMonth = Integer.parseInt(mainDates[0]);
+        int mainYear = Integer.parseInt(mainDates[2]);
+        int comparedDay = Integer.parseInt(comparedDates[1]);
+        int comparedMonth = Integer.parseInt(comparedDates[0]);
+        int comparedYear = Integer.parseInt(comparedDates[2]);
+        if(mainYear > comparedYear) return 1;
+        if(mainYear < comparedYear) return -1;
+        if (mainMonth > comparedMonth) return 1;
+        if (mainMonth < comparedMonth) return -1;
+        if (mainDay > comparedDay) return 1;
+        if (mainDay < comparedDay) return -1;
+        if (this.startHour > event.startHour) return 1;
+        if (this.startHour < event.startHour) return -1;
+        if (this.startMin > event.startMin) return 1;
+        if (this.startMin < event.startMin) return -1;
+        return 0;
+
     }
 }

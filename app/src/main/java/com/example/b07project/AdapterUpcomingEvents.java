@@ -23,28 +23,28 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
         this.events = events;
     }
 
-    public String getTime(int hour, int min){
-        String hourS;
-        String minS;
-        String MM;
-        if (hour == 0) {
-            hourS = "12";
-            MM = "AM";
-        }
-        else if (0 < hour && hour < 12) {
-            hourS = String.valueOf(hour);
-            MM = "AM";
-        }
-        else {
-            hourS = String.valueOf(hour -12);
-            MM = "PM";
-        }
-
-        if(min <10) minS = "0" + String.valueOf(min);
-        else minS = String.valueOf(min);
-
-        return ( hourS + ":" + minS + MM);
-    }
+//    public String getTime(int hour, int min){
+//        String hourS;
+//        String minS;
+//        String MM;
+//        if (hour == 0) {
+//            hourS = "12";
+//            MM = "AM";
+//        }
+//        else if (0 < hour && hour < 12) {
+//            hourS = String.valueOf(hour);
+//            MM = "AM";
+//        }
+//        else {
+//            hourS = String.valueOf(hour -12);
+//            MM = "PM";
+//        }
+//
+//        if(min <10) minS = "0" + String.valueOf(min);
+//        else minS = String.valueOf(min);
+//
+//        return ( hourS + ":" + minS + MM);
+//    }
 
 
     @NonNull
@@ -60,12 +60,12 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
 
         Event event = events.get(position);
         holder.location.setText(event.getLocation());
-        holder.sport.setText(event.getSport());
-        String start = getTime(event.getStartHour(), event.getStartMin()) ;
-        String end = getTime(event.getEndHour(), event.getEndMin());
+        holder.sport.setText(event.getEventName());
+//        String start = getTime(event.getStartHour(), event.getStartMin()) ;
+//        String end = getTime(event.getEndHour(), event.getEndMin());
 //        holder.time.setText(String.valueOf(event.date.getDayOfMonth())+ "/" + String.valueOf(event.date.getMonthValue())
 //                + "/" + String.valueOf(event.date.getYear()) + "  " + start + "-" + end);
-        holder.time.setText(String.valueOf( start + "-" + end));
+        holder.time.setText(String.valueOf( event.getDate() + "  " + event.starttime() + "-" + event.endtime()));
         holder.cap.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getSpotsLeft());
         if(event.getSpotsLeft() == 0){

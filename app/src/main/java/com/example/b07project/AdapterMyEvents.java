@@ -36,8 +36,8 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
     public void onBindViewHolder(@NonNull AdapterMyEvents.MyViewHolder holder, int position) {
         Event event = events.get(position);
         holder.makan.setText(event.getLocation());
-        holder.ryada.setText(event.getSport());
-        holder.wa2t.setText(event.getStartHour()+":00-"+event.getEndHour()+":00");
+        holder.ryada.setText(event.getEventName());
+        holder.wa2t.setText(event.getDate() + "  " + event.starttime() + "-" + event.endtime());
         holder.av.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getCapacity());
         holder.butt.setText("X");
