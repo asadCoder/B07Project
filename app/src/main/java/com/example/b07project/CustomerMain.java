@@ -14,7 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class CustomerMain extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     MyEventsFragment myEvents = new MyEventsFragment();
-    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
+    ViewVenuesUser viewVenuesUserF = new ViewVenuesUser();
+//    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
     UserProfileFragment profileFragment = new UserProfileFragment();
     UpcomingFragment notificationFragment = new UpcomingFragment();
     @Override
@@ -24,7 +25,7 @@ public class CustomerMain extends AppCompatActivity {
 
         bottomNavigationView  = findViewById(R.id.bottom_navigation);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, myEvents).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, viewVenuesUserF).commit();
 
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -32,13 +33,13 @@ public class CustomerMain extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.venues:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, myEvents).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, viewVenuesUserF).commit();
                         return true;
                     case R.id.upcoming:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,notificationFragment).commit();
                         return true;
                     case R.id.myevents:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,settingsFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,myEvents).commit();
                         return true;
                     case R.id.profile:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();

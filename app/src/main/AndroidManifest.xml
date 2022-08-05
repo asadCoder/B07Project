@@ -20,16 +20,16 @@
             android:exported="false" />
         <activity
             android:name=".CustomerMain"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".ViewVenuesAdmin"
             android:exported="false" />
         <activity
             android:name=".SpecificVenueUser"
             android:exported="false" />
-        <activity
-            android:name=".ViewVenuesUser"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ViewVenuesUser"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".SpecificVenueAdmin"
             android:exported="false" />
@@ -47,10 +47,11 @@
             android:exported="false" />
         <activity
             android:name=".AdminMain"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="false" />
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".Register"
             android:exported="true">
