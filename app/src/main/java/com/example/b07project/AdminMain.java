@@ -36,7 +36,7 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
         SharedPreferences sharedPref = getSharedPreferences("save",MODE_PRIVATE);
         boolean isadmin = sharedPref.getBoolean("value",false);
         if (!isadmin){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), CustomerMain.class));
         }
         String use = sharedPref.getString("username","f");
         createV = findViewById(R.id.CreateVenue);

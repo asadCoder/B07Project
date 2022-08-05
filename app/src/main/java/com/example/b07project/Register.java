@@ -48,7 +48,13 @@ public class Register extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            if (mCheckadmin.isChecked()) {
+                startActivity(new Intent(getApplicationContext(),AdminMain.class));
+
+            }
+            else {
+                startActivity(new Intent(getApplicationContext(),CustomerMain.class));
+            }
             finish();
         }
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +144,7 @@ public class Register extends AppCompatActivity {
                                             startActivity(intent);
 
                                             //asad changed
-                                            startActivity(new Intent(getApplicationContext(), ViewVenuesUser.class));
+                                            startActivity(new Intent(getApplicationContext(), CustomerMain.class));
                                         }
                                     }
                                     else{

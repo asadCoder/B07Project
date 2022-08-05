@@ -24,29 +24,6 @@ public class ViewVenuesUser extends  AppCompatActivity implements ViewVenuesInte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_venues_user);
 
-        bottomNavigationView  = findViewById(R.id.bottom_navigation);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, myEvents).commit();
-
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.venues:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, myEvents).commit();
-                        return true;
-                    case R.id.upcoming:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,notificationFragment).commit();
-                        return true;
-                    case R.id.myevents:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,settingsFragment).commit();
-                        return true;
-                }
-
-                return false;
-            }
-        });
 
         RecyclerView recyclerView  = findViewById(R.id.recycleViewVenueUser);
 
