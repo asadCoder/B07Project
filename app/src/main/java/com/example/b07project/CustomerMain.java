@@ -15,6 +15,7 @@ public class CustomerMain extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     MyEventsFragment myEvents = new MyEventsFragment();
     ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
+    UserProfileFragment profileFragment = new UserProfileFragment();
     UpcomingFragment notificationFragment = new UpcomingFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,9 @@ public class CustomerMain extends AppCompatActivity {
                     case R.id.myevents:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,settingsFragment).commit();
                         return true;
+                    case R.id.profile:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
+                        return true;
                 }
 
                 return false;
@@ -46,12 +50,6 @@ public class CustomerMain extends AppCompatActivity {
         });
     }
 
-
-    public void logout(View view){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),Login.class));
-        finish();
-    }
 
 
 }
