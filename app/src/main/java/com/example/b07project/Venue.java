@@ -3,6 +3,8 @@ package com.example.b07project;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.Nullable;
+
 import java.util.HashSet;
 
 public class Venue implements Parcelable {
@@ -154,4 +156,20 @@ public class Venue implements Parcelable {
         parcel.writeInt(endMin);
         parcel.writeString(location);
     }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(obj==null){
+            return false;
+        }
+        if(!(obj instanceof Venue)){
+            return false;
+        }
+        Venue v = (Venue) obj;
+        if(this.getLocation()==v.getLocation()){
+            return true;
+        }
+        return false;
+    }
+
 }
