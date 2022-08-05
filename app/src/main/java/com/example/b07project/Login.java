@@ -147,7 +147,7 @@ public class Login extends AppCompatActivity {
                                 editor.putBoolean("value",false);
                                 editor.apply();
 
-                                startActivity(new Intent(getApplicationContext(), ViewVenuesUser.class));
+                                startActivity(new Intent(getApplicationContext(), CustomerMain.class));
                             }
 
                         }
