@@ -33,8 +33,6 @@ public class CreateVenue extends AppCompatActivity {
     Button sTime, eTime;
     int shour, sminute;
     int ehour, eminute;
-    private TextView Date;
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
     Venue venue;
     TextView location;
     TextView vename;
@@ -52,48 +50,21 @@ public class CreateVenue extends AppCompatActivity {
         setContentView(R.layout.activity_create_venue);
         createbut = findViewById(R.id.CV);
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference().child("Venues").push();
+        reference = database.getReference().child("Venues");
         venue = new Venue();
         vename = findViewById(R.id.Vename);
 
         location = findViewById(R.id.Vlocation);
         sTime = findViewById(R.id.startTime);
         eTime = findViewById(R.id.endTime);
-        Date = findViewById(R.id.Date);
-        Date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(
-                        CreateVenue.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                String date = month + "/" + day + "/" + year;
-                venue.date = date;
-                Date.setText(date);
-            }
-        };
 
         createbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String venuename = vename.getText().toString().trim();
                 String loc = location.getText().toString().trim();
-                if(TextUtils.isEmpty(venuename) || TextUtils.isEmpty(venue.getDate()) || TextUtils.isEmpty(loc) || !stime || !etime){
+                if(TextUtils.isEmpty(venuename) || TextUtils.isEmpty(loc) || !stime || !etime){
                     Toast.makeText(CreateVenue.this,"No fields can be empty", Toast.LENGTH_SHORT).show();
                 }
                 else if(venue.getStartHour()>venue.getEndHour() || ((venue.getStartHour()==venue.getEndHour()) && venue.getStartMin()>=venue.getEndMin())){
@@ -108,7 +79,7 @@ public class CreateVenue extends AppCompatActivity {
 //                    ArrayList<Venue> ss = new ArrayList<Venue>();
 //                    ss.add(venue);
 //                    a.setVenues(ss);
-                    reference.setValue(venue).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    reference.child(venue.getLocation()).setValue(venue).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(CreateVenue.this, "Venue added", Toast.LENGTH_SHORT).show();
@@ -117,7 +88,7 @@ public class CreateVenue extends AppCompatActivity {
                     SharedPreferences sharedPref = getSharedPreferences("save",MODE_PRIVATE);
                     String use = sharedPref.getString("username","false");
                     DatabaseReference reference2 = database.getReference("Admins/"+use);
-                    reference2.child("Venues").child(venue.venueName).setValue(venue);
+                    reference2.child("Venues").child(venue.getLocation()).setValue(venue);
 
                     startActivity(new Intent(getApplicationContext(), AdminMain.class));
                 }

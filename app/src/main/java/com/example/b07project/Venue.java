@@ -6,24 +6,20 @@ import android.os.Parcelable;
 import java.util.HashSet;
 
 public class Venue implements Parcelable {
-    String venueHashCode;
     String venueName;
     int startHour; //24 hour format
     int startMin;
     int endHour; //24 Hour format
     int endMin;
-    String date;
     String location;
     HashSet<Event> events;
 
-    public Venue(String venueHashCode, String venueName, int starthour, int startmin, int endhour, int endmin, String date, String location, HashSet<Event> events) {
-        this.venueHashCode = venueHashCode;
+    public Venue( String venueName, int starthour, int startmin, int endhour, int endmin, String location, HashSet<Event> events) {
         this.venueName = venueName;
         this.startHour = starthour;
         this.startMin = startmin;
         this.endHour = endhour;
         this.endMin = endmin;
-        this.date = date;
         this.location = location;
         this.events = events;
     }
@@ -34,13 +30,11 @@ public class Venue implements Parcelable {
     }
 
     protected Venue(Parcel in) {
-        venueHashCode = in.readString();
         venueName = in.readString();
         startHour = in.readInt();
         startMin = in.readInt();
         endHour = in.readInt();
         endMin = in.readInt();
-        date = in.readString();
         location = in.readString();
     }
 
@@ -120,27 +114,13 @@ public class Venue implements Parcelable {
         return ti;
     }
 
-    public String getVenueHashCode() {
-        return venueHashCode;
-    }
+
 
     public void setVenueName(String venueName) {
         this.venueName = venueName;
     }
 
-    public void setVenueHashCode(String venueHashCode) {
-        this.venueHashCode = venueHashCode;
-    }
 
-
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public String getLocation() {
         return location;
@@ -167,13 +147,11 @@ public class Venue implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(venueHashCode);
         parcel.writeString(venueName);
         parcel.writeInt(startHour);
         parcel.writeInt(startMin);
         parcel.writeInt(endHour);
         parcel.writeInt(endMin);
-        parcel.writeString(date);
         parcel.writeString(location);
     }
 }

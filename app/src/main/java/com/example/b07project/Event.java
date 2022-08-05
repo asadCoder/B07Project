@@ -9,14 +9,15 @@ public class Event {
     int endHour; //24 Hour format
     int endMin;
     int capacity;
+    int spotsLeft;
     String date;
     String location;
+
     public Event(){
 
     }
 
-
-    public Event(String eventName, int startHour, int startMin, int endHour, int endMin, int capacity, String date, String location) {
+    public Event(String eventName, int startHour, int startMin, int endHour, int endMin, int capacity, String date, String location, int spotsLeft) {
         this.eventName = eventName;
         this.startHour = startHour;
         this.startMin = startMin;
@@ -25,6 +26,15 @@ public class Event {
         this.capacity = capacity;
         this.date = date;
         this.location = location;
+        this.spotsLeft = spotsLeft;
+    }
+
+    public int getSpotsLeft() {
+        return spotsLeft;
+    }
+
+    public void setSpotsLeft(int spotsLeft) {
+        this.spotsLeft = spotsLeft;
     }
 
     public void setEventName(String eventName) {

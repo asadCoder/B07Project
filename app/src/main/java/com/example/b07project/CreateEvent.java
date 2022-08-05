@@ -3,13 +3,17 @@ package com.example.b07project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -19,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class CreateEvent extends AppCompatActivity {
@@ -33,6 +38,8 @@ public class CreateEvent extends AppCompatActivity {
     boolean stime;
     boolean etime;
     Event event;
+    private TextView Date;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
     Venue v;
 //    TextView temp;
     @Override
@@ -41,6 +48,7 @@ public class CreateEvent extends AppCompatActivity {
         setContentView(R.layout.activity_create_event);
         SharedPreferences sharedPref = getSharedPreferences("venue",MODE_PRIVATE);
         String vname = sharedPref.getString("vname", "error");
+        String vloc = sharedPref.getString("vlocation", "error");
         int vStartH = sharedPref.getInt("vstartH", -1);
         int vStartM = sharedPref.getInt("vstartM", -1);
         int vEndH = sharedPref.getInt("vendH", -1);
@@ -61,6 +69,34 @@ public class CreateEvent extends AppCompatActivity {
         location = findViewById(R.id.Elocation);
         maxcap = findViewById(R.id.Ecapacity);
         createEve = findViewById(R.id.Ecreate);
+        Date = findViewById(R.id.Date);
+        Date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        CreateEvent.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = month + "/" + day + "/" + year;
+                event.date = date;
+                Date.setText(date);
+            }
+        };
 
         createEve.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +104,7 @@ public class CreateEvent extends AppCompatActivity {
                 String eventn = eventName.getText().toString().trim();
                 String eventloc = location.getText().toString().trim();
 
-                if(TextUtils.isEmpty(eventn) || TextUtils.isEmpty(eventloc) || TextUtils.isEmpty(maxcap.getText().toString().trim()) || !stime || !etime){
+                if(TextUtils.isEmpty(eventn) || TextUtils.isEmpty(event.getDate())|| TextUtils.isEmpty(eventloc) || TextUtils.isEmpty(maxcap.getText().toString().trim()) || !stime || !etime){
                     Toast.makeText(CreateEvent.this,"No fields can be empty", Toast.LENGTH_SHORT).show();
                 }
                 else if(event.getStartHour()>event.getEndHour() || ((event.getStartHour()==event.getEndHour()) && event.getStartMin()>=event.getEndMin())){
@@ -83,15 +119,20 @@ public class CreateEvent extends AppCompatActivity {
                 else{
                     capacity = Integer.parseInt(maxcap.getText().toString().trim());
                     event.setCapacity(capacity);
+                    event.setSpotsLeft(capacity);
                     event.setEventName(eventn);
                     event.setLocation(eventloc);
-                    ref.child("Admins").child(user).child("Venues").child(vname).child("Events").child(event.getEventName()).setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    ref.child("Admins").child(user).child("Venues").child(vloc).child("Events").push().setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(CreateEvent.this, "Event added", Toast.LENGTH_SHORT).show();
                         }
                     });
 
+                    DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Events");
+                    reference2.push().setValue(event);
+                    DatabaseReference reference3 = FirebaseDatabase.getInstance().getReference("Venues");
+                    reference3.child(vloc).child("Events").push().setValue(event);
                     startActivity(new Intent(getApplicationContext(), SpecificVenue.class));
 
                 }
