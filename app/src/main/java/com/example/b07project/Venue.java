@@ -166,7 +166,7 @@ public class Venue implements Parcelable {
             return false;
         }
         Venue v = (Venue) obj;
-        if(this.getLocation()==v.getLocation()){
+        if(this.getLocation().equals(v.getLocation())){
             return true;
         }
         return false;

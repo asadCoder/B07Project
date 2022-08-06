@@ -1,6 +1,7 @@
 package com.example.b07project;
 
-import java.util.HashSet;
+import androidx.annotation.Nullable;
+
 
 public class Event {
     String eventName;
@@ -14,7 +15,6 @@ public class Event {
     String location;
 
     public Event(){
-
     }
 
     public Event(String eventName, int startHour, int startMin, int endHour, int endMin, int capacity, String date, String location, int spotsLeft) {
@@ -100,5 +100,20 @@ public class Event {
 
     public String getLocation() {
         return location;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(obj==null){
+            return false;
+        }
+        if(!(obj instanceof Event)){
+            return false;
+        }
+        Event e = (Event) obj;
+        if(this.getEventName().equals(e.getEventName()) || this.getLocation().equals(e.getLocation()) || this.getDate().equals(e.getDate()) || this.getStartHour()==e.getStartHour() || this.getStartMin()==e.getStartMin() || this.getEndMin()==e.getEndMin() || this.getEndHour()==e.getEndHour() || this.getCapacity()==e.getCapacity()){
+            return true;
+        }
+        return false;
     }
 }

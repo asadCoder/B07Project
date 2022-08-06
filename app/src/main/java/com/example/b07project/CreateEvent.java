@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -19,8 +20,11 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,6 +42,7 @@ public class CreateEvent extends AppCompatActivity {
     boolean stime;
     boolean etime;
     Event event;
+    ArrayList<Event> events;
     private TextView Date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     Venue v;
@@ -55,8 +60,35 @@ public class CreateEvent extends AppCompatActivity {
         int vEndM = sharedPref.getInt("vendM", -1);
         SharedPreferences sharedPref2 = getSharedPreferences("save",MODE_PRIVATE);
         String user = sharedPref2.getString("username","f");
-        ref = FirebaseDatabase.getInstance().getReference();
+        ref = FirebaseDatabase.getInstance().getReference("Events");
+        events = new ArrayList<Event>();
         event = new Event();
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    String date = snapshot.child("date").getValue().toString();
+                    int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
+                    int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
+                    int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
+                    int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
+                    String eventName = snapshot.child("eventName").getValue().toString();
+                    String location = snapshot.child("location").getValue().toString();
+                    int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
+                    int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
+
+                    //Eventually a sorting alorithm will go here so that the location is priority
+                    Event e = new Event(eventName, startHour,startMin,endHour,endMin,capacity,date,location,spotsLeft);
+                    events.add(e);
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        ref = FirebaseDatabase.getInstance().getReference();
 
 //        ArrayList<Event> events = new ArrayList<Event>();
 //        DB_ReadEvents reader = new DB_ReadEvents();
@@ -103,9 +135,22 @@ public class CreateEvent extends AppCompatActivity {
             public void onClick(View view) {
                 String eventn = eventName.getText().toString().trim();
                 String eventloc = location.getText().toString().trim();
-
+                capacity = Integer.parseInt(maxcap.getText().toString().trim());
+                event.setCapacity(capacity);
+                event.setSpotsLeft(capacity);
+                event.setEventName(eventn);
+                event.setLocation(eventloc);
+                boolean b = false;
+                for(Event e: events){
+                    if(e.equals(event)){
+                        b = true;
+                    }
+                }
                 if(TextUtils.isEmpty(eventn) || TextUtils.isEmpty(event.getDate())|| TextUtils.isEmpty(eventloc) || TextUtils.isEmpty(maxcap.getText().toString().trim()) || !stime || !etime){
                     Toast.makeText(CreateEvent.this,"No fields can be empty", Toast.LENGTH_SHORT).show();
+                }
+                else if(b){
+                    Toast.makeText(CreateEvent.this,"Event already exists", Toast.LENGTH_SHORT).show();
                 }
                 else if(event.getStartHour()>event.getEndHour() || ((event.getStartHour()==event.getEndHour()) && event.getStartMin()>=event.getEndMin())){
                     Toast.makeText(CreateEvent.this,"Enter valid start and end times", Toast.LENGTH_SHORT).show();
@@ -117,11 +162,7 @@ public class CreateEvent extends AppCompatActivity {
                     Toast.makeText(CreateEvent.this,"End time needs to be before " + vname + " closes", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    capacity = Integer.parseInt(maxcap.getText().toString().trim());
-                    event.setCapacity(capacity);
-                    event.setSpotsLeft(capacity);
-                    event.setEventName(eventn);
-                    event.setLocation(eventloc);
+
                     ref.child("Admins").child(user).child("Venues").child(vloc).child("Events").push().setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {

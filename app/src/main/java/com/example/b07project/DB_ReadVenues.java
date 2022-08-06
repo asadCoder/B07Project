@@ -19,9 +19,6 @@ public class DB_ReadVenues {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 for (DataSnapshot snapshot : datasnapshot.getChildren()) {
-                    String hashCode = snapshot.getKey();
-                    System.out.println(hashCode);
-                    String date = snapshot.child("date").getValue().toString();
                     int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
                     int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
                     int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
