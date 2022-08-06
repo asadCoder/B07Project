@@ -69,7 +69,7 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
             time = itemView.findViewById(R.id.timee);
             capacity = itemView.findViewById(R.id.capacity);
             sLeft = itemView.findViewById(R.id.spots);
-            butt = itemView.findViewById(R.id.button5);
+            butt = itemView.findViewById(R.id.button);
             butt.setOnClickListener(view -> {
                 adapter.events.remove(getAbsoluteAdapterPosition());
                 adapter.notifyItemRemoved(getAbsoluteAdapterPosition());

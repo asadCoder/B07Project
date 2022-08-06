@@ -13,11 +13,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class CustomerMain extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    MyEventsFragment myEvents = new MyEventsFragment();
+//    MyEventsFragment myEvents = new MyEventsFragment();
     ViewVenuesUser viewVenuesUserF = new ViewVenuesUser();
+    Scroll upcomingEventsF = new Scroll();
+    MyEventsUser myEventsUserF = new MyEventsUser();
 //    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
     UserProfileFragment profileFragment = new UserProfileFragment();
-    UpcomingFragment notificationFragment = new UpcomingFragment();
+//    UpcomingFragment notificationFragment = new UpcomingFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +38,10 @@ public class CustomerMain extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, viewVenuesUserF).commit();
                         return true;
                     case R.id.upcoming:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,notificationFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,upcomingEventsF).commit();
                         return true;
                     case R.id.myevents:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,myEvents).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,myEventsUserF).commit();
                         return true;
                     case R.id.profile:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();

@@ -19,11 +19,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DataSnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AdminMain extends AppCompatActivity implements Myadapter.venclickListener{
+//public class AdminMain extends AppCompatActivity implements Myadapter.venclickListener{
+public class AdminMain extends AppCompatActivity implements ViewVenuesInterface, RecycleViewInterface, Serializable {
+
     RecyclerView recyclerView;
-    Myadapter myadapter;
+    //Myadapter myadapter;
+    AdapterVenues myadapter;
     Button createV;
     Button viewV;
     Button createEtemp;
@@ -40,8 +44,13 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
         if (!isadmin){
             startActivity(new Intent(getApplicationContext(), CustomerMain.class));
         }
+
+        //have to get veneus from the database
+        setUpVenues();
+
         String use = sharedPref.getString("username","f");
         createV = findViewById(R.id.CreateVenue);
+
         createV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +74,8 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
                 startActivity(intent);
             }
         });
-        myadapter = new Myadapter(this,venues,this::selectedvenue);
+//        myadapter = new Myadapter(this,venues,this::selectedvenue);
+        myadapter = new AdapterVenues(this, venues, this);
 
         ref = FirebaseDatabase.getInstance().getReference().child("Admins/"+use+"/Venues");
         //The following code loops through the database and creates objects from the database
@@ -86,8 +96,6 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
                     //Eventually a sorting alorithm will go here so that the location is priority
                     Venue obj = new Venue(venueName, startHour, startMin, endHour, endMin,  location, new ArrayList<Event>());
                     if(!venues.contains(obj)) venues.add(obj);
-
-
 
 
                 }
@@ -126,23 +134,51 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
         finish();
     }
 
-    @Override
-    public void selectedvenue(Venue v) {
-        Toast.makeText(AdminMain.this, v.venueName,Toast.LENGTH_SHORT).show();
+//    @Override
+//    public void selectedvenue(Venue v) {
+//        Toast.makeText(AdminMain.this, v.venueName,Toast.LENGTH_SHORT).show();
 //        Intent intent = new Intent(AdminMain.this, SpecificVenue.class);
 //        intent.putExtra("venue", v);
 //        startActivity(intent);
-        SharedPreferences.Editor editor=getSharedPreferences("venue",MODE_PRIVATE).edit();
-        editor.putString("vname", v.getVenueName());
+//        SharedPreferences.Editor editor=getSharedPreferences("venue",MODE_PRIVATE).edit();
+//        editor.putString("vname", v.getVenueName());
 //        editor.putString("vdate", v.getDate());
-        editor.putString("vlocation", v.getLocation());
+//        editor.putString("vlocation", v.getLocation());
 //        editor.putString("vdate", v.getDate());
-        editor.putInt("vstartH", v.getStartHour());
-        editor.putInt("vstartM", v.getStartMin());
-        editor.putInt("vendH", v.getEndHour());
-        editor.putInt("vendM", v.getEndMin());
-        editor.apply();
+//        editor.putInt("vstartH", v.getStartHour());
+//        editor.putInt("vstartM", v.getStartMin());
+//        editor.putInt("vendH", v.getEndHour());
+//        editor.putInt("vendM", v.getEndMin());
+//        editor.apply();
+//
+//        startActivity(new Intent(getApplicationContext(), SpecificVenueAdmin.class));
+//    }
 
-        startActivity(new Intent(getApplicationContext(), SpecificVenueAdmin.class));
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, SpecificVenueAdmin.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("venue_events", venues.get(position).getEvents());
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    @Override
+    public void setUpVenues() {
+
+        ArrayList<String> sportsAll = new ArrayList<String>();
+        sportsAll.add("soccer");
+        sportsAll.add("football");
+
+        ArrayList<Event> eventsAll = new ArrayList<Event>() {};
+        eventsAll.add(new Event("Emirates Stadium", 8,  0, 10,  5, 7, "july", "panam"));
+        eventsAll.add(new Event("Bernabue", 8,  0, 10,  5, 7, "july", "panam"));
+
+        //read venues from from database
+        venues.add(new Venue("Pan am", 1, 0,  4, 0, "morningside avneue", eventsAll));
+        venues.add(new Venue("drake smd", 1, 0,  4, 0, "morningside avneue", eventsAll));
+        venues.add(new Venue("no name", 1, 0,  4, 0, "morningside avneue", eventsAll));
+        venues.add(new Venue("please word", 1, 0,  4, 0,"morningside avneue", eventsAll));
+        venues.add(new Venue("ronaldo goat ", 1, 0,  4, 0,  "morningside avneue", eventsAll));
     }
 }

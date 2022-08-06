@@ -40,10 +40,24 @@ public class Event implements Serializable {
             return false;
         }
         Event e = (Event) obj;
-        if(this.getEventName().equals(e.getEventName()) || this.getLocation().equals(e.getLocation()) || this.getDate().equals(e.getDate()) || this.getStartHour()==e.getStartHour() || this.getStartMin()==e.getStartMin() || this.getEndMin()==e.getEndMin() || this.getEndHour()==e.getEndHour() || this.getCapacity()==e.getCapacity()){
+        if(this.getEventName().equals(e.getEventName()) && this.getLocation().equals(e.getLocation()) && this.getDate().equals(e.getDate()) && this.getStartHour()==e.getStartHour() && this.getStartMin()==e.getStartMin() && this.getEndMin()==e.getEndMin() && this.getEndHour()==e.getEndHour() && this.getCapacity()==e.getCapacity()){
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventName='" + eventName + '\'' +
+                ", startHour=" + startHour +
+                ", startMin=" + startMin +
+                ", endHour=" + endHour +
+                ", endMin=" + endMin +
+                ", capacity=" + capacity +
+                ", date='" + date + '\'' +
+                ", location='" + location + '\'' +
+                '}';
     }
 
     public void setEventName(String eventName) {

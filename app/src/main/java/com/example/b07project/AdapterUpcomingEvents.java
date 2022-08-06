@@ -98,65 +98,65 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
             cap = itemView.findViewById(R.id.capacity_up);
             sLeft = itemView.findViewById(R.id.spots_up);
             btn = itemView.findViewById(R.id.button_up);
-//            btn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {createDialog();}
-//            });
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {createDialog();}
+            });
         }
 
-//        public void createDialog(){
-//            dB = new AlertDialog.Builder(adapter.context);
-//            LayoutInflater inflater2 = LayoutInflater.from(adapter.context);
-//            View view = inflater2.inflate(R.layout.activity_popup, null);
-//
-//            plus = view.findViewById(R.id.plus);
-//            minus = view.findViewById(R.id.minus);
-//            cancel = view.findViewById(R.id.cancell);
-//            book = view.findViewById(R.id.book);
-//            numPlayers = view.findViewById(R.id.numplayers);
-//
-//            dB.setView(view);
-//            dialog = dB.create();
-//            dialog.show();
-//
-//
-//
-//            plus.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    int numP = Integer.parseInt(String.valueOf(numPlayers.getText().toString()));
-//                    String[] s = sLeft.getText().toString().split(": ");
-//                    int left = Integer.parseInt(String.valueOf(s[s.length-1]));
-//                    if (numP<left){
-//                        numPlayers.setText(Integer.toString(numP+1));
-//                    }
-//                }
-//            });
+        public void createDialog(){
+            dB = new AlertDialog.Builder(adapter.context);
+            LayoutInflater inflater2 = LayoutInflater.from(adapter.context);
+            View view = inflater2.inflate(R.layout.activity_popup, null);
 
-//            minus.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    int numP = Integer.parseInt(String.valueOf(numPlayers.getText().toString()));
-//                    if(numP>1){
-//                        numPlayers.setText(Integer.toString(numP-1));
-//                    }
-//                }
-//            });
-//
-//            cancel.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    dialog.dismiss();
-//                }
-//            });
-//
-//            book.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    dialog.dismiss();
-//                }
-//            });
-//        }
+            plus = view.findViewById(R.id.plus);
+            minus = view.findViewById(R.id.minus);
+            cancel = view.findViewById(R.id.cancell);
+            book = view.findViewById(R.id.book);
+            numPlayers = view.findViewById(R.id.numplayers);
+
+            dB.setView(view);
+            dialog = dB.create();
+            dialog.show();
+
+
+
+            plus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int numP = Integer.parseInt(String.valueOf(numPlayers.getText().toString()));
+                    String[] s = sLeft.getText().toString().split(": ");
+                    int left = Integer.parseInt(String.valueOf(s[s.length-1]));
+                    if (numP<left){
+                        numPlayers.setText(Integer.toString(numP+1));
+                    }
+                }
+            });
+
+            minus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int numP = Integer.parseInt(String.valueOf(numPlayers.getText().toString()));
+                    if(numP>1){
+                        numPlayers.setText(Integer.toString(numP-1));
+                    }
+                }
+            });
+
+            cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+
+            book.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+        }
 
         public MyViewHolder linkAdapter(AdapterUpcomingEvents adapter){
             this.adapter = adapter;

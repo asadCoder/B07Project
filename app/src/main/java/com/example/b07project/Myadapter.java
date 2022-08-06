@@ -61,7 +61,6 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
             super(itemView);
             venuname = itemView.findViewById(R.id.venuename);
             location = itemView.findViewById(R.id.locationf);
-//            date = itemView.findViewById(R.id.venuedate);
             endtime = itemView.findViewById(R.id.endtim);
             starttime = itemView.findViewById(R.id.starttim);
 
