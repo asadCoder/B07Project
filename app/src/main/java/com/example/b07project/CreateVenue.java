@@ -59,41 +59,41 @@ public class CreateVenue extends AppCompatActivity {
         location = findViewById(R.id.Vlocation);
         sTime = findViewById(R.id.startTime);
         eTime = findViewById(R.id.endTime);
-        Date = findViewById(R.id.Date);
-        Date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(
-                        CreateVenue.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                String date = month + "/" + day + "/" + year;
-                venue.date = date;
-                Date.setText(date);
-            }
-        };
+//        Date = findViewById(R.id.Date);
+//        Date.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Calendar cal = Calendar.getInstance();
+//                int year = cal.get(Calendar.YEAR);
+//                int month = cal.get(Calendar.MONTH);
+//                int day = cal.get(Calendar.DAY_OF_MONTH);
+//
+//                DatePickerDialog dialog = new DatePickerDialog(
+//                        CreateVenue.this,
+//                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+//                        mDateSetListener,
+//                        year,month,day);
+//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                dialog.show();
+//            }
+//        });
+//
+//        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//                month = month + 1;
+//                String date = month + "/" + day + "/" + year;
+////                venue.date = date;
+//                Date.setText(date);
+//            }
+//        };
 
         createbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String venuename = vename.getText().toString().trim();
                 String loc = location.getText().toString().trim();
-                if(TextUtils.isEmpty(venuename) || TextUtils.isEmpty(venue.getDate()) || TextUtils.isEmpty(loc) || !stime || !etime){
+                if(TextUtils.isEmpty(venuename)  || TextUtils.isEmpty(loc) || !stime || !etime){
                     Toast.makeText(CreateVenue.this,"No fields can be empty", Toast.LENGTH_SHORT).show();
                 }
                 else if(venue.getStartHour()>venue.getEndHour() || ((venue.getStartHour()==venue.getEndHour()) && venue.getStartMin()>=venue.getEndMin())){

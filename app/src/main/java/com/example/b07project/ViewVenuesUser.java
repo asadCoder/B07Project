@@ -55,11 +55,11 @@ public class ViewVenuesUser extends Fragment implements ViewVenuesInterface, Rec
         eventsAll.add(new Event("Bernabue", 8,  0, 10,  5, 7, "july", "panam"));
 
         //read venues from from database
-        venues.add(new Venue("somehaschode", "Pan am", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-        venues.add(new Venue("somehaschode", "drake smd", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-        venues.add(new Venue("somehaschode", "no name", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-        venues.add(new Venue("somehaschode", "please word", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-        venues.add(new Venue("somehaschode", "ronaldo goat ", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
+        venues.add(new Venue("Pan am", 1, 0,  4, 0, "morningside avneue", eventsAll));
+        venues.add(new Venue("drake smd", 1, 0,  4, 0, "morningside avneue", eventsAll));
+        venues.add(new Venue("no name", 1, 0,  4, 0, "morningside avneue", eventsAll));
+        venues.add(new Venue("please word", 1, 0,  4, 0,"morningside avneue", eventsAll));
+        venues.add(new Venue("ronaldo goat ", 1, 0,  4, 0,  "morningside avneue", eventsAll));
 
     }
 

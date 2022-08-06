@@ -42,8 +42,8 @@ public class ViewVenuesAdmin extends AppCompatActivity implements ViewVenuesInte
         eventsAll.add(new Event("Bernabue", 8,  0, 10,  5, 7, "july", "panam"));
 
         //read venues from from database
-        venues.add(new Venue("Pan am ", "Pan am", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-        venues.add(new Venue("pan am 2", "Pan am 2", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
+        venues.add(new Venue("Pan am ", 1, 0,  4, 0,"morningside avneue", eventsAll));
+        venues.add(new Venue("pan am 2", 1, 0,  4, 0, "morningside avneue", eventsAll));
     }
 
     @Override

@@ -35,14 +35,14 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
     @Override
     public void onBindViewHolder(@NonNull AdapterMyEvents.MyViewHolder holder, int position) {
         Event event = events.get(position);
-        holder.makan.setText(event.getLocation());
-        holder.ryada.setText(event.getEventName());
-        holder.wa2t.setText(event.getStartHour()+":00-"+event.getEndHour()+":00");
-        holder.av.setText("Capacity: "+event.getCapacity());
+        holder.location.setText(event.getLocation());
+        holder.sport.setText(event.getEventName());
+        holder.time.setText(event.getStartHour()+":00-"+event.getEndHour()+":00");
+        holder.capacity.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getCapacity());
         holder.butt.setText("Cancel");
 //        if(event.getSpotsLeft() == 0) {
-//            holder.butt.setText("Unavailable");
+//            holder.butt.setText("Uncapacityailable");
 //            holder.butt.setClickable(false);
 //        }
 //        else if(event.getSpotsLeft() == event.getCapacity()) holder.butt.setText("Book");
@@ -57,17 +57,17 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView makan, ryada, wa2t, av, sLeft;
+        TextView location, sport, time, capacity, sLeft;
         Button butt;
         private AdapterMyEvents adapter;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            makan = itemView.findViewById(R.id.venue);
-            ryada = itemView.findViewById(R.id.sport);
-            wa2t = itemView.findViewById(R.id.timee);
-            av = itemView.findViewById(R.id.capacity);
+            location = itemView.findViewById(R.id.venue);
+            sport = itemView.findViewById(R.id.sport);
+            time = itemView.findViewById(R.id.timee);
+            capacity = itemView.findViewById(R.id.capacity);
             sLeft = itemView.findViewById(R.id.spots);
             butt = itemView.findViewById(R.id.button5);
             butt.setOnClickListener(view -> {

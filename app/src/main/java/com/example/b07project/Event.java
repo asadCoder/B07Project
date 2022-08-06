@@ -1,5 +1,7 @@
 package com.example.b07project;
 
+import androidx.annotation.Nullable;
+
 import java.io.Serializable;
 import java.util.HashSet;
 
@@ -27,6 +29,21 @@ public class Event implements Serializable {
         this.capacity = capacity;
         this.date = date;
         this.location = location;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(obj==null){
+            return false;
+        }
+        if(!(obj instanceof Event)){
+            return false;
+        }
+        Event e = (Event) obj;
+        if(this.getEventName().equals(e.getEventName()) || this.getLocation().equals(e.getLocation()) || this.getDate().equals(e.getDate()) || this.getStartHour()==e.getStartHour() || this.getStartMin()==e.getStartMin() || this.getEndMin()==e.getEndMin() || this.getEndHour()==e.getEndHour() || this.getCapacity()==e.getCapacity()){
+            return true;
+        }
+        return false;
     }
 
     public void setEventName(String eventName) {

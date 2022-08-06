@@ -30,7 +30,7 @@ public class DB_ReadVenues {
                     String location = snapshot.child("location").getValue().toString();
 
                     //Eventually a sorting alorithm will go here so that the location is priority
-                    Venue obj = new Venue(hashCode, venueName, startHour, startMin, endHour, endMin, date, location, null);
+                    Venue obj = new Venue(venueName, startHour, startMin, endHour, endMin, location, new ArrayList<Event>());
                     venues.add(obj);
                 }
 

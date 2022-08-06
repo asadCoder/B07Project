@@ -29,8 +29,10 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
     Button createEtemp;
     DatabaseReference ref;
     ArrayList<Venue> venues = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
         SharedPreferences sharedPref = getSharedPreferences("save",MODE_PRIVATE);
@@ -59,7 +61,7 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminMain.this, ViewVenue.class);
-                intent.putExtra("hashCode", venues.get(0).getVenueHashCode());
+                intent.putExtra("hashCode", venues.get(0).getVenueName());
                 startActivity(intent);
             }
         });
@@ -71,9 +73,9 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 for (DataSnapshot snapshot : datasnapshot.getChildren()) {
-                    String hashCode = snapshot.getKey();
-                    System.out.println(hashCode);
-                    String date = snapshot.child("date").getValue().toString();
+//                    String hashCode = snapshot.getKey();
+//                    System.out.println(hashCode);
+//                    String date = snapshot.child("date").getValue().toString();
                     int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
                     int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
                     int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
@@ -82,8 +84,8 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
                     String location = snapshot.child("location").getValue().toString();
 
                     //Eventually a sorting alorithm will go here so that the location is priority
-                    Venue obj = new Venue(hashCode, venueName, startHour, startMin, endHour, endMin, date, location, null);
-                    venues.add(obj);
+                    Venue obj = new Venue(venueName, startHour, startMin, endHour, endMin,  location, new ArrayList<Event>());
+                    if(!venues.contains(obj)) venues.add(obj);
 
 
 
@@ -132,9 +134,9 @@ public class AdminMain extends AppCompatActivity implements Myadapter.venclickLi
 //        startActivity(intent);
         SharedPreferences.Editor editor=getSharedPreferences("venue",MODE_PRIVATE).edit();
         editor.putString("vname", v.getVenueName());
-        editor.putString("vdate", v.getDate());
+//        editor.putString("vdate", v.getDate());
         editor.putString("vlocation", v.getLocation());
-        editor.putString("vdate", v.getDate());
+//        editor.putString("vdate", v.getDate());
         editor.putInt("vstartH", v.getStartHour());
         editor.putInt("vstartM", v.getStartMin());
         editor.putInt("vendH", v.getEndHour());
