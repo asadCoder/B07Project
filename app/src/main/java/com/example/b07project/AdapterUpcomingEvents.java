@@ -59,7 +59,7 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Event event = events.get(position);
-        holder.location.setText(event.getLocation());
+        holder.location.setText(event.getVenueName() + "//" + event.getLocation());
         holder.sport.setText(event.getEventName());
 
         //change it back to ahmads events

@@ -46,7 +46,7 @@ public class AdminMain extends AppCompatActivity implements ViewVenuesInterface,
         }
 
         //have to get veneus from the database
-        setUpVenues();
+//        setUpVenues();
 
         String use = sharedPref.getString("username","f");
         createV = findViewById(R.id.CreateVenue);
@@ -166,13 +166,10 @@ public class AdminMain extends AppCompatActivity implements ViewVenuesInterface,
     @Override
     public void setUpVenues() {
 
-        ArrayList<String> sportsAll = new ArrayList<String>();
-        sportsAll.add("soccer");
-        sportsAll.add("football");
 
         ArrayList<Event> eventsAll = new ArrayList<Event>() {};
-        eventsAll.add(new Event("Emirates Stadium", 8,  0, 10,  5, 7, "july", "panam"));
-        eventsAll.add(new Event("Bernabue", 8,  0, 10,  5, 7, "july", "panam"));
+        eventsAll.add(new Event("hi","Emirates Stadium", 8,  0, 10,  5, 7,7, "9/9/2022", "panam"));
+        eventsAll.add(new Event("hi","Bernabue", 8,  0, 10,  5, 7, 1, "10/10/2022", "Pan Am"));
 
         //read venues from from database
         venues.add(new Venue("Pan am", 1, 0,  4, 0, "morningside avneue", eventsAll));

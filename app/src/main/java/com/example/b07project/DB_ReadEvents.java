@@ -24,12 +24,14 @@ public class DB_ReadEvents {
                     int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
                     int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
                     int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
+                    String venueName = snapshot.child("venueName").getValue().toString();
                     String eventName = snapshot.child("eventName").getValue().toString();
                     String location = snapshot.child("location").getValue().toString();
                     int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
+                    int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
                     //Eventually a sorting alorithm will go here so that the location is priority
-                    Event event = new Event(eventName, startHour,startMin,endHour,endMin,capacity,date,location);
+                    Event event = new Event(venueName, eventName, startHour,startMin,endHour,endMin,capacity,spotsLeft,date,location);
                     events.add(event);
                 }
 

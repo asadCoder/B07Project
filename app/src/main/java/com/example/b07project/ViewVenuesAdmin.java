@@ -38,8 +38,8 @@ public class ViewVenuesAdmin extends AppCompatActivity implements ViewVenuesInte
         sportsAll.add("football");
 
         ArrayList<Event> eventsAll = new ArrayList<Event>() {};
-        eventsAll.add(new Event("Emirates Stadium", 8,  0, 10,  5, 7, "july", "panam"));
-        eventsAll.add(new Event("Bernabue", 8,  0, 10,  5, 7, "july", "panam"));
+        eventsAll.add(new Event("ya hala", "Soccer", 8,  0, 10,  5, 7,7, "11/11/2022", "panam"));
+        eventsAll.add(new Event("ya hala","basketball", 8,  0, 10,  5, 7,5, "12/12/2022", "panam"));
 
         //read venues from from database
         venues.add(new Venue("Pan am ", 1, 0,  4, 0,"morningside avneue", eventsAll));

@@ -35,11 +35,11 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
     @Override
     public void onBindViewHolder(@NonNull AdapterMyEvents.MyViewHolder holder, int position) {
         Event event = events.get(position);
-        holder.location.setText(event.getLocation());
+        holder.location.setText(event.getVenueName() + "//" + event.getLocation());
         holder.sport.setText(event.getEventName());
         holder.time.setText(event.getStartHour()+":00-"+event.getEndHour()+":00");
         holder.capacity.setText("Capacity: "+event.getCapacity());
-        holder.sLeft.setText("Spot(s) left: "+event.getCapacity());
+        holder.sLeft.setText("Spot(s) left: "+event.getSpotsLeft());
         holder.butt.setText("Cancel");
 //        if(event.getSpotsLeft() == 0) {
 //            holder.butt.setText("Uncapacityailable");

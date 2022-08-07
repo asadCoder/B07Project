@@ -22,7 +22,7 @@ import java.util.Locale;
 
 public class CreateEvent extends AppCompatActivity {
 
-    int startTime, endTime, capacity;
+    int startTime, endTime, capacity, spotsLeft;
     Button sTime, eTime;
     Button createEve;
     int shour, sminute;
@@ -82,14 +82,18 @@ public class CreateEvent extends AppCompatActivity {
                 else{
                     capacity = Integer.parseInt(maxcap.getText().toString().trim());
                     event.setCapacity(capacity);
+                    event.setSpotsLeft(capacity);
                     event.setEventName(eventn);
                     event.setLocation(eventloc);
+                    event.setVenueName(vname);
+
                     ref.child("Admins").child(user).child("Venues").child(vname).child("Events").child(event.getEventName()).setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(CreateEvent.this, "Event added", Toast.LENGTH_SHORT).show();
                         }
                     });
+                    ref.child("Events").child(event.getLocation()).setValue(event);
 
                     startActivity(new Intent(getApplicationContext(), SpecificVenueAdmin.class));
 

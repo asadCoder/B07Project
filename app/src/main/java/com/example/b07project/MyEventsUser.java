@@ -70,15 +70,15 @@ public class MyEventsUser extends Fragment {
         ArrayList<Event> newEvents = new ArrayList<>();
 
         //read events from database into events
-        newEvents.add(new Event("soccer", 9, 0, 11, 0, 22, "1/8/2022", "park"));
-        newEvents.add(new Event("basketball", 9, 0, 11, 0, 22, "1/8/2022", " park"));
-        newEvents.add(new Event("football", 9, 0, 11, 0, 22, "1/8/2022", " park"));
-        newEvents.add(new Event("football", 9, 0, 11, 0, 22, "1/8/2022", " park"));
-        newEvents.add(new Event("football", 9, 0, 11, 0, 22, "1/8/2022", " park"));
-        newEvents.add(new Event("football", 9, 0, 11, 0, 22, "1/8/2022", " park"));
-        newEvents.add(new Event("basketball", 9, 0, 11, 0, 22, "1/8/2022", " park"));
-        newEvents.add(new Event("football", 9, 0, 11, 0, 22, "1/8/2022", " park"));
-        newEvents.add(new Event("football", 9, 0, 11, 0, 22, "1/8/2022", " park"));
+        newEvents.add(new Event("ya hala", "soccer", 9, 0, 11, 0, 22, 22, "1/8/2022", "park"));
+        newEvents.add(new Event("ya hala", "basketball", 9, 0, 11, 0, 22, 22, "1/8/2022", " park"));
+        newEvents.add(new Event("ya hala", "football", 9, 0, 11, 0, 22, 22, "1/8/2022", " park"));
+        newEvents.add(new Event("ya hala", "football", 9, 0, 11, 0, 22, 22, "1/8/2022", " park"));
+        newEvents.add(new Event("ya hala", "football", 9, 0, 11, 0, 22, 22, "1/8/2022", " park"));
+        newEvents.add(new Event("ya hala", "football", 9, 0, 11, 0, 22, 22, "1/8/2022", " park"));
+        newEvents.add(new Event("ya hala", "basketball", 9, 0, 11, 0, 22, 22, "1/8/2022", " park"));
+        newEvents.add(new Event("ya hala", "football", 9, 0, 11, 0, 22, 22, "1/8/2022", " park"));
+        newEvents.add(new Event("ya hala", "football", 9, 0, 11, 0, 22, 22, "1/8/2022", " park"));
 
 
         return newEvents;
@@ -107,7 +107,7 @@ public class MyEventsUser extends Fragment {
 //                    int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 //
 //                    //Eventually a sorting alorithm will go here so that the location is priority
-//                    Event event = new Event(eventName, startHour,startMin,endHour,endMin,capacity,location,date);
+//                    Event event = new Event("ya halae, "ventName, startHour,startMin,endHour,endMin,capacity,location,date);
 //                    System.out.println("I'm HEREEEE" + event.toString());
 //                    es.add(event);
 //                    System.out.println(" " + es.size());

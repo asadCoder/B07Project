@@ -6,12 +6,14 @@ import java.io.Serializable;
 import java.util.HashSet;
 
 public class Event implements Serializable {
+    String venueName;
     String eventName;
     int startHour; //24 hour format
     int startMin;
     int endHour; //24 Hour format
     int endMin;
     int capacity;
+    int spotsLeft;
     String date;
     String location;
 
@@ -20,13 +22,15 @@ public class Event implements Serializable {
     }
 
 
-    public Event(String eventName, int startHour, int startMin, int endHour, int endMin, int capacity, String date, String location) {
+    public Event(String venueName, String eventName, int startHour, int startMin, int endHour, int endMin, int capacity, int spotsLeft, String date, String location) {
+        this.venueName = venueName;
         this.eventName = eventName;
         this.startHour = startHour;
         this.startMin = startMin;
         this.endHour = endHour;
         this.endMin = endMin;
         this.capacity = capacity;
+        this.spotsLeft = spotsLeft;
         this.date = date;
         this.location = location;
     }
@@ -40,7 +44,11 @@ public class Event implements Serializable {
             return false;
         }
         Event e = (Event) obj;
-        if(this.getEventName().equals(e.getEventName()) && this.getLocation().equals(e.getLocation()) && this.getDate().equals(e.getDate()) && this.getStartHour()==e.getStartHour() && this.getStartMin()==e.getStartMin() && this.getEndMin()==e.getEndMin() && this.getEndHour()==e.getEndHour() && this.getCapacity()==e.getCapacity()){
+        if(this.venueName.equals(e.venueName) && this.getEventName().equals(e.getEventName()) && this.getLocation().equals(e.getLocation())
+                && this.getDate().equals(e.getDate()) && this.getStartHour()==e.getStartHour() &&
+                this.getStartMin()==e.getStartMin() && this.getEndMin()==e.getEndMin() &&
+                this.getEndHour()==e.getEndHour() && this.getCapacity()==e.getCapacity() &&
+                this.getSpotsLeft() == e.getSpotsLeft()){
             return true;
         }
         return false;
@@ -58,6 +66,10 @@ public class Event implements Serializable {
                 ", date='" + date + '\'' +
                 ", location='" + location + '\'' +
                 '}';
+    }
+
+    public void setVenueName(String venueName) {
+        this.venueName = venueName;
     }
 
     public void setEventName(String eventName) {
@@ -100,6 +112,10 @@ public class Event implements Serializable {
         this.capacity = capacity;
     }
 
+    public void setSpotsLeft(int spotsLeft) {
+        this.spotsLeft = spotsLeft;
+    }
+
     public void setDate(String date) {
         this.date = date;
     }
@@ -112,9 +128,17 @@ public class Event implements Serializable {
         return eventName;
     }
 
+    public String getVenueName() {
+        return venueName;
+    }
+
 
     public int getCapacity() {
         return capacity;
+    }
+
+    public int getSpotsLeft() {
+        return spotsLeft;
     }
 
     public String getDate() {

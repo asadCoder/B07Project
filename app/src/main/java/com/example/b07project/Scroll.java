@@ -29,22 +29,64 @@ import java.util.Collections;
 
 public class Scroll extends Fragment {
 
-    ArrayList<Event> events = new ArrayList<Event>();
+
     AdapterUpcomingEvents adapterUP;
     DB_ReadEvents reader;
+    ArrayList<Event> events = new ArrayList<Event>();
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        adapterUP = new AdapterUpcomingEvents(getActivity(), events);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Events");
+        //  The following code loops through the database and creates objects from the database
+        ref.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    // System.out.println("hi");
+                    String date = snapshot.child("date").getValue().toString();
+                    //    System.out.println(date);
+                    int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
+                    int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
+                    int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
+                    int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
+                    String venueName = snapshot.child("venueName").getValue().toString();
+                    String eventName = snapshot.child("eventName").getValue().toString();
+                    //    System.out.println(eventName);
+                    String location = snapshot.child("location").getValue().toString();
+                    //    System.out.println(location);
+                    int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
+                    int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
+//                    int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
+
+                    //Eventually a sorting alorithm will go here so that the location is priority
+                    Event event = new Event(venueName, eventName, startHour,startMin,endHour,endMin,capacity,spotsLeft,date, location);
+                    if(!events.contains(event))
+                    {
+                        System.out.println("I'm HEREEEE" + event.toString());
+                        events.add(event);
+                        System.out.println(" " + events.size());
+                    }
+                }
+                adapterUP.notifyDataSetChanged();
+
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
         View mView = inflater.inflate(R.layout.activity_scroll, container, false);
         RecyclerView recyclerView = (RecyclerView) mView.findViewById(R.id.recycler_view);
 
       //  events =  setUpEventsU();
 
-        setUpEventsU();
 
-        System.out.println(events.size());
-        adapterUP = new AdapterUpcomingEvents(getActivity(), events);
+
+        System.out.println("SIZE: " + events.size());
+
+
         recyclerView.setAdapter(adapterUP);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return mView;
@@ -88,41 +130,41 @@ public class Scroll extends Fragment {
 
 
         //Collections.sort(events);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Events");
-      //  The following code loops through the database and creates objects from the database
-        ref.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Events");
+//        The following code loops through the database and creates objects from the database
+//        ref.addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+//                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                    // System.out.println("hi");
-                    String date = snapshot.child("date").getValue().toString();
+//                    String date = snapshot.child("date").getValue().toString();
                 //    System.out.println(date);
-                    int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
-                    int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
-                    int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
-                    int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
-                    String eventName = snapshot.child("eventName").getValue().toString();
+//                    int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
+//                    int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
+//                    int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
+//                    int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
+//                    String eventName = snapshot.child("eventName").getValue().toString();
                 //    System.out.println(eventName);
-                    String location = snapshot.child("location").getValue().toString();
+//                    String location = snapshot.child("location").getValue().toString();
                 //    System.out.println(location);
-                    int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
-                    int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
-
-                    //Eventually a sorting alorithm will go here so that the location is priority
-                    Event event = new Event(eventName, startHour,startMin,endHour,endMin,capacity,location,date);
-                    if(!events.contains(event))
-                    {
-                        System.out.println("I'm HEREEEE" + event.toString());
-                        events.add(event);
-                        System.out.println(" " + events.size());
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+//                    int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
+//                    int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
+//
+//                    //Eventually a sorting alorithm will go here so that the location is priority
+//                    Event event = new Event(eventName, startHour,startMin,endHour,endMin,capacity,location,date);
+//                    if(!events.contains(event))
+//                    {
+//                        System.out.println("I'm HEREEEE" + event.toString());
+//                        events.add(event);
+//                        System.out.println(" " + events.size());
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//            }
+//        });
         //System.out.println("EVENT 1:  " + es.get(0).toString());
 
     }
