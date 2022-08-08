@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import android.os.Build;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import java.io.Serializable;
@@ -10,6 +11,8 @@ import java.util.HashSet;
 import java.util.Objects;
 
 public class Event implements Serializable, Comparable<Event> {
+    String admin;
+    String venueName;
     String eventName;
     int startHour; //24 hour format
     int startMin;
@@ -18,15 +21,19 @@ public class Event implements Serializable, Comparable<Event> {
     int capacity;
     int spotsLeft;
     String location;
+    String address;
     String date;
 
     public Event(){
 
     }
 
-    public Event(String eventName, int startHour, int startMin, int endHour, int endMin,
+    public Event(String admin, String venueName, String eventName, String address, int startHour, int startMin, int endHour, int endMin,
                  int capacity, int spotsLeft, String location, String date) {
+        this.admin = admin;
+        this.venueName = venueName;
         this.eventName = eventName;
+        this.address = address;
         this.startHour = startHour;
         this.startMin = startMin;
         this.endHour = endHour;
@@ -37,6 +44,40 @@ public class Event implements Serializable, Comparable<Event> {
         this.date = date;
     }
 
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(obj==null){
+            return false;
+        }
+        if(!(obj instanceof Event)){
+            return false;
+        }
+        Event e = (Event) obj;
+        if(this.getVenueName().equals(e.getVenueName()) && this.getEventName().equals(e.getEventName())
+                && this.getLocation().equals(e.getLocation()) && this.address.equals(e.address) &&
+                this.getDate().equals(e.getDate())
+                && this.getStartHour()==e.getStartHour() && this.getStartMin()==e.getStartMin() &&
+                this.getEndMin()==e.getEndMin() && this.getEndHour()==e.getEndHour() &&
+                this.getCapacity()==e.getCapacity()){
+            return true;
+        }
+        return false;
+    }
+
+
+    public String getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(String admin) {this.admin = admin;}
+
+    public String getVenueName() {
+        return venueName;
+    }
+
+    public void setVenueName(String venueName) {
+        this.venueName = venueName;
+    }
 
     public String getEventName() {
         return eventName;
@@ -44,6 +85,14 @@ public class Event implements Serializable, Comparable<Event> {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address =address;
     }
 
     public int getStartHour() {
@@ -110,6 +159,15 @@ public class Event implements Serializable, Comparable<Event> {
         this.date = date;
     }
 
+    public String date(){
+        String[] d = this.date.split("/");
+        String result = "";
+        for(String s:d){
+            result = result + s +"|";
+        }
+        return result;
+    }
+
     public String endtime(){
         String em=  String.valueOf(getEndMin()).trim();
         String eh = String.valueOf(getEndHour()).trim();
@@ -140,6 +198,11 @@ public class Event implements Serializable, Comparable<Event> {
         return ti;
     }
 
+    public boolean changes(Event event){
+        if(this.equals(event) && this.getSpotsLeft() != event.getSpotsLeft()) return true;
+        return false;
+    }
+
 
     @Override
     public int compareTo(Event event) {
@@ -166,5 +229,21 @@ public class Event implements Serializable, Comparable<Event> {
         if (this.startMin < event.startMin) return -1;
         return 0;
 
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "venueName='" + venueName +
+                "', eventName='" + eventName +
+                "', address='" + address +
+                "', startHour=" + startHour +
+                ", startMin=" + startMin +
+                ", endHour=" + endHour +
+                ", endMin=" + endMin +
+                ", capacity=" + capacity +
+                ", location='" + location +
+                "', date='" + date() +
+                '}';
     }
 }

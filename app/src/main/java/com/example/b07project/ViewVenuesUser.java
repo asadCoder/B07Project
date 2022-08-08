@@ -1,125 +1,124 @@
 package com.example.b07project;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 
-public class ViewVenuesUser extends  AppCompatActivity implements ViewVenuesInterface, RecycleViewInterface, Serializable {
+public class ViewVenuesUser extends Fragment implements ViewVenuesInterface, RecycleViewInterface, Serializable {
 
     ArrayList<Venue> venues = new ArrayList<>();
     AdapterVenues adapter;
+    String user;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void setUser(String user) {
+        this.user = user;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_venues_user);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-//        bottomNavigationView  = findViewById(R.id.bottom_navigation);
-//
-//        getSupportFragmentManager().beginTransaction().replace(R.id.container, myEvents).commit();
-//
-//
-//        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(MenuItem item) {
-//                switch (item.getItemId()){
-//                    case R.id.venues:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.container, myEvents).commit();
-//                        return true;
-//                    case R.id.upcoming:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.container,notificationFragment).commit();
-//                        return true;
-//                    case R.id.myevents:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.container,settingsFragment).commit();
-//                        return true;
-//                }
-//
-//                return false;
-//            }
-//        });
+        View mView = inflater.inflate(R.layout.activity_view_venues_user, container, false);
 
-        RecyclerView recyclerView  = findViewById(R.id.recycleViewVenueUser);
+
+        RecyclerView recyclerView = (RecyclerView) mView.findViewById(R.id.recycleViewVenueUser);
+
+        venues = new ArrayList<Venue>();
+        adapter = new AdapterVenues(getActivity(), venues, this);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Venues");
+        //The following code loops through the database and creates objects from the database
+        ref.addValueEventListener(new ValueEventListener() {@Override
+        public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+            for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
+                int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
+                int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
+                int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
+                String venueName = snapshot.child("venueName").getValue().toString();
+                String location = snapshot.child("location").getValue().toString();
+                String admin = snapshot.child("admin").getValue().toString();
+                //Eventually a sorting alorithm will go here so that the location is priority
+                Venue venue = new Venue(admin, venueName, startHour,startMin,endHour,endMin, location,new ArrayList<Event>());
+                if(!venues.contains(venue))  venues.add(venue);
+
+            }
+            Collections.sort(venues);
+            adapter.notifyDataSetChanged();
+        }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         //pass the list of venues from the database to setUpVenues()
-        setUpVenues();
+//        setUpVenues();
 
-        SpacingItemDecorator itemDecorator = new SpacingItemDecorator(10);
-        //recyclerView.addItemDecoration(itemDecorator);
-        adapter = new AdapterVenues(this, venues, this);
+        SpacingItemDecorator itemDecorator = new SpacingItemDecorator(30);
+        recyclerView.addItemDecoration(itemDecorator);
+
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-    }
-
-    public void clickUp(View view){
-        Intent intent = new Intent(getApplicationContext(), Scroll.class);
-        intent.putExtra("ind", "up");
-        startActivity(intent);
-    }
-
-    public void clickMy(View view){
-        Intent intent = new Intent(getApplicationContext(), Scroll.class);
-        intent.putExtra("ind", "my");
-        startActivity(intent);
-    }
-
-    public void clickV(View view){
-        Intent intent = new Intent(getApplicationContext(), ViewVenuesUser.class);
-        startActivity(intent);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        return mView;
     }
 
 
-    public void logout(View view){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),Login.class));
-        finish();
+
+    @Override
+    public void onItemClick(int position) {
+//        Intent intent = new Intent(getActivity(), SpecificVenueUser.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("venue_events", venues.get(position).getEvents());
+//        intent.putExtras(bundle);
+//        startActivity(intent);
+        String venueName = venues.get(position).getLocation();
+        SpecificVenueUser svu = new SpecificVenueUser();
+        svu.setUser(user);
+        svu.setVenueName(venueName);
+        getParentFragmentManager().beginTransaction().replace(R.id.container, svu).commit();
+
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void setUpVenues() {
-        ArrayList<String> sportsAll = new ArrayList<String>();
-        sportsAll.add("soccer");
-        sportsAll.add("football");
+
 
         ArrayList<Event> eventsAll = new ArrayList<Event>() {};
-        LocalDate date3 = LocalDate.of(2022, 8, 4);
-        LocalDate date4 = LocalDate.of(2022, 8, 5);
-        eventsAll.add(new Event("dropIn","ISKAN", "soccer",  12, 15, 0, 0,22, 22, date3));
-        eventsAll.add(new Event("dropIn","Camp Nou", "soccer", 5, 7, 0, 0,22, 22, date4));
+        eventsAll.add(new Event("", "pan am","Soccer","military", 8,  0, 10,  5, 7,7, "court 4","7/7/2022"));
+        eventsAll.add(new Event("", "pan am", "Golf", "military",8,  0, 10,  5, 7, 7, "court 13", "9/9/2022"));
 
         //read venues from from database
-        venues.add(new Venue("somehaschode", "Pan am", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-        venues.add(new Venue("somehaschode", "drake smd", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-        venues.add(new Venue("somehaschode", "no name", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-        venues.add(new Venue("somehaschode", "please word", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-        venues.add(new Venue("somehaschode", "ronaldo goat ", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-
-    }
-
-   @Override
-    public void onItemClick(int position) {
-       Intent intent = new Intent(ViewVenuesUser.this, SpecificVenueUser.class);
-       Bundle bundle = new Bundle();
-       bundle.putSerializable("venue_events", venues.get(position).getEvents());
-       intent.putExtras(bundle);
-       startActivity(intent);
+        venues.add(new Venue("ahmad", "Pan am", 1, 0,  4, 0, "morningside avneue", eventsAll));
+        venues.add(new Venue("ahmad","drake smd", 1, 0,  4, 0, "morningside avneue", eventsAll));
+        venues.add(new Venue("ahmad","no name", 1, 0,  4, 0, "morningside avneue", eventsAll));
+//        venues.add(new Venue("please word", 1, 0,  4, 0,"morningside avneue", eventsAll));
+//        venues.add(new Venue("ronaldo goat ", 1, 0,  4, 0,  "morningside avneue", eventsAll));
     }
 }

@@ -143,11 +143,12 @@ public class Login extends AppCompatActivity {
                                 startActivity(new Intent(getApplicationContext(), AdminMain.class));
                             }
                             else {
+//                                System.out.println("HELLOOOOOOO");
                                 editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                 editor.putBoolean("value",false);
                                 editor.apply();
 
-                                startActivity(new Intent(getApplicationContext(), ViewVenuesUser.class));
+                                startActivity(new Intent(getApplicationContext(), CustomerMain.class));
                             }
 
                         }

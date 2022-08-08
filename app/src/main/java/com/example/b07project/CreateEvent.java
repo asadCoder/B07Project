@@ -1,23 +1,33 @@
 package com.example.b07project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class CreateEvent extends AppCompatActivity {
@@ -27,27 +37,61 @@ public class CreateEvent extends AppCompatActivity {
     Button createEve;
     int shour, sminute;
     int ehour, eminute;
-    TextView eventName, location, maxcap;
+    TextView eventName, location, maxcap, date;
+    FirebaseDatabase database;
     DatabaseReference ref;
     boolean stime;
     boolean etime;
     Event event;
+    ArrayList<Event> events = new ArrayList<Event>();
     Venue v;
+    private TextView Date;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 //    TextView temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
         SharedPreferences sharedPref = getSharedPreferences("venue",MODE_PRIVATE);
-        String vname = sharedPref.getString("vname", "error");
-        int vStartH = sharedPref.getInt("vstartH", -1);
-        int vStartM = sharedPref.getInt("vstartM", -1);
-        int vEndH = sharedPref.getInt("vendH", -1);
-        int vEndM = sharedPref.getInt("vendM", -1);
+        String vname = getIntent().getStringExtra("vname");
+        int vStartH = getIntent().getIntExtra("vstartH", 0);
+        int vStartM = getIntent().getIntExtra("vstartM", 0);
+        int vEndH = getIntent().getIntExtra("vendH", 0);
+        int vEndM = getIntent().getIntExtra("vendM", 0);
         SharedPreferences sharedPref2 = getSharedPreferences("save",MODE_PRIVATE);
         String user = sharedPref2.getString("username","f");
-        ref = FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference();
         event = new Event();
+        ref = database.getReference("Venues/"+getIntent().getStringExtra("address")+"/Events");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    String date = snapshot.child("date").getValue().toString();
+                    int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
+                    int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
+                    int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
+                    int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
+                    String venueName = snapshot.child("venueName").getValue().toString();
+                    String eventName = snapshot.child("eventName").getValue().toString();
+                    String location = snapshot.child("location").getValue().toString();
+                    String address = snapshot.child("address").getValue().toString();
+                    String admin = snapshot.child("admin").getValue().toString();
+
+                    int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
+                    int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
+
+                    //Eventually a sorting alorithm will go here so that the location is priority
+                    Event e = new Event(admin, venueName, eventName, address, startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
+                    if(!events.contains(e)) events.add(e);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 //        ArrayList<Event> events = new ArrayList<Event>();
 //        DB_ReadEvents reader = new DB_ReadEvents();
@@ -60,40 +104,112 @@ public class CreateEvent extends AppCompatActivity {
         location = findViewById(R.id.Elocation);
         maxcap = findViewById(R.id.Ecapacity);
         createEve = findViewById(R.id.Ecreate);
+        Date = findViewById(R.id.Date);
+        Date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        CreateEvent.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = month + "/" + day + "/" + year;
+                event.date = date;
+                Date.setText(date);
+            }
+        };
 
         createEve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("RRRRRR  "+events.size());
+                if(events != null) System.out.println("AAAAAAAAAA");
+                else System.out.println("BBBBBBBB");
                 String eventn = eventName.getText().toString().trim();
                 String eventloc = location.getText().toString().trim();
+                String eventDate = Date.getText().toString().trim();
 
-                if(TextUtils.isEmpty(eventn) || TextUtils.isEmpty(eventloc) || TextUtils.isEmpty(maxcap.getText().toString().trim()) || !stime || !etime){
+
+
+                if(TextUtils.isEmpty(eventn) || TextUtils.isEmpty(eventloc) || TextUtils.isEmpty(eventDate) || TextUtils.isEmpty(maxcap.getText().toString().trim()) || !stime || !etime){
                     Toast.makeText(CreateEvent.this,"No fields can be empty", Toast.LENGTH_SHORT).show();
-                }
-                else if(event.getStartHour()>event.getEndHour() || ((event.getStartHour()==event.getEndHour()) && event.getStartMin()>=event.getEndMin())){
+                } else if(event.getStartHour()>event.getEndHour() || ((event.getStartHour()==event.getEndHour()) && event.getStartMin()>=event.getEndMin())){
                     Toast.makeText(CreateEvent.this,"Enter valid start and end times", Toast.LENGTH_SHORT).show();
                 }
                 else if(event.getStartHour()<vStartH || (event.getStartHour()==vStartH && event.getStartMin()<vStartM)){
                     Toast.makeText(CreateEvent.this,"Start time needs to be after " + vname + " opens", Toast.LENGTH_SHORT).show();
                 }
                 else if(event.getEndHour()>vEndH || (event.getEndHour()==vEndH && event.getEndMin()>vEndM)){
+                    System.out.println("VENDh:  " + vEndH + "   vEndm:   "+ vEndM);
                     Toast.makeText(CreateEvent.this,"End time needs to be before " + vname + " closes", Toast.LENGTH_SHORT).show();
                 }
-                else{
+                else {
+
                     capacity = Integer.parseInt(maxcap.getText().toString().trim());
                     event.setCapacity(capacity);
+                    event.setSpotsLeft(capacity);
                     event.setEventName(eventn);
                     event.setLocation(eventloc);
-                    ref.child("Admins").child(user).child("Venues").child(vname).child("Events").child(event.getEventName()).setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    event.setDate(eventDate);
+                    event.setVenueName(vname);
+                    event.setAddress(getIntent().getStringExtra("address"));
+                    event.setAdmin(getIntent().getStringExtra("admin"));
+                    if(events.contains(event)) {
+                        Toast.makeText(CreateEvent.this, "Event already exists", Toast.LENGTH_SHORT).show();
+                    }else{
+
+                        ref = database.getReference("Events/"+event.toString());
+                        ref.setValue(event);
+//                        ref.child("Events").child(event.toString()).setValue(event);
+
+                        ref = database.getReference("Venues/"+getIntent().getStringExtra("address")+"/Events/"+event.toString());
+                        ref.setValue(event);
+//                        ref.child("Venues").child(getIntent().getStringExtra("address")).child("Events").child(event.toString()).setValue(event);
+
+                        ref = database.getReference("Admins/" + user + "/Venues/" +
+                                getIntent().getStringExtra("address") + "/Events/" + event.toString());
+//                        ref.child("Admins").child(user).child("Venues").child(getIntent().getStringExtra("address")).child("Events").child(event.toString()).setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            ref.setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(CreateEvent.this, "Event added", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(CreateEvent.this, "Event added", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        events.add(event);
+                        Intent intent = new Intent(getApplicationContext(), SpecificVenueAdmin.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("venue_events", events);
+                        intent.putExtras(bundle);
+                        intent.putExtra("address", getIntent().getStringExtra("address"));
+                        intent.putExtra("admin", getIntent().getStringExtra("admin"));
 
-                    startActivity(new Intent(getApplicationContext(), SpecificVenueAdmin.class));
+                        intent.putExtra("vname", getIntent().getStringExtra("vname"));
+                        intent.putExtra("vstartH", getIntent().getIntExtra("vstartH", 0));
+                        intent.putExtra("vstartM", getIntent().getIntExtra("vstartM", 0));
 
+                        intent.putExtra("vendH", getIntent().getIntExtra("vendH",0));
+
+                        intent.putExtra("vendM", getIntent().getIntExtra("vendM",0));
+
+                        startActivity(intent);
+
+                    }
                 }
+
 
             }
 
@@ -113,7 +229,10 @@ public class CreateEvent extends AppCompatActivity {
                 sTime.setText(String.format(Locale.getDefault(), "%02d:%02d", shour, sminute));
                 stime = true;
                 event.setStartHour(shour);
+                System.out.println("sH" + shour );
+
                 event.setStartMin(sminute);
+                System.out.println("sM" + sminute );
             }
         };
         int style = AlertDialog.THEME_HOLO_DARK;
@@ -132,7 +251,10 @@ public class CreateEvent extends AppCompatActivity {
                 eTime.setText(String.format(Locale.getDefault(), "%02d:%02d", ehour, eminute));
                 etime = true;
                 event.setEndHour(ehour);
+                System.out.println("eH" + ehour );
                 event.setEndMin(eminute);
+                System.out.println("eM" + eminute );
+
 
             }
         };

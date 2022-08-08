@@ -75,6 +75,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/venue_my" />
 
+            <TextView
+                android:id="@+id/saverMy"
+                android:layout_width="0.01dp"
+                android:layout_height="0.01dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <Button
                 android:id="@+id/button_my"
                 android:layout_width="54dp"

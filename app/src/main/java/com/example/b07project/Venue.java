@@ -6,14 +6,16 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 
-public class Venue implements Parcelable, Serializable {
+public class Venue implements Parcelable, Serializable, Comparable<Venue> {
     String venueName;
     int startHour; //24 hour format
     int startMin;
     int endHour; //24 Hour format
     int endMin;
     String location;
+    String admin;
     ArrayList<Event> events;
 
 
@@ -23,7 +25,9 @@ public class Venue implements Parcelable, Serializable {
 
     }
 
-    public Venue(String venueName, int startHour, int startMin, int endHour, int endMin, String location, ArrayList<Event> events) {
+    public Venue(String admin, String venueName, int startHour, int startMin, int endHour, int endMin,
+                 String location, ArrayList<Event> events) {
+        this.admin = admin;
         this.venueName = venueName;
         this.startHour = startHour;
         this.startMin = startMin;
@@ -34,6 +38,7 @@ public class Venue implements Parcelable, Serializable {
     }
 
     protected Venue(Parcel in) {
+        admin = in.readString();
         venueName = in.readString();
         startHour = in.readInt();
         startMin = in.readInt();
@@ -95,11 +100,21 @@ public class Venue implements Parcelable, Serializable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(venueName);
+        parcel.writeString(admin);
         parcel.writeInt(startHour);
         parcel.writeInt(startMin);
         parcel.writeInt(endHour);
         parcel.writeInt(endMin);
         parcel.writeString(location);
+    }
+
+
+    public String getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = admin;
     }
 
     public String getVenueName() {
@@ -156,5 +171,33 @@ public class Venue implements Parcelable, Serializable {
 
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Venue)) return false;
+        Venue venue = (Venue) o;
+        return location.equals(venue.location);
+    }
+
+    @Override
+    public String toString() {
+        return "Venue{" +
+                "venueName='" + venueName + '\'' +
+                ", startHour=" + startHour +
+                ", startMin=" + startMin +
+                ", endHour=" + endHour +
+                ", endMin=" + endMin +
+                ", location='" + location + '\'' +
+                ", admin='" + admin + '\'' +
+                ", events=" + events +
+                '}';
+    }
+
+
+    @Override
+    public int compareTo(Venue venue) {
+        return this.venueName.compareTo(venue.venueName);
     }
 }

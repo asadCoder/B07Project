@@ -6,29 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".SpecificVenueAdmin">
 
-    <Button
-        android:id="@+id/createE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Event"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/VenName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Error Text"
-        android:textSize="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.443"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.162" />
+        <Button
+            android:id="@+id/createE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Event" />
+
+        <TextView
+            android:id="@+id/VenName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Error Text"
+            android:textSize="32dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycleViewSpecificAdmin"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

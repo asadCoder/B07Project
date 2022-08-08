@@ -18,7 +18,7 @@ public class ViewVenue extends AppCompatActivity {
         setContentView(R.layout.activity_view_venue);
 
         value = findViewById(R.id.textView2);
-        String hashCode = getIntent().getStringExtra("hashCode");
+        String hashCode = getIntent().getStringExtra("address");
 
         value.setText(hashCode);
 

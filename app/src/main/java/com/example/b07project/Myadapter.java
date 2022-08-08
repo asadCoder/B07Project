@@ -37,7 +37,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
         Venue ven = venlist.get(position);
         holder.venuname.setText(ven.getVenueName());
         holder.location.setText(ven.getLocation());
-        holder.date.setText(ven.getDate());
+//        holder.date.setText(ven.getDate());
         holder.starttime.setText(ven.starttime());
         holder.endtime.setText(ven.endtime());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +61,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
             super(itemView);
             venuname = itemView.findViewById(R.id.venuename);
             location = itemView.findViewById(R.id.locationf);
-            date = itemView.findViewById(R.id.venuedate);
+//            date = itemView.findViewById(R.id.venuedate);
             endtime = itemView.findViewById(R.id.endtim);
             starttime = itemView.findViewById(R.id.starttim);
 

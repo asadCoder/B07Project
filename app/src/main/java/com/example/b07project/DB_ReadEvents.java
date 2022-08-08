@@ -10,7 +10,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class DB_ReadEvents {
+    public class DB_ReadEvents {
     ArrayList<Event> events;
     public ArrayList<Event> readEvents(String path){
         events = new ArrayList<Event>();
@@ -27,9 +27,10 @@ public class DB_ReadEvents {
                     String eventName = snapshot.child("eventName").getValue().toString();
                     String location = snapshot.child("location").getValue().toString();
                     int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
+                    int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
                     //Eventually a sorting alorithm will go here so that the location is priority
-                    Event event = new Event(eventName, startHour,startMin,endHour,endMin,capacity,date,location);
+                    Event event = new Event("","", eventName, "", startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
                     events.add(event);
                 }
 

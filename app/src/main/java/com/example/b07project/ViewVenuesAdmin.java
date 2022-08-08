@@ -33,17 +33,15 @@ public class ViewVenuesAdmin extends AppCompatActivity implements ViewVenuesInte
 
     @Override
     public void setUpVenues() {
-        ArrayList<String> sportsAll = new ArrayList<String>();
-        sportsAll.add("soccer");
-        sportsAll.add("football");
+
 
         ArrayList<Event> eventsAll = new ArrayList<Event>() {};
-        eventsAll.add(new Event("Emirates Stadium", 8,  0, 10,  5, 7, "july", "panam"));
-        eventsAll.add(new Event("Bernabue", 8,  0, 10,  5, 7, "july", "panam"));
+        eventsAll.add(new Event(" ","pan am","Soccer","military", 8,  0, 10,  5, 7,7, "court 4","7/7/2022"));
+        eventsAll.add(new Event(" ","pan am", "Golf","military", 8,  0, 10,  5, 7, 7, "court 13", "9/9/2022"));
 
         //read venues from from database
-        venues.add(new Venue("Pan am ", "Pan am", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
-        venues.add(new Venue("pan am 2", "Pan am 2", 1, 0,  4, 0, "august", "morningside avneue", eventsAll));
+        venues.add(new Venue("ahmad", "Pan am ", 1, 0,  4, 0, "morningside avneue", eventsAll));
+        venues.add(new Venue("admin", "pan am 2", 1, 0,  4, 0, "morningside avneue", eventsAll));
     }
 
     @Override

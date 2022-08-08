@@ -17,11 +17,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -33,7 +37,7 @@ public class CreateVenue extends AppCompatActivity {
     Button sTime, eTime;
     int shour, sminute;
     int ehour, eminute;
-    private TextView Date;
+//    private TextView Date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     Venue venue;
     TextView location;
@@ -41,7 +45,7 @@ public class CreateVenue extends AppCompatActivity {
     boolean stime;
     boolean etime;
     Admin a;
-
+    ArrayList<String> venueLocs;
     FirebaseDatabase database;
     DatabaseReference reference;
     Button createbut;
@@ -52,49 +56,69 @@ public class CreateVenue extends AppCompatActivity {
         setContentView(R.layout.activity_create_venue);
         createbut = findViewById(R.id.CV);
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference().child("Venues").push();
+        reference = database.getReference();
         venue = new Venue();
         vename = findViewById(R.id.Vename);
 
         location = findViewById(R.id.Vlocation);
         sTime = findViewById(R.id.startTime);
         eTime = findViewById(R.id.endTime);
-        Date = findViewById(R.id.Date);
-        Date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(
-                        CreateVenue.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Venues");
+        venueLocs = new ArrayList<>();
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    String location = snapshot.child("location").getValue().toString();
+                    if(!venueLocs.contains(location)) venueLocs.add(location);
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                String date = month + "/" + day + "/" + year;
-                venue.date = date;
-                Date.setText(date);
-            }
-        };
+//        Date = findViewById(R.id.Date);
+//        Date.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Calendar cal = Calendar.getInstance();
+//                int year = cal.get(Calendar.YEAR);
+//                int month = cal.get(Calendar.MONTH);
+//                int day = cal.get(Calendar.DAY_OF_MONTH);
+//
+//                DatePickerDialog dialog = new DatePickerDialog(
+//                        CreateVenue.this,
+//                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+//                        mDateSetListener,
+//                        year,month,day);
+//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                dialog.show();
+//            }
+//        });
+//
+//        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//                month = month + 1;
+//                String date = month + "/" + day + "/" + year;
+//                venue.date = date;
+//                Date.setText(date);
+//            }
+//        };
 
         createbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String venuename = vename.getText().toString().trim();
                 String loc = location.getText().toString().trim();
-                if(TextUtils.isEmpty(venuename) || TextUtils.isEmpty(venue.getDate()) || TextUtils.isEmpty(loc) || !stime || !etime){
+                if(TextUtils.isEmpty(venuename)  || TextUtils.isEmpty(loc) || !stime || !etime){
                     Toast.makeText(CreateVenue.this,"No fields can be empty", Toast.LENGTH_SHORT).show();
+                }else if(venueLocs.contains(loc)){
+                    Toast.makeText(CreateVenue.this,"Venue already exists", Toast.LENGTH_SHORT).show();
+
                 }
                 else if(venue.getStartHour()>venue.getEndHour() || ((venue.getStartHour()==venue.getEndHour()) && venue.getStartMin()>=venue.getEndMin())){
                     Toast.makeText(CreateVenue.this,"Enter valid start and end times", Toast.LENGTH_SHORT).show();
@@ -102,12 +126,16 @@ public class CreateVenue extends AppCompatActivity {
                 else {
                     venue.setVenueName(venuename);
                     venue.setLocation(loc);
+                    venue.setAdmin(getIntent().getStringExtra("username").toString());
+                    venue.setEvents(new ArrayList<Event>());
                     //Add to users set of created events
 
 
 //                    ArrayList<Venue> ss = new ArrayList<Venue>();
 //                    ss.add(venue);
 //                    a.setVenues(ss);
+                    reference = database.getReference("Venues/"+venue.getLocation());
+
                     reference.setValue(venue).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
@@ -116,8 +144,8 @@ public class CreateVenue extends AppCompatActivity {
                     });
                     SharedPreferences sharedPref = getSharedPreferences("save",MODE_PRIVATE);
                     String use = sharedPref.getString("username","false");
-                    DatabaseReference reference2 = database.getReference("Admins/"+use);
-                    reference2.child("Venues").child(venue.venueName).setValue(venue);
+                    reference = database.getReference("Admins/"+use+"/Venues/"+venue.getLocation());
+                    reference.setValue(venue);
 
                     startActivity(new Intent(getApplicationContext(), AdminMain.class));
                 }

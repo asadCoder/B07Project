@@ -48,7 +48,13 @@ public class Register extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            if (mCheckadmin.isChecked()) {
+                startActivity(new Intent(getApplicationContext(),AdminMain.class));
+
+            }
+            else {
+                startActivity(new Intent(getApplicationContext(),CustomerMain.class));
+            }
             finish();
         }
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +111,7 @@ public class Register extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()){
                                         Toast.makeText(Register.this,"User Created", Toast.LENGTH_SHORT).show();
-                                        Admin a = new Admin(username,email,null);
+                                        Admin a = new Admin(username,email,new ArrayList<Venue>());
                                         ArrayList<Venue> v = new ArrayList<Venue>();
                                         a.setVenues(v);
 //
@@ -124,13 +130,13 @@ public class Register extends AppCompatActivity {
                                             editor.putBoolean("value",true);
                                             editor.apply();
                                             Toast.makeText(Register.this, email, Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(Register.this, CreateVenue.class);
-                                            intent.putExtra("admin",a);
-                                            startActivity(intent);
+//                                            Intent intent = new Intent(Register.this, CreateVenue.class);
+//                                            intent.putExtra("admin",a);
+//                                            startActivity(intent);
 
                                             startActivity(new Intent(getApplicationContext(),AdminMain.class));
                                         }else {
-                                            Intent intent = new Intent(Register.this, ViewVenuesUser.class);
+                                            Intent intent = new Intent(Register.this, CustomerMain.class);
                                             editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                             editor.putBoolean("value",false);
                                             editor.apply();
@@ -138,7 +144,7 @@ public class Register extends AppCompatActivity {
                                             startActivity(intent);
 
                                             //asad changed
-                                            startActivity(new Intent(getApplicationContext(), ViewVenuesUser.class));
+                                            startActivity(new Intent(getApplicationContext(), CustomerMain.class));
                                         }
                                     }
                                     else{
