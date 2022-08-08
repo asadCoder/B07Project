@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -42,11 +43,14 @@ public class CreateEvent extends AppCompatActivity {
     DatabaseReference ref;
     boolean stime;
     boolean etime;
+    boolean BeforeCurDate;
     Event event;
     ArrayList<Event> events = new ArrayList<Event>();
     Venue v;
     private TextView Date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    SimpleDateFormat dateFormat;
+    String currentDate;
 //    TextView temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +117,7 @@ public class CreateEvent extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
+
                 DatePickerDialog dialog = new DatePickerDialog(
                         CreateEvent.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
@@ -128,7 +133,7 @@ public class CreateEvent extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
                 String date = month + "/" + day + "/" + year;
-                event.date = date;
+                event.setDate(date);
                 Date.setText(date);
             }
         };
@@ -143,12 +148,45 @@ public class CreateEvent extends AppCompatActivity {
                 String eventloc = location.getText().toString().trim();
                 String eventDate = Date.getText().toString().trim();
 
+                if(!eventDate.isEmpty() && stime) {
+                    Calendar cal = Calendar.getInstance();
+                    dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                    currentDate = dateFormat.format(cal.getTime());
+                    String curarry[] = currentDate.split("/");
+                    int curM = Integer.parseInt(curarry[0]);
+                    int curD = Integer.parseInt(curarry[1]);
+                    int curY = Integer.parseInt(curarry[2]);
+                    String evearr[] = eventDate.split("/");
+                    int month = Integer.parseInt(evearr[0]);
+                    int day = Integer.parseInt(evearr[1]);
+                    int year = Integer.parseInt(evearr[2]);
+
+                    SimpleDateFormat t = new SimpleDateFormat("HH:mm");
+                    String curTime = t.format(cal.getTime());
+                    String curtarr[] = curTime.split(":");
+                    int cur_H = Integer.parseInt(curtarr[0]);
+                    int cur_M = Integer.parseInt(curtarr[1]);
+
+                    System.out.println(event.getStartMin());
+
+
+                    if (year < curY || (year == curY && curM > month) || (year == curY && curM == month && curD > day) || (year == curY && curM == month && curD == day && event.getStartHour() < cur_H) || (year == curY && curM == month && curD == day && event.getStartHour() == cur_H && event.getStartMin() <= cur_M)) {
+                        BeforeCurDate = true;
+                    }
+                    else{
+                        BeforeCurDate = false;
+                    }
+                }
+
 
 
                 if(TextUtils.isEmpty(eventn) || TextUtils.isEmpty(eventloc) || TextUtils.isEmpty(eventDate) || TextUtils.isEmpty(maxcap.getText().toString().trim()) || !stime || !etime){
                     Toast.makeText(CreateEvent.this,"No fields can be empty", Toast.LENGTH_SHORT).show();
                 } else if(event.getStartHour()>event.getEndHour() || ((event.getStartHour()==event.getEndHour()) && event.getStartMin()>=event.getEndMin())){
                     Toast.makeText(CreateEvent.this,"Enter valid start and end times", Toast.LENGTH_SHORT).show();
+                }
+                else if( BeforeCurDate){
+                    Toast.makeText(CreateEvent.this,"The start time of the event must be after the current time", Toast.LENGTH_SHORT).show();
                 }
                 else if(event.getStartHour()<vStartH || (event.getStartHour()==vStartH && event.getStartMin()<vStartM)){
                     Toast.makeText(CreateEvent.this,"Start time needs to be after " + vname + " opens", Toast.LENGTH_SHORT).show();
@@ -233,6 +271,8 @@ public class CreateEvent extends AppCompatActivity {
 
                 event.setStartMin(sminute);
                 System.out.println("sM" + sminute );
+
+
             }
         };
         int style = AlertDialog.THEME_HOLO_DARK;
@@ -264,4 +304,7 @@ public class CreateEvent extends AppCompatActivity {
         picker.show();
 
     }
+
+
+
 }

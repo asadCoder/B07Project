@@ -37,8 +37,8 @@ public class AdapterVenues extends RecyclerView.Adapter<AdapterVenues.MyViewHold
 
         Venue venue = venues.get(position);
         holder.location.setText(venue.getLocation());
-        holder.timeStart.setText(Integer.toString(venue.getStartHour()));
-        holder.timeEnd.setText(Integer.toString(venue.getEndHour()));
+        holder.timeStart.setText(venue.starttime());
+        holder.timeEnd.setText(venue.endtime());
         holder.venueName.setText(venue.getVenueName());
     }
 
