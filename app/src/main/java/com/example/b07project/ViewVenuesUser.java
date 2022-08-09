@@ -80,7 +80,7 @@ public class ViewVenuesUser extends Fragment implements ViewVenuesInterface, Rec
         //pass the list of venues from the database to setUpVenues()
 //        setUpVenues();
 
-        SpacingItemDecorator itemDecorator = new SpacingItemDecorator(30);
+        SpacingItemDecorator itemDecorator = new SpacingItemDecorator(0);
         recyclerView.addItemDecoration(itemDecorator);
 
         recyclerView.setAdapter(adapter);

@@ -37,7 +37,7 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
     public AdapterMyEvents.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.event_my, parent,false);
+        View view = inflater.inflate(R.layout.event_up, parent,false);
         return new AdapterMyEvents.MyViewHolder(view, user).linkAdapter(this);
     }
 
@@ -54,7 +54,7 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
                 +event.getEndHour()+"~~~"+event.getEndMin()+"~~~"+event.getCapacity()+"~~~"+
                 event.getSpotsLeft()+"~~~"+event.getLocation()+"~~~"+event.getDate());
 
-        holder.btn.setText("X");
+        holder.btn.setText("Cancel");
 //        if(event.getSpotsLeft() == 0) {
 //            holder.butt.setText("Unavailable");
 //            holder.butt.setClickable(false);
@@ -88,13 +88,14 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
             this.user = user;
 
 
-            location = itemView.findViewById(R.id.venue_my);
-            sport = itemView.findViewById(R.id.sport_my);
-            time = itemView.findViewById(R.id.timee_my);
-            cap = itemView.findViewById(R.id.capacity_my);
-            sLeft = itemView.findViewById(R.id.spots_my);
-            btn = itemView.findViewById(R.id.button_my);
-            saverMy = itemView.findViewById(R.id.saverMy);
+            location = itemView.findViewById(R.id.venue1);
+            sport = itemView.findViewById(R.id.sport1);
+            time = itemView.findViewById(R.id.timee1);
+            cap = itemView.findViewById(R.id.capacity1);
+            sLeft = itemView.findViewById(R.id.spots1);
+            btn = itemView.findViewById(R.id.button6);
+            saverMy = itemView.findViewById(R.id.saver1);
+
 
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override

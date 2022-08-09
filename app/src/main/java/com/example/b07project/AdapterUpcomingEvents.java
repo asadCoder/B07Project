@@ -43,7 +43,7 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.event_up, parent, false);
+        View view = inflater.inflate(R.layout.eventss, parent, false);
         return new AdapterUpcomingEvents.MyViewHolder(view,user, events).linkAdapter(this);
     }
 
@@ -96,12 +96,12 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
             this.user = user;
             this.events = events;
 
-            location = itemView.findViewById(R.id.venue_up);
-            sport = itemView.findViewById(R.id.sport_up);
-            time = itemView.findViewById(R.id.timee_up);
-            cap = itemView.findViewById(R.id.capacity_up);
-            sLeft = itemView.findViewById(R.id.spots_up);
-            btn = itemView.findViewById(R.id.button_up);
+            location = itemView.findViewById(R.id.venue);
+            sport = itemView.findViewById(R.id.sport);
+            time = itemView.findViewById(R.id.timee);
+            cap = itemView.findViewById(R.id.capacity);
+            sLeft = itemView.findViewById(R.id.spots);
+            btn = itemView.findViewById(R.id.button5);
             saver = itemView.findViewById(R.id.saver);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
