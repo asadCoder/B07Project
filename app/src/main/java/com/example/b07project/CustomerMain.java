@@ -18,8 +18,9 @@ public class CustomerMain extends AppCompatActivity {
     ViewVenuesUser viewVenuesUserF = new ViewVenuesUser();
     Scroll upcomingEventsF = new Scroll();
     MyEventsUser myEventsUserF = new MyEventsUser();
+    Profile profileF = new Profile();
     //    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
-    UserProfileFragment profileFragment = new UserProfileFragment();
+//    UserProfileFragment profileFragment = new UserProfileFragment();
     //    UpcomingFragment notificationFragment = new UpcomingFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class CustomerMain extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,myEventsUserF).commit();
                         return true;
                     case R.id.profile:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, profileF).commit();
                         return true;
                 }
 
@@ -61,9 +62,5 @@ public class CustomerMain extends AppCompatActivity {
             }
         });
     }
-    public void logout(View view){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),Login.class));
-        finish();
-    }
+
 }

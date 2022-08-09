@@ -18,7 +18,9 @@ public class AdminMasterActivity extends AppCompatActivity {
 
 
     BottomNavigationView bottomNavigationView;
-    Fragment viewAdmin = new AdminMainFragment();
+    ViewVenuesAdmin viewVenuesAdminF = new ViewVenuesAdmin();
+    Profile profileF = new Profile();
+    //Fragment viewAdmin = new AdminMainFragment();
     Fragment viewBookings = new AdminAllEventsFragment();
     Fragment profile = new AdminProfileFragment();
 //    //    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
@@ -34,36 +36,28 @@ public class AdminMasterActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), CustomerMain.class));
         }
         System.out.println("bro\n\n\n");
+        viewVenuesAdminF.setAdmin(sharedPref.getString("username","f"));
         bottomNavigationView  = findViewById(R.id.bottom_navigation1);
 
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, viewBookings).commit();
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, viewVenuesAdminF).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.myvenues2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, viewAdmin).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, viewVenuesAdminF).commit();
                         return true;
                     case R.id.booked2:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, viewBookings).commit();
                         return true;
                     case R.id.profile2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, profile).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, profileF).commit();
                         return true;
                 }
 
                 return false;
             }
         });
-    }
-
-
-    public void logout(View view){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),Login.class));
-        finish();
     }
 }

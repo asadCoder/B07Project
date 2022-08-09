@@ -6,32 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".SpecificVenueAdmin">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewSpecificAdmin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/createE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Create Event" />
-
-        <TextView
-            android:id="@+id/VenName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Error Text"
-            android:textSize="32dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recycleViewSpecificAdmin"/>
-
-    </LinearLayout>
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

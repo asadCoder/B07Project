@@ -125,6 +125,7 @@ public class Register extends AppCompatActivity {
 
 
                                         editor.putString("username",a.getUsername());
+                                        editor.putString("email",email);
                                         editor.apply();
                                         if (mCheckadmin.isChecked()){
                                             editor=getSharedPreferences("save",MODE_PRIVATE).edit();

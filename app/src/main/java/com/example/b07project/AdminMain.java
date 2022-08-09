@@ -53,7 +53,6 @@ public class AdminMain extends AppCompatActivity implements ViewVenuesInterface,
             }
         });
 
-
         //The following method will be triggered when any venue is clicked
         viewV = findViewById(R.id.ViewVenue);
         viewV.setOnClickListener(new View.OnClickListener(){
@@ -87,15 +86,9 @@ public class AdminMain extends AppCompatActivity implements ViewVenuesInterface,
                     if(!venues.contains(obj)){
                         venues.add(obj);
                     }
-
-
-
-
                 }
                 myadapter.notifyDataSetChanged();
-
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

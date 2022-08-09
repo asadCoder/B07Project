@@ -3,41 +3,47 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Mrhak/AndroidStudioProjects/B07Projectyalla/app/src/main/res/layout/activity_scroll.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Mrhak/AndroidStudioProjects/B07Projectyalla/app/src/main/res/layout/activity_specific_venue_user.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Mrhak/AndroidStudioProjects/B07Projectyalla/app/src/main/res/layout/activity_view_venues_user.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/Mrhak/AndroidStudioProjects/B07Projectyalla/app/src/main/res/layout/event_my.xml" value="0.22" />
+        <entry key="..\:/Users/Mrhak/AndroidStudioProjects/B07Projectyalla/app/src/main/res/layout/event_up.xml" value="0.1" />
+        <entry key="..\:/Users/Mrhak/AndroidStudioProjects/B07Projectyalla/app/src/main/res/layout/venuess.xml" value="0.22" />
+        <entry key="..\:/Users/Mrhak/AndroidStudioProjects/B07Projectyalla/app/src/main/res/layout/yes_or_no.xml" value="0.1" />
         <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_admin_main.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_create_event.xml" value="0.3" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_create_venue.xml" value="0.268" />
+        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_create_event.xml" value="0.2" />
+        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_create_venue.xml" value="0.2" />
         <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_logged_as.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_login.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_main.xml" value="0.11041666666666666" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_my_events_user.xml" value="0.1" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_show_event.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_specific_venue.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_specific_venue_user.xml" value="0.1" />
         <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_view_venue.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/activity_view_venues_admin.xml" value="0.19074074074074074" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/event_my.xml" value="0.19074074074074074" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/event_up.xml" value="0.19074074074074074" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/eventss.xml" value="0.19074074074074074" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/venuess.xml" value="0.268" />
-        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19074074074074074" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_admin_main.xml" value="0.259375" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_admin_master.xml" value="0.1" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_customer_main.xml" value="0.1" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/content_admin_master.xml" value="0.259375" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_admin_all_events.xml" value="0.259375" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_admin_main.xml" value="0.1640625" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_admin_profile.xml" value="0.178125" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.10833333333333334" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/menu/bottom_nav_menu1.xml" value="0.1" />
+        <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/venuess.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-anydpi/profile_pic.xml" value="0.242" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.153" />
         <entry key="app/src/main/res/layout/activity_admin_main.xml" value="0.19444444444444445" />
+        <entry key="app/src/main/res/layout/activity_admin_master.xml" value="0.29444444444444445" />
+        <entry key="app/src/main/res/layout/activity_create_event.xml" value="0.2653985507246377" />
+        <entry key="app/src/main/res/layout/activity_customer_main.xml" value="0.21388888888888888" />
+        <entry key="app/src/main/res/layout/activity_customer_profile.xml" value="0.23913930257161456" />
         <entry key="app/src/main/res/layout/activity_logged_as.xml" value="0.10648148148148148" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26979980468749987" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19444444444444445" />
+        <entry key="app/src/main/res/layout/activity_my_events_user.xml" value="0.19630192502532928" />
+        <entry key="app/src/main/res/layout/activity_popup.xml" value="0.2554347826086957" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.39757537841796886" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25259515570934254" />
+        <entry key="app/src/main/res/layout/activity_scroll.xml" value="0.19630192502532928" />
+        <entry key="app/src/main/res/layout/activity_specific_venue_admin.xml" value="0.2653985507246377" />
+        <entry key="app/src/main/res/layout/activity_view_venues_admin.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/admin_events.xml" value="0.20555555555555555" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.2111852010091146" />
+        <entry key="app/src/main/res/layout/event_up.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/eventss.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_view_venues.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/venuess.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.3435185185185185" />
         <entry key="app/src/main/res/menu/menu_scrolling.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>

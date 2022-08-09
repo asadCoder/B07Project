@@ -2,19 +2,21 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="100dp"
 
-    android:layout_margin="16dp"
+    android:layout_margin="10dp"
     android:clickable="true"
 
     android:orientation="vertical"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="10dp">
+    app:cardCornerRadius="25dp"
+    app:cardElevation="20dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/emrald"
+        >
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -22,21 +24,16 @@
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Venue Name :"
-                android:textColor="@color/black"
-                android:textSize="26dp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/venuename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-black"
                 android:text="Panam"
-                android:textColor="@color/black"
+                android:textColor="@color/purple_500"
                 android:textSize="26dp" />
         </LinearLayout>
 
@@ -46,24 +43,18 @@
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Location :"
-                android:textColor="@color/black"
-                android:textSize="26dp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/locationf"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="Panam"
                 android:textColor="@color/black"
-                android:textSize="26dp" />
+                android:textSize="18dp"
+                android:layout_marginTop="0dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -77,52 +68,46 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="right"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Start Time :"
-                android:textColor="@color/black"
-                android:textSize="26dp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/starttim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="Panam"
                 android:textColor="@color/black"
-                android:textSize="26dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
+                android:textSize="15dp"
+                android:layout_marginTop="1dp"/>
             <TextView
+                android:id="@+id/dash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="End Time :"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="-"
                 android:textColor="@color/black"
-                android:textSize="26dp"
-                android:textStyle="bold" />
-
+                android:textSize="15dp"
+                android:layout_marginTop="1dp"/>
             <TextView
                 android:id="@+id/endtim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="Panam"
                 android:textColor="@color/black"
-                android:textSize="26dp" />
+                android:textSize="15dp"
+                android:layout_marginTop="1dp"/>
         </LinearLayout>
 
+
+
     </LinearLayout>
+
 
 
 </androidx.cardview.widget.CardView>

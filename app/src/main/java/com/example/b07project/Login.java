@@ -91,29 +91,28 @@ public class Login extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         boolean b = false;
                         String U="";
+                        String mail = "";
                         if (snapshot.exists()){
                             for(DataSnapshot user: snapshot.child("Admins").getChildren()){
                                 if(user.child("email").getValue().toString().equals(email) ){
                                     Log.i("console", "email found!");
                                     b = true;
+                                    mail = user.child("email").getValue().toString();
                                     U = user.child("username").getValue().toString();
                                 }
-
                             }
-
                         }
                         else{
                             Log.i("console", "snapshot doesnt exist");
                             U="not";
+
                         }
                         Log.i("console", U);
                         if(b){
                             Log.i("console", U);
                             SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
-
-
-
                             editor.putString("username",U);
+                            editor.putString("email",mail);
                             editor.apply();
                         }
                     }
@@ -131,7 +130,6 @@ public class Login extends AppCompatActivity {
 
                         if (task.isSuccessful()){
 
-
                             Toast.makeText(Login.this,"Logged in Successfully",Toast.LENGTH_SHORT).show();
                             SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
 
@@ -148,7 +146,6 @@ public class Login extends AppCompatActivity {
                                 editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                 editor.putBoolean("value",false);
                                 editor.apply();
-
                                 startActivity(new Intent(getApplicationContext(), CustomerMain.class));
                             }
 

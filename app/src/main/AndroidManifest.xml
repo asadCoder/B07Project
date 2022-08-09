@@ -23,15 +23,6 @@
             android:name=".CustomerMain"
             android:exported="false" />
         <activity
-            android:name=".ViewVenuesAdmin"
-            android:exported="false" />
-
-        <activity
-            android:name=".SpecificVenueAdmin"
-            android:exported="false" />
-
-
-        <activity
             android:name=".ViewVenue"
             android:exported="false" />
         <activity

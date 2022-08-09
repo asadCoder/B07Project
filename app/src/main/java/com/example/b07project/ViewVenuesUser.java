@@ -45,7 +45,6 @@ public class ViewVenuesUser extends Fragment implements ViewVenuesInterface, Rec
 
         View mView = inflater.inflate(R.layout.activity_view_venues_user, container, false);
 
-
         RecyclerView recyclerView = (RecyclerView) mView.findViewById(R.id.recycleViewVenueUser);
 
         venues = new ArrayList<Venue>();
