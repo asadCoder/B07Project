@@ -29,7 +29,7 @@ public class CustomerMain extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("save",MODE_PRIVATE);
         boolean isadmin = sharedPref.getBoolean("value",false);
         if (isadmin){
-            startActivity(new Intent(getApplicationContext(), AdminMain.class));
+            startActivity(new Intent(getApplicationContext(), AdminMasterActivity.class));
         }
         myEventsUserF.setUser(sharedPref.getString("username","f"));
         upcomingEventsF.setUser(sharedPref.getString("username","f"));

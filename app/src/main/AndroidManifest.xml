@@ -15,12 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project"
         tools:targetApi="31">
-        <activity
-            android:name=".MyEventsUser"
-            android:exported="false" />
-        <activity
-            android:name=".Scroll"
-            android:exported="false" />
+
         <activity
             android:name=".CustomerProfileActivity"
             android:exported="false" />
@@ -30,14 +25,12 @@
         <activity
             android:name=".ViewVenuesAdmin"
             android:exported="false" />
-        <activity
-            android:name=".SpecificVenueUser"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".ViewVenuesUser" -->
-        <!-- android:exported="false" /> -->
+
         <activity
             android:name=".SpecificVenueAdmin"
             android:exported="false" />
+
+
         <activity
             android:name=".ViewVenue"
             android:exported="false" />
@@ -53,6 +46,9 @@
         <activity
             android:name=".AdminMain"
             android:exported="false" />
+        <activity
+            android:name=".AdminMasterActivity"
+            android:exported="false"/>
         <activity
             android:name=".Login"
             android:exported="false" />

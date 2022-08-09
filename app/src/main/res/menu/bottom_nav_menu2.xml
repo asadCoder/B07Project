@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/myvenues2"
+        android:icon="@drawable/userevents_vecotr_asset_24"
+        android:title="My Venues" />
+    <item
+        android:id="@+id/booked2"
+        android:icon="@drawable/upcoming_vecotr_asset_24"
+        android:title="Booked" />
+    <item
+        android:id="@+id/profile2"
+        android:icon="@drawable/ic_baseline_profile_24"
+        android:title="Profile" />
+</menu>

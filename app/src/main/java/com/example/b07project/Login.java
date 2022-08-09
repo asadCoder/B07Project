@@ -140,7 +140,8 @@ public class Login extends AppCompatActivity {
                                 editor.putBoolean("value",true);
                                 editor.apply();
 
-                                startActivity(new Intent(getApplicationContext(), AdminMain.class));
+                                startActivity(new Intent(getApplicationContext(), AdminMasterActivity.class));
+                                finish();
                             }
                             else {
 //                                System.out.println("HELLOOOOOOO");

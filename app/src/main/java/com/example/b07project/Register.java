@@ -49,7 +49,8 @@ public class Register extends AppCompatActivity {
 
         if(fAuth.getCurrentUser() != null){
             if (mCheckadmin.isChecked()) {
-                startActivity(new Intent(getApplicationContext(),AdminMain.class));
+                startActivity(new Intent(getApplicationContext(),AdminMasterActivity.class));
+                finish();
 
             }
             else {
@@ -134,7 +135,8 @@ public class Register extends AppCompatActivity {
 //                                            intent.putExtra("admin",a);
 //                                            startActivity(intent);
 
-                                            startActivity(new Intent(getApplicationContext(),AdminMain.class));
+                                            startActivity(new Intent(getApplicationContext(),AdminMasterActivity.class));
+                                            finish();
                                         }else {
                                             Intent intent = new Intent(Register.this, CustomerMain.class);
                                             editor=getSharedPreferences("save",MODE_PRIVATE).edit();
