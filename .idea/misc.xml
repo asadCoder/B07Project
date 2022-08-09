@@ -21,11 +21,18 @@
         <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/eventss.xml" value="0.19074074074074074" />
         <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/layout/venuess.xml" value="0.268" />
         <entry key="..\:/Users/dhruv/OneDrive/Documents/GitHub/B07Project/B07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/drawable-anydpi/profile_pic.xml" value="0.16" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.16" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.16" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/drawable/rounded_corner.xml" value="0.2485" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_admin_main.xml" value="0.259375" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_admin_master.xml" value="0.1" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_create_event.xml" value="0.1" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_customer_main.xml" value="0.1" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_popup.xml" value="0.264" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_profile.xml" value="0.1" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_scroll.xml" value="0.2212962962962963" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_specific_venue_user.xml" value="0.2212962962962963" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/activity_view_venues_user.xml" value="0.1" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/content_admin_master.xml" value="0.259375" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/event_my.xml" value="0.259375" />
@@ -34,9 +41,11 @@
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_admin_all_events.xml" value="0.259375" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_admin_main.xml" value="0.1640625" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_admin_profile.xml" value="0.178125" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_my_events.xml" value="0.2212962962962963" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_upcoming.xml" value="0.2212962962962963" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/fragment_view_venues.xml" value="0.259375" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/venuess.xml" value="0.14912280701754385" />
-        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/yes_or_no.xml" value="0.259375" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/venuess.xml" value="0.1" />
+        <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/yes_or_no.xml" value="0.264" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.10833333333333334" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/menu/bottom_nav_menu1.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.153" />

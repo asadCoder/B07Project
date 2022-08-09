@@ -113,13 +113,14 @@
 
     android:orientation="vertical"
     app:cardCornerRadius="45dp"
-    app:cardElevation="20dp">
+    app:cardElevation="20dp"
+    android:background="@color/pastelgreen">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/emrald"
+        android:background="@color/pastelgreen"
         >
 
         <RelativeLayout
@@ -160,7 +161,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_toEndOf="@+id/sport"
+                android:layout_toEndOf="@+id/sport1"
                 android:singleLine="true"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:text="Capacity"
@@ -203,7 +204,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="10dp"
-                android:layout_toEndOf="@+id/venue"
+                android:layout_toEndOf="@+id/venue1"
                 android:autoSizeMinTextSize="10dp"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:singleLine="true"

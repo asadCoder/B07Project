@@ -13,7 +13,9 @@
     <color name="silver">#bdc3c7</color>
     <color name="emrald">#EFEFEF</color>
     <color name="greenemrald">#2ecc71</color>
-    <color name="red">#e74c3c</color>
+    <color name="red">#8b0000</color>
     <color name="nephritis">#0b6337</color>
+    <color name="pastelgreen">#C1E1C1</color>
+
 
 </resources>
