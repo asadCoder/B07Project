@@ -32,10 +32,10 @@
         app:layout_constraintVertical_bias="0.023" />
 
     <Button
-        android:id="@+id/ViewVenue"
+        android:id="@+id/ViewEvents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Venue"
+        android:text="View Events"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.536"
@@ -57,5 +57,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ViewVenue" />
+        app:layout_constraintTop_toBottomOf="@+id/ViewEvents" />
 </androidx.constraintlayout.widget.ConstraintLayout>

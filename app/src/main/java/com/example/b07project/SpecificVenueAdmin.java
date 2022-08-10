@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +36,9 @@ public class SpecificVenueAdmin extends Fragment {
     FloatingActionButton but;
     TextView venName;
     Venue v;
+    Switch isBooked;
+
+
 
     public void setLocation(String loc)
     {
@@ -68,6 +72,8 @@ public class SpecificVenueAdmin extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.activity_specific_venue_admin, container, false);
+        isBooked = (Switch) mView.findViewById(R.id.isBooked);
+        isBooked.setChecked(false);
         venueEvents = new ArrayList<Event>();
         adapter = new AdapterEventsAdmin(getActivity(), venueEvents, admin);
         but = mView.findViewById(R.id.floatingbut2);
@@ -128,33 +134,9 @@ public class SpecificVenueAdmin extends Fragment {
 
 
 
-//        SharedPreferences sharedPref = this.getActivity().getSharedPreferences("venue",MODE_PRIVATE);
-//        Venue ve = new Venue(v.getVenueHashCode(), v.getVenueName(), v.getStartMin())
-//        Ecreate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Intent intent = new Intent(SpecificVenue.this, CreateEvent.class);
-////                intent.putExtra("venue", v);
-////                startActivity(intent);
-//                Intent intent = new Intent(getApplicationContext(), CreateEvent.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("venue_events", venueEvents);
-//                intent.putExtras(bundle);
-//                intent.putExtra("address", getIntent().getStringExtra("address"));
-//                intent.putExtra("vname", getIntent().getStringExtra("vname"));
-//                intent.putExtra("admin", getIntent().getStringExtra("admin"));
-//                intent.putExtra("vstartH", getIntent().getIntExtra("vstartH", 0));
-//                intent.putExtra("vstartM", getIntent().getIntExtra("vstartM", 0));
-//
-//                intent.putExtra("vendH", getIntent().getIntExtra("vendH",0));
-//
-//                intent.putExtra("vendM", getIntent().getIntExtra("vendM",0));
-//
-//
-//                startActivity(intent);
-//
-//            }
-//        });
+
+
+
 
         RecyclerView recyclerView = (RecyclerView) mView.findViewById(R.id.recycleViewSpecificAdmin);
         //FIX HERE
