@@ -112,7 +112,7 @@
     android:clickable="true"
 
     android:orientation="vertical"
-    app:cardCornerRadius="45dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="20dp"
     android:background="@color/pastelgreen">
 
@@ -192,8 +192,8 @@
                 android:text="venukljdafklajfkljadslkfjaklfjakl;jfklajdlklafjadklklsfje"
 
                 android:textColor="@color/black"
-                app:autoSizeMaxTextSize="26dp"
-                app:autoSizeMinTextSize="24dp" />
+                app:autoSizeMaxTextSize="40dp"
+                app:autoSizeMinTextSize="26dp" />
 
             <TextView
                 android:id="@+id/spots1"
@@ -226,20 +226,22 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:orientation="horizontal">
+
+            <!--                android:theme="@style/Button.Red"-->
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="50dp"
+                android:backgroundTint="@color/red"
                 android:text="Button"
+                app:cornerRadius="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:cornerRadius="40dp"
-                android:backgroundTint="@color/red"/>
-<!--                android:theme="@style/Button.Red"-->
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/timee1"
@@ -249,7 +251,7 @@
                 android:layout_alignParentEnd="true"
 
                 android:layout_marginTop="65dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="27dp"
 
                 android:autoSizeMinTextSize="10dp"
                 android:fontFamily="sans-serif-medium"
