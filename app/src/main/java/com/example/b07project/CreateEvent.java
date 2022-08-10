@@ -228,7 +228,7 @@ public class CreateEvent extends AppCompatActivity {
                             }
                         });
                           ViewVenuesAdmin adminm = new ViewVenuesAdmin();
-
+                          startActivity(new Intent(getApplicationContext(), AdminMasterActivity.class));
 
                     }
                 }

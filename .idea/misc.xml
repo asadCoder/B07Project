@@ -73,6 +73,10 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25259515570934254" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.2111852010091146" />
+        <entry key="app/src/main/res/layout/event_my.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/event_up.xml" value="0.21131591796875002" />
+        <entry key="app/src/main/res/layout/eventss.xml" value="0.332366943359375" />
+        <entry key="app/src/main/res/layout/venuess.xml" value="0.47601013183593754" />
         <entry key="app/src/main/res/menu/menu_scrolling.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>

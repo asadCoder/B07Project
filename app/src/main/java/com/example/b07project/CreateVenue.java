@@ -121,7 +121,7 @@ public class CreateVenue extends AppCompatActivity {
                     reference = database.getReference("Admins/"+use+"/Venues/"+venue.getLocation());
                     reference.setValue(venue);
 
-                    startActivity(new Intent(getApplicationContext(), AdminMain.class));
+                    startActivity(new Intent(getApplicationContext(), AdminMasterActivity.class));
                 }
             }
         });
