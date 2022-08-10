@@ -51,9 +51,15 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.153" />
         <entry key="app/src/main/res/layout/activity_admin_main.xml" value="0.19444444444444445" />
+        <entry key="app/src/main/res/layout/activity_admin_master.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/layout/activity_create_event.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/layout/activity_create_venue.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/layout/activity_customer_profile.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/layout/activity_logged_as.xml" value="0.10648148148148148" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26979980468749987" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19444444444444445" />
+        <entry key="app/src/main/res/layout/activity_my_events_user.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/layout/activity_popup.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25259515570934254" />
         <entry key="app/src/main/res/layout/admin_events.xml" value="0.19333953857421876" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.2111852010091146" />
