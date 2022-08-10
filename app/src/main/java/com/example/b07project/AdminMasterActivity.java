@@ -21,8 +21,8 @@ public class AdminMasterActivity extends AppCompatActivity {
     ViewVenuesAdmin viewVenuesAdminF = new ViewVenuesAdmin();
     Profile profileF = new Profile();
     //Fragment viewAdmin = new AdminMainFragment();
-    Fragment viewBookings = new AdminAllEventsFragment();
-    Fragment profile = new AdminProfileFragment();
+    AdminAllEventsFragment viewBookings = new AdminAllEventsFragment();
+//    Fragment profile = new AdminProfileFragment();
 //    //    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
 //    UserProfileFragment profileFragment = new UserProfileFragment();
 

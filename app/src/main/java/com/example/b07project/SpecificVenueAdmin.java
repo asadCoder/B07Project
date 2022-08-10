@@ -72,8 +72,6 @@ public class SpecificVenueAdmin extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.activity_specific_venue_admin, container, false);
-        isBooked = (Switch) mView.findViewById(R.id.isBooked);
-        isBooked.setChecked(false);
         venueEvents = new ArrayList<Event>();
         adapter = new AdapterEventsAdmin(getActivity(), venueEvents, admin);
         but = mView.findViewById(R.id.floatingbut2);

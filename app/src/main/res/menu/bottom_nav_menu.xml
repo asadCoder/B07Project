@@ -3,19 +3,19 @@
 
     <item
         android:id="@+id/venues"
-        android:icon="@drawable/venue_vecotr_asset_24"
+        android:icon="@drawable/ic_baseline_venue_icon"
         android:title="Venues" />
     <item
         android:id="@+id/myevents"
-        android:icon="@drawable/userevents_vecotr_asset_24"
+        android:icon="@drawable/ic_baseline_myevents_icon"
         android:title="MyEvents" />
     <item
         android:id="@+id/upcoming"
-        android:icon="@drawable/upcoming_vecotr_asset_24"
+        android:icon="@drawable/ic_baseline_upcomingevents_icon"
         android:title="Upcoming" />
 
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/ic_baseline_profile_24"
+        android:icon="@drawable/userevents_vecotr_asset_24"
         android:title="Profile" />
 </menu>

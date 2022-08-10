@@ -3,14 +3,14 @@
 
     <item
         android:id="@+id/myvenues2"
-        android:icon="@drawable/userevents_vecotr_asset_24"
+        android:icon="@drawable/ic_baseline_venue_icon"
         android:title="My Venues" />
     <item
         android:id="@+id/booked2"
-        android:icon="@drawable/upcoming_vecotr_asset_24"
-        android:title="Booked" />
+        android:icon="@drawable/ic_baseline_myevents_icon"
+        android:title="My Events" />
     <item
         android:id="@+id/profile2"
-        android:icon="@drawable/ic_baseline_profile_24"
+        android:icon="@drawable/userevents_vecotr_asset_24"
         android:title="Profile" />
 </menu>
