@@ -26,7 +26,7 @@ public class AdminMain extends AppCompatActivity implements ViewVenuesInterface,
     RecyclerView recyclerView;
     AdapterVenues myadapter;
     Button createV;
-    Button viewV;
+    Button viewE;
     Button createEtemp;
     DatabaseReference ref;
     ArrayList<Venue> venues = new ArrayList<>();
@@ -54,15 +54,17 @@ public class AdminMain extends AppCompatActivity implements ViewVenuesInterface,
         });
 
         //The following method will be triggered when any venue is clicked
-        viewV = findViewById(R.id.ViewVenue);
-        viewV.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AdminMain.this, ViewVenue.class);
-                intent.putExtra("address", venues.get(0).getLocation());
-                startActivity(intent);
-            }
-        });
+//        viewE = findViewById(R.id.ViewEvents);
+//        viewE.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(AdminMain.this, ViewEvents.class);
+//                intent.putExtra("admin", venues.get(position).getAdmin());
+
+//                intent.putExtra("address", venues.get(0).getLocation());
+//                startActivity(intent);
+//            }
+//        });
         myadapter = new AdapterVenues(this, venues, this);
 
         ref = FirebaseDatabase.getInstance().getReference().child("Admins/"+use+"/Venues");

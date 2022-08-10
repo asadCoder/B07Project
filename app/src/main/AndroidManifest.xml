@@ -25,9 +25,6 @@
             android:name=".CustomerMain"
             android:exported="false" />
         <activity
-            android:name=".ViewVenue"
-            android:exported="false" />
-        <activity
             android:name=".CreateVenue"
             android:exported="false" />
         <activity
