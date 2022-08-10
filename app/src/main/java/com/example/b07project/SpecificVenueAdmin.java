@@ -32,7 +32,7 @@ public class SpecificVenueAdmin extends Fragment {
     AdapterEventsAdmin adapter;
     String location, admin, vname;
     int startH, startM, endH, endM;
-    FloatingActionButton but;
+    FloatingActionButton but, backbut;
     TextView venName;
     Venue v;
 
@@ -87,6 +87,14 @@ public class SpecificVenueAdmin extends Fragment {
                 intent.putExtra("vendH",endH);
 
                 startActivity(intent);
+            }
+        });
+
+        backbut = mView.findViewById(R.id.BackBut);
+        backbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), AdminMasterActivity.class));
             }
         });
         DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("Admins/" + admin

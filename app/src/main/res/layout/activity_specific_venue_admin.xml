@@ -8,8 +8,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewSpecificAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="406dp"
+        android:layout_height="647dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
@@ -25,6 +25,7 @@
         android:layout_marginBottom="48dp"
         android:clickable="true"
         android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="#E1F6F3AE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -32,11 +33,10 @@
         android:id="@+id/BackBut"
         android:layout_width="57dp"
         android:layout_height="61dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
         android:clickable="true"
         android:src="?attr/actionModeCloseDrawable"
         app:backgroundTint="@android:color/transparent"
+        app:borderWidth="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
