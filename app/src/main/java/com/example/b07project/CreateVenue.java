@@ -126,7 +126,9 @@ public class CreateVenue extends AppCompatActivity {
                 else {
                     venue.setVenueName(venuename);
                     venue.setLocation(loc);
-                    venue.setAdmin(getIntent().getStringExtra("username").toString());
+                    SharedPreferences sharedPref = getSharedPreferences("save",MODE_PRIVATE);
+                    String use = sharedPref.getString("username","false");
+                    venue.setAdmin(use);
                     venue.setEvents(new ArrayList<Event>());
                     //Add to users set of created events
 
@@ -142,8 +144,7 @@ public class CreateVenue extends AppCompatActivity {
                             Toast.makeText(CreateVenue.this, "Venue added", Toast.LENGTH_SHORT).show();
                         }
                     });
-                    SharedPreferences sharedPref = getSharedPreferences("save",MODE_PRIVATE);
-                    String use = sharedPref.getString("username","false");
+
                     reference = database.getReference("Admins/"+use+"/Venues/"+venue.getLocation());
                     reference.setValue(venue);
 

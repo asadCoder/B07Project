@@ -205,7 +205,7 @@ public class CreateEvent extends AppCompatActivity {
                     event.setDate(eventDate);
                     event.setVenueName(vname);
                     event.setAddress(getIntent().getStringExtra("address"));
-                    event.setAdmin(getIntent().getStringExtra("admin"));
+                    event.setAdmin(user);
                     if(events.contains(event)) {
                         Toast.makeText(CreateEvent.this, "Event already exists", Toast.LENGTH_SHORT).show();
                     }else{
@@ -227,23 +227,8 @@ public class CreateEvent extends AppCompatActivity {
                                 Toast.makeText(CreateEvent.this, "Event added", Toast.LENGTH_SHORT).show();
                             }
                         });
-                        events.add(event);
-                        Intent intent = new Intent(getApplicationContext(), SpecificVenueAdmin.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("venue_events", events);
-                        intent.putExtras(bundle);
-                        intent.putExtra("address", getIntent().getStringExtra("address"));
-                        intent.putExtra("admin", getIntent().getStringExtra("admin"));
+                          ViewVenuesAdmin adminm = new ViewVenuesAdmin();
 
-                        intent.putExtra("vname", getIntent().getStringExtra("vname"));
-                        intent.putExtra("vstartH", getIntent().getIntExtra("vstartH", 0));
-                        intent.putExtra("vstartM", getIntent().getIntExtra("vstartM", 0));
-
-                        intent.putExtra("vendH", getIntent().getIntExtra("vendH",0));
-
-                        intent.putExtra("vendM", getIntent().getIntExtra("vendM",0));
-
-                        startActivity(intent);
 
                     }
                 }

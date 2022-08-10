@@ -120,21 +120,22 @@ public class AdminMain extends AppCompatActivity implements ViewVenuesInterface,
         finish();
     }
 
-    @Override
+//    @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(this, SpecificVenueAdmin.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("venue_events", venues.get(position).getEvents());
-        intent.putExtras(bundle);
-        intent.putExtra("address", venues.get(position).getLocation());
-        intent.putExtra("vname", venues.get(position).getVenueName());
-        intent.putExtra("admin", venues.get(position).getAdmin());
-        intent.putExtra("vstartH", venues.get(position).getStartHour());
-        intent.putExtra("vstartM", venues.get(position).getStartMin());
-        intent.putExtra("vendH", venues.get(position).getEndHour());
-        intent.putExtra("vendM", venues.get(position).getEndMin());
+//        Intent intent = new Intent(this, SpecificVenueAdmin.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("venue_events", venues.get(position).getEvents());
+//        intent.putExtras(bundle);
+//        intent.putExtra("address", venues.get(position).getLocation());
+//        intent.putExtra("vname", venues.get(position).getVenueName());
+//        intent.putExtra("admin", venues.get(position).getAdmin());
+//        intent.putExtra("vstartH", venues.get(position).getStartHour());
+//        intent.putExtra("vstartM", venues.get(position).getStartMin());
+//        intent.putExtra("vendH", venues.get(position).getEndHour());
+//        intent.putExtra("vendM", venues.get(position).getEndMin());
+//
+//        startActivity(intent);
 
-        startActivity(intent);
     }
 
     @Override

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +30,9 @@ import java.util.Collections;
 public class SpecificVenueAdmin extends Fragment {
     ArrayList<Event> venueEvents = new ArrayList<Event>();
     AdapterEventsAdmin adapter;
-    String location, admin;
+    String location, admin, vname;
+    int startH, startM, endH, endM;
+    FloatingActionButton but;
     TextView venName;
     Venue v;
 
@@ -42,12 +45,50 @@ public class SpecificVenueAdmin extends Fragment {
         admin = adm;
     }
 
+    public void setVname(String vname) {
+        this.vname = vname;
+    }
+
+    public void setStartH(int startH) {
+        this.startH = startH;
+    }
+
+    public void setStartM(int startM) {
+        this.startM = startM;
+    }
+
+    public void setEndH(int endH) {
+        this.endH = endH;
+    }
+
+    public void setEndM(int endM) {
+        this.endM = endM;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.activity_specific_venue_admin, container, false);
         venueEvents = new ArrayList<Event>();
         adapter = new AdapterEventsAdmin(getActivity(), venueEvents, admin);
+        but = mView.findViewById(R.id.floatingbut2);
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CreateEvent.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("venue_events", venueEvents);
+                intent.putExtras(bundle);
+                intent.putExtra("address", location);
+                intent.putExtra("vname", vname);
+                intent.putExtra("admin", admin);
+                intent.putExtra("vstartH", startH);
+                intent.putExtra("vstartM",startM);
+                intent.putExtra("vendM",endM);
+                intent.putExtra("vendH",endH);
 
+                startActivity(intent);
+            }
+        });
         DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("Admins/" + admin
                 + "/Venues/" + location + "/Events");
         //The following code loops through the database and creates objects from the database

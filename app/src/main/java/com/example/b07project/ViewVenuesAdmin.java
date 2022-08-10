@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,7 @@ public class ViewVenuesAdmin extends Fragment implements ViewVenuesInterface, Re
     DatabaseReference ref;
     AdapterVenues adapter;
     String admin;
+    FloatingActionButton but;
 
     public void setAdmin(String adm)
     {
@@ -49,7 +51,13 @@ public class ViewVenuesAdmin extends Fragment implements ViewVenuesInterface, Re
         SpacingItemDecorator itemDecorator = new SpacingItemDecorator(10);
         //recyclerView.addItemDecoration(itemDecorator);
 
-
+       but = mView.findViewById(R.id.floatingbut1);
+       but.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               startActivity(new Intent(getContext(), CreateVenue.class));
+           }
+       });
         SharedPreferences sharedPref = this.getActivity().getSharedPreferences("save",MODE_PRIVATE);
         boolean isadmin = sharedPref.getBoolean("value",false);
         if (!isadmin){
@@ -112,10 +120,15 @@ public class ViewVenuesAdmin extends Fragment implements ViewVenuesInterface, Re
     @Override
     public void onItemClick(int position) {
 
-        String venueLoc = venues.get(position).getLocation();
+        Venue v = venues.get(position);
         SpecificVenueAdmin sva = new SpecificVenueAdmin();
-        sva.setAdmin(admin);
-        sva.setLocation(venueLoc);
+        sva.setAdmin(v.getAdmin());
+        sva.setLocation(v.getLocation());
+        sva.setVname(v.getVenueName());
+        sva.setStartM(v.getStartMin());
+        sva.setStartH(v.getStartHour());
+        sva.setEndM(v.getEndMin());
+        sva.setEndH(v.getEndHour());
         getParentFragmentManager().beginTransaction().replace(R.id.container, sva).commit();
     }
 }
