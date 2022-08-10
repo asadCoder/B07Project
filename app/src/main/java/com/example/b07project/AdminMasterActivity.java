@@ -60,4 +60,9 @@ public class AdminMasterActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed () {
+        startActivity(new Intent(this, AdminMasterActivity.class));
+    }
 }
