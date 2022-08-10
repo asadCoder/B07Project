@@ -33,6 +33,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Panam"
+                android:singleLine="true"
                 android:textColor="@color/nephritis"
                 android:textSize="26dp" />
         </LinearLayout>
@@ -52,6 +53,7 @@
                 android:layout_marginLeft="18dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="Panam"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:layout_marginTop="0dp"/>
@@ -77,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:singleLine="true"
                 android:fontFamily="sans-serif-medium"
                 android:text="Panam"
                 android:textColor="@color/black"
