@@ -12,6 +12,7 @@
         android:id="@+id/Ecapacity"
         android:layout_width="326dp"
         android:layout_height="54dp"
+        android:textColor="@color/white"
         android:layout_marginBottom="212dp"
         android:ems="10"
         android:backgroundTint="@color/white"
@@ -28,6 +29,7 @@
         android:layout_height="54dp"
         android:layout_marginTop="28dp"
         android:ems="10"
+        android:textColor="@color/white"
         android:hint="Location"
         android:backgroundTint="@color/white"
         android:inputType="textPersonName"
@@ -45,6 +47,7 @@
         android:textColor="@color/white"
         android:layout_marginTop="40dp"
         android:text="Create an Event"
+
         android:textAlignment="center"
         android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,11 +59,14 @@
         android:id="@+id/EventName"
         android:layout_width="326dp"
         android:layout_height="60dp"
-        android:layout_marginTop="50dp"
-        android:ems="10"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/white"
+        android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/Date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,6 +76,7 @@
         android:id="@+id/startTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="28dp"
         android:onClick="popTimePicker1"
         android:text="Start Time"
@@ -77,7 +84,8 @@
         app:layout_constraintBottom_toTopOf="@+id/endTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Date" />
 
     <Button
         android:id="@+id/endTime"
@@ -123,7 +131,8 @@
         android:layout_width="190dp"
 
         android:layout_height="52dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="28dp"
         android:text="Select Date"
         android:textAlignment="center"
         android:textColor="@color/white"

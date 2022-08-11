@@ -9,8 +9,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewSpecificAdmin"
-        android:layout_width="406dp"
-        android:layout_height="647dp"
+        android:layout_width="399dp"
+        android:layout_height="594dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
@@ -20,22 +20,25 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingbut2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="57dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:clickable="true"
         android:src="@drawable/ic_baseline_add_24"
-        app:backgroundTint="@color/carolinablue"
+        app:backgroundTint="@android:color/transparent"
+        app:elevation="0dp"
+        app:fabCustomSize="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="50dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/BackBut"
         android:layout_width="57dp"
         android:layout_height="61dp"
         android:clickable="true"
-        android:src="?attr/actionModeCloseDrawable"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24"
         app:backgroundTint="@android:color/transparent"
         app:borderWidth="0dp"
         app:layout_constraintStart_toStartOf="parent"

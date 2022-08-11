@@ -53,12 +53,11 @@ public class Event implements Serializable, Comparable<Event> {
             return false;
         }
         Event e = (Event) obj;
-        if(this.getVenueName().equals(e.getVenueName()) && this.getEventName().equals(e.getEventName())
+        if(this.getVenueName().equals(e.getVenueName())
                 && this.getLocation().equals(e.getLocation()) && this.address.equals(e.address) &&
                 this.getDate().equals(e.getDate())
                 && this.getStartHour()==e.getStartHour() && this.getStartMin()==e.getStartMin() &&
-                this.getEndMin()==e.getEndMin() && this.getEndHour()==e.getEndHour() &&
-                this.getCapacity()==e.getCapacity()){
+                this.getEndMin()==e.getEndMin() && this.getEndHour()==e.getEndHour()){
             return true;
         }
         return false;
