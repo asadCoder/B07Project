@@ -14,14 +14,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class CustomerMain extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    //    MyEventsFragment myEvents = new MyEventsFragment();
     ViewVenuesUser viewVenuesUserF = new ViewVenuesUser();
     Scroll upcomingEventsF = new Scroll();
     MyEventsUser myEventsUserF = new MyEventsUser();
     Profile profileF = new Profile();
-    //    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
-//    UserProfileFragment profileFragment = new UserProfileFragment();
-    //    UpcomingFragment notificationFragment = new UpcomingFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +33,7 @@ public class CustomerMain extends AppCompatActivity {
         upcomingEventsF.setUser(sharedPref.getString("username","f"));
         viewVenuesUserF.setUser(sharedPref.getString("username","f"));
         bottomNavigationView  = findViewById(R.id.bottom_navigation);
-
+        setTitle("Venues");
         getSupportFragmentManager().beginTransaction().replace(R.id.container, viewVenuesUserF).commit();
 
 
@@ -45,15 +42,19 @@ public class CustomerMain extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.venues:
+                        setTitle("Venues");
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, viewVenuesUserF).commit();
                         return true;
                     case R.id.upcoming:
+                        setTitle("Upcoming Events");
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,upcomingEventsF).commit();
                         return true;
                     case R.id.myevents:
+                        setTitle("My Events");
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,myEventsUserF).commit();
                         return true;
                     case R.id.profile:
+                        setTitle("Profile");
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, profileF).commit();
                         return true;
                 }
