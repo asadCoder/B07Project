@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SpecificVenueAdmin">
+    tools:context=".SpecificVenueAdmin"
+    android:background="@color/prussianblue">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewSpecificAdmin"
@@ -24,8 +25,8 @@
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="48dp"
         android:clickable="true"
-        android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="#E1F6F3AE"
+        android:src="@drawable/ic_baseline_add_24"
+        app:backgroundTint="@color/carolinablue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

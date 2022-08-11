@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateEvent">
+    tools:context=".CreateEvent"
+    android:background="@color/prussianblue">
+
 
     <EditText
         android:id="@+id/Ecapacity"
@@ -12,6 +14,7 @@
         android:layout_height="54dp"
         android:layout_marginBottom="212dp"
         android:ems="10"
+        android:backgroundTint="@color/white"
         android:hint="Maximum Number of People"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,6 +29,7 @@
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Location"
+        android:backgroundTint="@color/white"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/ExampleLocation"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +42,7 @@
         android:id="@+id/textView"
         android:layout_width="256dp"
         android:layout_height="61dp"
+        android:textColor="@color/white"
         android:layout_marginTop="40dp"
         android:text="Create an Event"
         android:textAlignment="center"
@@ -53,6 +58,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
         android:ems="10"
+        android:backgroundTint="@color/white"
         android:hint="Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,6 +98,7 @@
         android:layout_height="38dp"
         android:layout_marginBottom="88dp"
         android:text="Example: Court 1"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.161"
@@ -125,5 +132,16 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EventName" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/BackBut3"
+        android:layout_width="57dp"
+        android:layout_height="61dp"
+        android:clickable="true"
+        android:src="?attr/actionModeCloseDrawable"
+        app:backgroundTint="@android:color/transparent"
+        app:borderWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

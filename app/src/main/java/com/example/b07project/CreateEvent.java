@@ -20,6 +20,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,6 +52,7 @@ public class CreateEvent extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     SimpleDateFormat dateFormat;
     String currentDate;
+    FloatingActionButton backbut;
 //    TextView temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,14 @@ public class CreateEvent extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
         event = new Event();
+
+        backbut = findViewById(R.id.BackBut3);
+        backbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AdminMasterActivity.class));
+            }
+        });
         ref = database.getReference("Venues/"+getIntent().getStringExtra("address")+"/Events");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
