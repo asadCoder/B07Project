@@ -72,9 +72,10 @@
         <entry key="app/src/main/res/drawable/userevents_vecotr_asset_24.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/venue_vecotr_asset_24.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_admin_main.xml" value="0.19444444444444445" />
+        <entry key="app/src/main/res/layout/activity_create_venue.xml" value="0.2815765380859375" />
         <entry key="app/src/main/res/layout/activity_customer_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_logged_as.xml" value="0.10648148148148148" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.26979980468749987" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.24124513618677043" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2296783447265625" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25259515570934254" />

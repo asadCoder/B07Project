@@ -55,6 +55,7 @@ public class CreateVenue extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_venue);
+        setTitle("Create Venue");
         createbut = findViewById(R.id.CV);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
