@@ -64,9 +64,10 @@
         android:id="@+id/startTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="28dp"
         android:onClick="popTimePicker1"
         android:text="Start Time"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/endTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -76,10 +77,13 @@
         android:id="@+id/endTime"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:onClick="popTimePicker2"
         android:text="End Time"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Ecapacity"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -102,17 +106,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Elocation"
         app:layout_constraintVertical_bias="0.506" />
 
-    <TextView
+    <Button
         android:id="@+id/Date"
-        android:layout_width="234dp"
-        android:layout_height="48dp"
-        android:hint="Click to Select Date"
+        android:layout_width="190dp"
+
+        android:layout_height="52dp"
+        android:layout_marginTop="5dp"
+        android:text="Select Date"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/startTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
