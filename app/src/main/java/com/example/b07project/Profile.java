@@ -62,12 +62,4 @@ public class Profile extends Fragment {
         username.setText("Username: " + us );
     }
 
-
-    public void checkSwitch(View view)
-    {
-        Switch simpleSwitch = (Switch) view.findViewById(R.id.modeSwitch);
-        //displayed text of the Switch
-        simpleSwitch.setText("Dark");
-    }
-
 }
