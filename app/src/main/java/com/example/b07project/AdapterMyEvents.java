@@ -69,6 +69,7 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
         ArrayList<Event> events = new ArrayList<Event>();
         String user;
 
+
         private AdapterMyEvents adapter;
 
         public MyViewHolder(@NonNull View itemView, String user) {
