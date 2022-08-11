@@ -20,6 +20,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,6 +52,7 @@ public class CreateEvent extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     SimpleDateFormat dateFormat;
     String currentDate;
+    FloatingActionButton backbut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +68,14 @@ public class CreateEvent extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
         event = new Event();
+
+        backbut = findViewById(R.id.BackBut3);
+        backbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AdminMasterActivity.class));
+            }
+        });
         ref = database.getReference("Venues/"+getIntent().getStringExtra("address")+"/Events");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -85,6 +95,7 @@ public class CreateEvent extends AppCompatActivity {
                     int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
                     int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
+                    //Eventually a sorting alorithm will go here so that the location is priority
                     Event e = new Event(admin, venueName, eventName, address, startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
                     if(!events.contains(e)) events.add(e);
                 }
@@ -238,7 +249,12 @@ public class CreateEvent extends AppCompatActivity {
                 sTime.setText(String.format(Locale.getDefault(), "%02d:%02d", shour, sminute));
                 stime = true;
                 event.setStartHour(shour);
+                System.out.println("sH" + shour );
+
                 event.setStartMin(sminute);
+                System.out.println("sM" + sminute );
+
+
             }
         };
         int style = AlertDialog.THEME_HOLO_DARK;

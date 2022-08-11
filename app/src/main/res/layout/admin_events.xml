@@ -118,7 +118,7 @@
 
             <TextView
                 android:id="@+id/sport_up"
-                android:layout_width="250dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
 
                 android:layout_marginLeft="16dp"
@@ -126,9 +126,9 @@
                 android:fontFamily="sans-serif-black"
                 android:singleLine="true"
                 android:text="sdfsdfsdfdssssssds"
-                android:textSize="22dp"
-
                 android:textColor="@color/nephritis"
+
+                android:textSize="22dp"
                 app:autoSizeMaxTextSize="26dp"
                 app:autoSizeMinTextSize="24dp" />
 
@@ -138,16 +138,16 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_toEndOf="@+id/sport_up"
-                android:singleLine="true"
+                android:autoSizeMinTextSize="10dp"
                 android:fontFamily="sans-serif-condensed-medium"
+                android:singleLine="true"
                 android:text="Capacity"
-                android:textSize="15dp"
 
-                android:autoSizeMinTextSize="10dp"/>
+                android:textSize="15dp" />
 
         </RelativeLayout>
 
@@ -162,11 +162,11 @@
             <TextView
                 android:id="@+id/venue_up"
 
-                android:layout_width="250dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
 
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:singleLine="true"
                 android:text="venukljdafklajfkljadslkfjaklfjakl;jfklajdlklafjadklklsfje"
@@ -181,9 +181,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="38dp"
+                android:layout_marginEnd="9dp"
                 android:layout_toEndOf="@+id/venue_up"
                 android:autoSizeMinTextSize="10dp"
                 android:fontFamily="sans-serif-condensed-medium"
@@ -216,7 +216,7 @@
                 android:layout_alignParentEnd="true"
 
                 android:layout_marginTop="68dp"
-                android:layout_marginEnd="9dp"
+                android:layout_marginEnd="172dp"
 
                 android:autoSizeMinTextSize="10dp"
                 android:fontFamily="sans-serif-medium"

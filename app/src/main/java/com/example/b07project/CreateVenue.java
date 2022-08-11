@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +49,7 @@ public class CreateVenue extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
     Button createbut;
+    FloatingActionButton backbut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -62,7 +64,13 @@ public class CreateVenue extends AppCompatActivity {
         location = findViewById(R.id.Vlocation);
         sTime = findViewById(R.id.startTime);
         eTime = findViewById(R.id.endTime);
-
+        backbut = findViewById(R.id.BackBut2);
+        backbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AdminMasterActivity.class));
+            }
+        });
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Venues");
         venueLocs = new ArrayList<>();
         ref.addValueEventListener(new ValueEventListener() {
