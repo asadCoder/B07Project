@@ -21,7 +21,6 @@ public class DB_ReadVenues {
                 for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                     String hashCode = snapshot.getKey();
                     System.out.println(hashCode);
-//                    String date = snapshot.child("date").getValue().toString();
                     int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
                     int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
                     int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
@@ -30,8 +29,6 @@ public class DB_ReadVenues {
                     String location = snapshot.child("location").getValue().toString();
                     String admin = snapshot.child("admin").getValue().toString();
 
-
-                    //Eventually a sorting alorithm will go here so that the location is priority
                     Venue obj = new Venue(admin, venueName, startHour, startMin, endHour, endMin, location, null);
                     venues.add(obj);
                 }

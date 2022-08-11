@@ -51,7 +51,6 @@ public class CreateEvent extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     SimpleDateFormat dateFormat;
     String currentDate;
-//    TextView temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +85,6 @@ public class CreateEvent extends AppCompatActivity {
                     int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
                     int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
-                    //Eventually a sorting alorithm will go here so that the location is priority
                     Event e = new Event(admin, venueName, eventName, address, startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
                     if(!events.contains(e)) events.add(e);
                 }
@@ -97,11 +95,6 @@ public class CreateEvent extends AppCompatActivity {
             }
         });
 
-//        ArrayList<Event> events = new ArrayList<Event>();
-//        DB_ReadEvents reader = new DB_ReadEvents();
-//        events = reader.readEvents("Admins/dhruv/Venues/Pan Am/Events");
-//        temp =findViewById(R.id.textView);
-//        temp.setText(events.get(0).eventName);
         sTime = findViewById(R.id.startTime);
         eTime = findViewById(R.id.endTime);
         eventName = findViewById(R.id.EventName);
@@ -212,15 +205,12 @@ public class CreateEvent extends AppCompatActivity {
 
                         ref = database.getReference("Events/"+event.toString());
                         ref.setValue(event);
-//                        ref.child("Events").child(event.toString()).setValue(event);
 
                         ref = database.getReference("Venues/"+getIntent().getStringExtra("address")+"/Events/"+event.toString());
                         ref.setValue(event);
-//                        ref.child("Venues").child(getIntent().getStringExtra("address")).child("Events").child(event.toString()).setValue(event);
 
                         ref = database.getReference("Admins/" + user + "/Venues/" +
                                 getIntent().getStringExtra("address") + "/Events/" + event.toString());
-//                        ref.child("Admins").child(user).child("Venues").child(getIntent().getStringExtra("address")).child("Events").child(event.toString()).setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
                             ref.setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                             public void onSuccess(Void unused) {
@@ -229,17 +219,10 @@ public class CreateEvent extends AppCompatActivity {
                         });
                           ViewVenuesAdmin adminm = new ViewVenuesAdmin();
                           startActivity(new Intent(getApplicationContext(), AdminMasterActivity.class));
-
                     }
                 }
-
-
             }
-
         });
-
-
-
     }
 
 
@@ -252,19 +235,13 @@ public class CreateEvent extends AppCompatActivity {
                 sTime.setText(String.format(Locale.getDefault(), "%02d:%02d", shour, sminute));
                 stime = true;
                 event.setStartHour(shour);
-                System.out.println("sH" + shour );
-
                 event.setStartMin(sminute);
-                System.out.println("sM" + sminute );
-
-
             }
         };
         int style = AlertDialog.THEME_HOLO_DARK;
         TimePickerDialog picker = new TimePickerDialog(this, style, onTimeSetListener, shour, sminute, true);
         picker.setTitle("Select Start Time");
         picker.show();
-
     }
 
     public void popTimePicker2(View view) {
@@ -279,17 +256,11 @@ public class CreateEvent extends AppCompatActivity {
                 System.out.println("eH" + ehour );
                 event.setEndMin(eminute);
                 System.out.println("eM" + eminute );
-
-
             }
         };
         int style = AlertDialog.THEME_HOLO_DARK;
         TimePickerDialog picker = new TimePickerDialog(this, style, onTimeSetListener, ehour, eminute, true);
         picker.setTitle("Select End Time");
         picker.show();
-
     }
-
-
-
 }

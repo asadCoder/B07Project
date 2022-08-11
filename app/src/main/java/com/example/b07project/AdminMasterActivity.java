@@ -20,11 +20,8 @@ public class AdminMasterActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     ViewVenuesAdmin viewVenuesAdminF = new ViewVenuesAdmin();
     Profile profileF = new Profile();
-    //Fragment viewAdmin = new AdminMainFragment();
     AdminAllEventsFragment viewBookings = new AdminAllEventsFragment();
-//    Fragment profile = new AdminProfileFragment();
-//    //    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
-//    UserProfileFragment profileFragment = new UserProfileFragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

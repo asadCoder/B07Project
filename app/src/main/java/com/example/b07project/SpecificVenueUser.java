@@ -28,9 +28,7 @@ public class SpecificVenueUser extends Fragment implements Serializable {
     ArrayList<Event> venueEvents = new ArrayList<Event>();
     ArrayList<Event> myEvents = new ArrayList<Event>();
 
-    //have to wait for ahmads code for this to work
     AdapterUpcomingEvents adapter;
-    //FIX HERE
     String user, venueName;
 
     public void setUser(String user) {
@@ -53,14 +51,12 @@ public class SpecificVenueUser extends Fragment implements Serializable {
 
         adapter = new AdapterUpcomingEvents(getActivity(), venueEvents, user, myEvents);
         DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("Venues/" + venueName + "/Events");
-        //The following code loops through the database and creates objects from the database
         ref1.addValueEventListener(new ValueEventListener() {@Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                 System.out.println(snapshot.toString());
 
                 String date = snapshot.child("date").getValue().toString();
-//                    System.out.println(date);
                 int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
                 int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
                 int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
@@ -73,7 +69,6 @@ public class SpecificVenueUser extends Fragment implements Serializable {
                 int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
                 int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
-                //Eventually a sorting alorithm will go here so that the location is priority
                 Event event = new Event(admin, venueName, eventName, address, startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
                 if(!venueEvents.contains(event)) adapter.events.add(event);
 
@@ -89,13 +84,11 @@ public class SpecificVenueUser extends Fragment implements Serializable {
         });
 
         DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Customers/" + user + "/Events");
-        //The following code loops through the database and creates objects from the database
         ref2.addValueEventListener(new ValueEventListener() {@Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             for (DataSnapshot snapshot : datasnapshot.getChildren()) {
 
                 String date = snapshot.child("date").getValue().toString();
-//                    System.out.println(date);
                 int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
                 int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
                 int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
@@ -109,14 +102,11 @@ public class SpecificVenueUser extends Fragment implements Serializable {
                 int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
                 int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
-                //Eventually a sorting alorithm will go here so that the location is priority
                 Event event = new Event(admin, venueName, eventName, address, startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
                 if(!myEvents.contains(event)) myEvents.add(event);
                 for(Event e : myEvents){
                     if(e.changes(event)) {
-//                        adapterUP.myEvents.remove(e);
                         adapter.myEvents.add(event);
-//                        adapterUP.notifyDataSetChanged();
                     };
                 }
 

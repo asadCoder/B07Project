@@ -34,9 +34,6 @@
             android:name=".ShowEvent"
             android:exported="false" />
         <activity
-            android:name=".AdminMain"
-            android:exported="false" />
-        <activity
             android:name=".AdminMasterActivity"
             android:exported="false"/>
         <activity

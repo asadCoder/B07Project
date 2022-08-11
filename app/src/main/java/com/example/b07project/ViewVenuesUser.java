@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
-public class ViewVenuesUser extends Fragment implements ViewVenuesInterface, RecycleViewInterface, Serializable {
+public class ViewVenuesUser extends Fragment implements  RecycleViewInterface, Serializable {
 
     ArrayList<Venue> venues = new ArrayList<>();
     AdapterVenues adapter;
@@ -51,7 +51,6 @@ public class ViewVenuesUser extends Fragment implements ViewVenuesInterface, Rec
         adapter = new AdapterVenues(getActivity(), venues, this);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Venues");
-        //The following code loops through the database and creates objects from the database
         ref.addValueEventListener(new ValueEventListener() {@Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             for (DataSnapshot snapshot : datasnapshot.getChildren()) {
@@ -62,7 +61,6 @@ public class ViewVenuesUser extends Fragment implements ViewVenuesInterface, Rec
                 String venueName = snapshot.child("venueName").getValue().toString();
                 String location = snapshot.child("location").getValue().toString();
                 String admin = snapshot.child("admin").getValue().toString();
-                //Eventually a sorting alorithm will go here so that the location is priority
                 Venue venue = new Venue(admin, venueName, startHour,startMin,endHour,endMin, location,new ArrayList<Event>());
                 if(!venues.contains(venue))  venues.add(venue);
 
@@ -77,8 +75,6 @@ public class ViewVenuesUser extends Fragment implements ViewVenuesInterface, Rec
             }
         });
 
-        //pass the list of venues from the database to setUpVenues()
-//        setUpVenues();
 
         SpacingItemDecorator itemDecorator = new SpacingItemDecorator(0);
         recyclerView.addItemDecoration(itemDecorator);
@@ -92,11 +88,6 @@ public class ViewVenuesUser extends Fragment implements ViewVenuesInterface, Rec
 
     @Override
     public void onItemClick(int position) {
-//        Intent intent = new Intent(getActivity(), SpecificVenueUser.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("venue_events", venues.get(position).getEvents());
-//        intent.putExtras(bundle);
-//        startActivity(intent);
         String venueName = venues.get(position).getLocation();
         SpecificVenueUser svu = new SpecificVenueUser();
         svu.setUser(user);
@@ -105,19 +96,4 @@ public class ViewVenuesUser extends Fragment implements ViewVenuesInterface, Rec
 
     }
 
-    @Override
-    public void setUpVenues() {
-
-
-        ArrayList<Event> eventsAll = new ArrayList<Event>() {};
-        eventsAll.add(new Event("", "pan am","Soccer","military", 8,  0, 10,  5, 7,7, "court 4","7/7/2022"));
-        eventsAll.add(new Event("", "pan am", "Golf", "military",8,  0, 10,  5, 7, 7, "court 13", "9/9/2022"));
-
-        //read venues from from database
-        venues.add(new Venue("ahmad", "Pan am", 1, 0,  4, 0, "morningside avneue", eventsAll));
-        venues.add(new Venue("ahmad","drake smd", 1, 0,  4, 0, "morningside avneue", eventsAll));
-        venues.add(new Venue("ahmad","no name", 1, 0,  4, 0, "morningside avneue", eventsAll));
-//        venues.add(new Venue("please word", 1, 0,  4, 0,"morningside avneue", eventsAll));
-//        venues.add(new Venue("ronaldo goat ", 1, 0,  4, 0,  "morningside avneue", eventsAll));
-    }
 }

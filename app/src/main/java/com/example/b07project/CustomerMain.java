@@ -14,14 +14,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class CustomerMain extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    //    MyEventsFragment myEvents = new MyEventsFragment();
     ViewVenuesUser viewVenuesUserF = new ViewVenuesUser();
     Scroll upcomingEventsF = new Scroll();
     MyEventsUser myEventsUserF = new MyEventsUser();
     Profile profileF = new Profile();
-    //    ViewVenuesFragment settingsFragment = new ViewVenuesFragment();
-//    UserProfileFragment profileFragment = new UserProfileFragment();
-    //    UpcomingFragment notificationFragment = new UpcomingFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

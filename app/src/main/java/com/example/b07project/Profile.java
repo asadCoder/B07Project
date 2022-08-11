@@ -40,10 +40,6 @@ public class Profile extends Fragment {
         return mView;
     }
 
-    //add set account type
-    //add set username
-    //add set email
-
     public void setProfile(View view)
     {
         SharedPreferences s = this.getActivity().getSharedPreferences("save", Context.MODE_PRIVATE);
@@ -70,7 +66,6 @@ public class Profile extends Fragment {
     public void checkSwitch(View view)
     {
         Switch simpleSwitch = (Switch) view.findViewById(R.id.modeSwitch);
-        //displayed text of the Switch
         simpleSwitch.setText("Dark");
     }
 
