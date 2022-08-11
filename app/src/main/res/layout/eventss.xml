@@ -236,7 +236,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:cornerRadius="40dp"/>
+            app:cornerRadius="40dp"
+            android:textColor="#FFFFFF"/>
 
             <TextView
                 android:id="@+id/timee"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CustomerMain"
-    android:background="@color/white"
+    android:background="@color/prussianblue"
     >
 
 
@@ -21,8 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/blackblue"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"
-        app:labelVisibilityMode="labeled"/>
+        app:itemIconTint="@drawable/nav_color"
+        app:itemTextColor="@drawable/nav_color"/>
 
 
 

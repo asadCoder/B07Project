@@ -54,7 +54,7 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
                 +event.getEndHour()+"~~~"+event.getEndMin()+"~~~"+event.getCapacity()+"~~~"+
                 event.getSpotsLeft()+"~~~"+event.getLocation()+"~~~"+event.getDate());
 
-        holder.btn.setText("Cancel");
+        holder.btn.setText("X");
 //        if(event.getSpotsLeft() == 0) {
 //            holder.butt.setText("Unavailable");
 //            holder.butt.setClickable(false);
