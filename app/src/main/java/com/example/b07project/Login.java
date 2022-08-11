@@ -63,8 +63,7 @@ public class Login extends AppCompatActivity {
         mLoginBtn = (Button) findViewById(R.id.LoginButton);
         mCreateBtn =  findViewById(R.id.createText);
         mAdmin = (Switch) findViewById(R.id.admlogin);
-
-
+        getSupportActionBar().hide();
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
 

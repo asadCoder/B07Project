@@ -49,11 +49,10 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
         holder.time.setText(event.getDate() + "  " + event.starttime() + "-" + event.endtime());
         holder.cap.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getSpotsLeft());
-        holder.saverMy.setText(event.getAdmin()+"~~~"+event.getVenueName()+"~~~"+event.getEventName()
+        holder.setSaver(event.getAdmin()+"~~~"+event.getVenueName()+"~~~"+event.getEventName()
                 +"~~~"+event.getAddress()+"~~~"+event.getStartHour()+"~~~"+event.getStartMin()+"~~~"
                 +event.getEndHour()+"~~~"+event.getEndMin()+"~~~"+event.getCapacity()+"~~~"+
                 event.getSpotsLeft()+"~~~"+event.getLocation()+"~~~"+event.getDate());
-
         holder.btn.setText("X");
     }
 
@@ -68,7 +67,11 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
         Button btn;
         ArrayList<Event> events = new ArrayList<Event>();
         String user;
+        String saver;
 
+        public void setSaver(String saver) {
+            this.saver = saver;
+        }
 
         private AdapterMyEvents adapter;
 
@@ -92,7 +95,7 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
                 public void onClick(View view) {
 
 
-                    String[] s = saverMy.getText().toString().trim().split("~~~");
+                    String[] s = saver.trim().split("~~~");
                     Event[] e = {new Event(s[0], s[1], s[2], s[3], Integer.parseInt(s[4]),
                             Integer.parseInt(s[5]), Integer.parseInt(s[6]), Integer.parseInt(s[7]),
                             Integer.parseInt(s[8]), Integer.parseInt(s[9]), s[10], s[11])};

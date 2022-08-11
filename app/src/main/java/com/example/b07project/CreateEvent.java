@@ -134,14 +134,14 @@ public class CreateEvent extends AppCompatActivity {
         createEve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("RRRRRR  "+events.size());
-                if(events != null) System.out.println("AAAAAAAAAA");
+                System.out.println("RRRRRR  " + events.size());
+                if (events != null) System.out.println("AAAAAAAAAA");
                 else System.out.println("BBBBBBBB");
                 String eventn = eventName.getText().toString().trim();
                 String eventloc = location.getText().toString().trim();
                 String eventDate = Date.getText().toString().trim();
 
-                if(!eventDate.isEmpty() && stime) {
+                if (!eventDate.isEmpty() && stime) {
                     Calendar cal = Calendar.getInstance();
                     dateFormat = new SimpleDateFormat("MM/dd/yyyy");
                     currentDate = dateFormat.format(cal.getTime());
@@ -165,30 +165,24 @@ public class CreateEvent extends AppCompatActivity {
 
                     if (year < curY || (year == curY && curM > month) || (year == curY && curM == month && curD > day) || (year == curY && curM == month && curD == day && event.getStartHour() < cur_H) || (year == curY && curM == month && curD == day && event.getStartHour() == cur_H && event.getStartMin() <= cur_M)) {
                         BeforeCurDate = true;
-                    }
-                    else{
+                    } else {
                         BeforeCurDate = false;
                     }
                 }
 
 
-
-                if(TextUtils.isEmpty(eventn) || TextUtils.isEmpty(eventloc) || TextUtils.isEmpty(eventDate) || TextUtils.isEmpty(maxcap.getText().toString().trim()) || !stime || !etime){
-                    Toast.makeText(CreateEvent.this,"No fields can be empty", Toast.LENGTH_SHORT).show();
-                } else if(event.getStartHour()>event.getEndHour() || ((event.getStartHour()==event.getEndHour()) && event.getStartMin()>=event.getEndMin())){
-                    Toast.makeText(CreateEvent.this,"Enter valid start and end times", Toast.LENGTH_SHORT).show();
-                }
-                else if( BeforeCurDate){
-                    Toast.makeText(CreateEvent.this,"The start time of the event must be after the current time", Toast.LENGTH_SHORT).show();
-                }
-                else if(event.getStartHour()<vStartH || (event.getStartHour()==vStartH && event.getStartMin()<vStartM)){
-                    Toast.makeText(CreateEvent.this,"Start time needs to be after " + vname + " opens", Toast.LENGTH_SHORT).show();
-                }
-                else if(event.getEndHour()>vEndH || (event.getEndHour()==vEndH && event.getEndMin()>vEndM)){
-                    System.out.println("VENDh:  " + vEndH + "   vEndm:   "+ vEndM);
-                    Toast.makeText(CreateEvent.this,"End time needs to be before " + vname + " closes", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (TextUtils.isEmpty(eventn) || TextUtils.isEmpty(eventloc) || TextUtils.isEmpty(eventDate) || TextUtils.isEmpty(maxcap.getText().toString().trim()) || !stime || !etime) {
+                    Toast.makeText(CreateEvent.this, "No fields can be empty", Toast.LENGTH_SHORT).show();
+                } else if (event.getStartHour() > event.getEndHour() || ((event.getStartHour() == event.getEndHour()) && event.getStartMin() >= event.getEndMin())) {
+                    Toast.makeText(CreateEvent.this, "Enter valid start and end times", Toast.LENGTH_SHORT).show();
+                } else if (BeforeCurDate) {
+                    Toast.makeText(CreateEvent.this, "The start time of the event must be after the current time", Toast.LENGTH_SHORT).show();
+                } else if (event.getStartHour() < vStartH || (event.getStartHour() == vStartH && event.getStartMin() < vStartM)) {
+                    Toast.makeText(CreateEvent.this, "Start time needs to be after " + vname + " opens", Toast.LENGTH_SHORT).show();
+                } else if (event.getEndHour() > vEndH || (event.getEndHour() == vEndH && event.getEndMin() > vEndM)) {
+                    System.out.println("VENDh:  " + vEndH + "   vEndm:   " + vEndM);
+                    Toast.makeText(CreateEvent.this, "End time needs to be before " + vname + " closes", Toast.LENGTH_SHORT).show();
+                } else {
 
                     capacity = Integer.parseInt(maxcap.getText().toString().trim());
                     event.setCapacity(capacity);
@@ -199,29 +193,38 @@ public class CreateEvent extends AppCompatActivity {
                     event.setVenueName(vname);
                     event.setAddress(getIntent().getStringExtra("address"));
                     event.setAdmin(user);
-                    if(events.contains(event)) {
+                    if (events.contains(event)) {
                         Toast.makeText(CreateEvent.this, "Event already exists", Toast.LENGTH_SHORT).show();
-                    }else{
-
-                        ref = database.getReference("Events/"+event.toString());
-                        ref.setValue(event);
-
-                        ref = database.getReference("Venues/"+getIntent().getStringExtra("address")+"/Events/"+event.toString());
-                        ref.setValue(event);
-
-                        ref = database.getReference("Admins/" + user + "/Venues/" +
-                                getIntent().getStringExtra("address") + "/Events/" + event.toString());
-                            ref.setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(CreateEvent.this, "Event added", Toast.LENGTH_SHORT).show();
+                    } else {
+                        boolean bo = true;
+                        for (Event e : events) {
+                            if (e.overlap(event) || event.overlap(e)) {
+                                Toast.makeText(CreateEvent.this, "Event overlaps with existing event", Toast.LENGTH_SHORT).show();
+                                bo = false;
                             }
-                        });
-                          ViewVenuesAdmin adminm = new ViewVenuesAdmin();
-                          startActivity(new Intent(getApplicationContext(), AdminMasterActivity.class));
+                        }
+                        if (bo) {
+                            ref = database.getReference("Events/" + event.toString());
+                            ref.setValue(event);
+
+                            ref = database.getReference("Venues/" + getIntent().getStringExtra("address") + "/Events/" + event.toString());
+                            ref.setValue(event);
+
+                            ref = database.getReference("Admins/" + user + "/Venues/" +
+                                    getIntent().getStringExtra("address") + "/Events/" + event.toString());
+                            ref.setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(CreateEvent.this, "Event added", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            ViewVenuesAdmin adminm = new ViewVenuesAdmin();
+                            startActivity(new Intent(getApplicationContext(), AdminMasterActivity.class));
+                        }
                     }
                 }
             }
+
         });
     }
 

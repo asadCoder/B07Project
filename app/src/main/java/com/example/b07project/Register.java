@@ -39,6 +39,7 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().hide();
         mEmail = findViewById(R.id.Email);
         mRegisterBtn = (Button) findViewById(R.id.RegisterButton);
         mLoginBtn = findViewById(R.id.createText);
@@ -46,7 +47,6 @@ public class Register extends AppCompatActivity {
         mCheckadmin = (Switch)findViewById(R.id.AdminCheck);
         mUsername = findViewById(R.id.Username);
         fAuth = FirebaseAuth.getInstance();
-
         if(fAuth.getCurrentUser() != null){
             if (mCheckadmin.isChecked()) {
                 startActivity(new Intent(getApplicationContext(),AdminMasterActivity.class));

@@ -44,26 +44,62 @@ public class Event implements Serializable, Comparable<Event> {
         this.date = date;
     }
 
-    @Override
-    public boolean equals(@Nullable Object obj) {
-        if(obj==null){
-            return false;
-        }
-        if(!(obj instanceof Event)){
-            return false;
-        }
-        Event e = (Event) obj;
-        if(this.getVenueName().equals(e.getVenueName()) && this.getEventName().equals(e.getEventName())
-                && this.getLocation().equals(e.getLocation()) && this.address.equals(e.address) &&
-                this.getDate().equals(e.getDate())
-                && this.getStartHour()==e.getStartHour() && this.getStartMin()==e.getStartMin() &&
-                this.getEndMin()==e.getEndMin() && this.getEndHour()==e.getEndHour() &&
-                this.getCapacity()==e.getCapacity()){
-            return true;
-        }
-        return false;
+//    @Override
+//    public boolean equals(@Nullable Object obj) {
+//        if(obj==null){
+//            return false;
+//        }
+//        if(!(obj instanceof Event)){
+//            return false;
+//        }
+//        Event e = (Event) obj;
+//        if(this.getVenueName().equals(e.getVenueName()) && this.getEventName().equals(e.getEventName())
+//                && this.getLocation().equals(e.getLocation()) && this.address.equals(e.address) &&
+//                this.getDate().equals(e.getDate())
+//                && this.getStartHour()==e.getStartHour() && this.getStartMin()==e.getStartMin() &&
+//                this.getEndMin()==e.getEndMin() && this.getEndHour()==e.getEndHour() &&
+//                this.getCapacity()==e.getCapacity()){
+//            return true;
+//        }
+//        return false;
+//    }
+
+    public boolean overlap(Event e) {
+        if (e.startHour > this.endHour || e.endHour < this.startHour) return false;
+        else if( (e.startHour==this.endHour && e.startMin >= this.endMin) || e.endHour==this.startHour
+                && e.endMin<=this.startMin) return false;
+        else return true;
     }
 
+//    @Override
+//    public boolean equals(@Nullable Object obj) {
+//        if(obj==null){
+//            return false;
+//        }
+//        if(!(obj instanceof Event)){
+//            return false;
+//        }
+//        Event e = (Event) obj;
+//        if( !this.getLocation().equals(e.getLocation()) || !this.address.equals(e.address) ||
+//                !this.getDate().equals(e.getDate()) || ( !this.overlap(e)) && !e.overlap(this) ) return false;
+//
+//
+//        else return true;
+//    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return startHour == event.startHour && startMin == event.startMin && endHour == event.endHour && endMin == event.endMin && capacity == event.capacity && spotsLeft == event.spotsLeft && admin.equals(event.admin) && venueName.equals(event.venueName) && eventName.equals(event.eventName) && location.equals(event.location) && address.equals(event.address) && date.equals(event.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(admin, venueName, eventName, startHour, startMin, endHour, endMin, capacity, spotsLeft, location, address, date);
+    }
 
     public String getAdmin() {
         return admin;

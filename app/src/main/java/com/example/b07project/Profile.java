@@ -50,16 +50,16 @@ public class Profile extends Fragment {
         acc = (TextView) view.findViewById(R.id.account);
         if(account)
         {
-            acc.setText("Account: Admin");
+            acc.setText("Admin");
 
         }
         else {
-            acc.setText("Account: Customer");
+            acc.setText("Customer");
         }
         email = (TextView) view.findViewById(R.id.email);
-        email.setText("Email: " + em);
+        email.setText(em);
         username = (TextView) view.findViewById(R.id.username);
-        username.setText("Username: " + us );
+        username.setText(us );
     }
 
 }

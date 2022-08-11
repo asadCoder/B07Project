@@ -63,16 +63,20 @@
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/layout/yes_or_no.xml" value="0.264" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.10833333333333334" />
         <entry key="..\:/Users/vchan/OneDrive/Documents/GitHub/B07Project/app/src/main/res/menu/bottom_nav_menu1.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-anydpi/profile_pic.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.153" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.153" />
+        <entry key="app/src/main/res/drawable/ic_profile_pic2_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/upcoming_vecotr_asset_24.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/userevents_vecotr_asset_24.xml" value="0.135" />
+        <entry key="app/src/main/res/drawable/venue_vecotr_asset_24.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_admin_main.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/layout/activity_customer_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_logged_as.xml" value="0.10648148148148148" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26979980468749987" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19444444444444445" />
-        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2228169759114583" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2296783447265625" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25259515570934254" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.2111852010091146" />
         <entry key="app/src/main/res/layout/event_my.xml" value="0.1875020345052083" />

@@ -56,7 +56,7 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
         holder.time.setText(String.valueOf( event.getDate() + " @ " + event.starttime() + "-" + event.endtime()));
         holder.cap.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getSpotsLeft());
-        holder.saver.setText(String.valueOf(position));
+        holder.setSaverPos(String.valueOf(position));
         if(myEvents.contains(events.get(position))){
             holder.btn.setText("Joined");
             holder.btn.setClickable(false);
@@ -84,8 +84,12 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
         private Button plus, minus, cancel, book;
         TextView numPlayers;
         String user;
+        String saverPos;
         ArrayList<Event> events = new ArrayList<Event>();
 
+        public void setSaverPos(String saverPos) {
+            this.saverPos = saverPos;
+        }
 
         public MyViewHolder(@NonNull View itemView, String user, ArrayList<Event> events) {
             super(itemView);
@@ -98,7 +102,6 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
             cap = itemView.findViewById(R.id.capacity);
             sLeft = itemView.findViewById(R.id.spots);
             btn = itemView.findViewById(R.id.button5);
-            saver = itemView.findViewById(R.id.saver);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {createDialog();}
@@ -154,9 +157,8 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
             book.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(saver.getText() != null) {
 
-                        Event e = events.get(Integer.parseInt(saver.getText().toString()));
+                        Event e = events.get(Integer.parseInt(saverPos));
 
                         int i = Integer.parseInt(numPlayers.getText().toString());
 
@@ -188,7 +190,7 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
 
                         dialog.dismiss();
                     }
-                }
+
             });
         }
 
