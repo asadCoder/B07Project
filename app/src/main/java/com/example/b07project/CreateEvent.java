@@ -53,7 +53,6 @@ public class CreateEvent extends AppCompatActivity {
     SimpleDateFormat dateFormat;
     String currentDate;
     FloatingActionButton backbut;
-//    TextView temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -55,13 +55,6 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
                 event.getSpotsLeft()+"~~~"+event.getLocation()+"~~~"+event.getDate());
 
         holder.btn.setText("X");
-//        if(event.getSpotsLeft() == 0) {
-//            holder.butt.setText("Unavailable");
-//            holder.butt.setClickable(false);
-//        }
-//        else if(event.getSpotsLeft() == event.getCapacity()) holder.butt.setText("Book");
-//        else holder.butt.setText("Join");
-
     }
 
     @Override
@@ -75,12 +68,8 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
         Button btn;
         ArrayList<Event> events = new ArrayList<Event>();
         String user;
-//        Event e;
-
 
         private AdapterMyEvents adapter;
-//        private AlertDialog.Builder d_builder;
-//        private AlertDialog dialog;
 
         public MyViewHolder(@NonNull View itemView, String user) {
             super(itemView);
@@ -101,34 +90,6 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
                 @Override
                 public void onClick(View view) {
 
-//                            child("Customers").child(user).child("Events");
-//                    ref.addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
-//                            int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
-//                            int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
-//                            int endMin = Integer.parseInt(snapshot.child("endMin").getValue().toString());
-//                            String eventName = snapshot.child("eventName").getValue().toString();
-//                            String date = snapshot.child("date").getValue().toString();
-//                            String venueName = snapshot.child("venueName").getValue().toString();
-//                            String admin = snapshot.child("admin").getValue().toString();
-//                            String address = snapshot.child("address").getValue().toString();
-//                            String location = snapshot.child("location").getValue().toString();
-//                            int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
-//                            int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
-//
-//                            //Eventually a sorting alorithm will go here so that the location is priority
-//                            Event event = new Event(admin,venueName, eventName, address, startHour,
-//                                    startMin,endHour,endMin,capacity,spotsLeft,location,date);
-//                            if(event.equals(e[0])) e[0] = event;
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
 
                     String[] s = saverMy.getText().toString().trim().split("~~~");
                     Event[] e = {new Event(s[0], s[1], s[2], s[3], Integer.parseInt(s[4]),
@@ -144,7 +105,6 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
 
 
                    ref = database.getReference("Customers/" + user + "/Spots/" + key);
-//                    ref.child("Customers").child(user).child("Spots").child(key)
                     ref.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -153,9 +113,6 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference ref1 = database.getReference();
-
-//                            ref1.child("Customers").child(user).child("Spots").child(key).removeValue();
-//                            ref1.child("Customers").child(user).child("Events").child(key).removeValue();
 
                             ref1= database.getReference("Customers/" + user + "/Spots/" + key);
                             ref1.removeValue();
@@ -188,72 +145,11 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
 
                         }
                     });
-
-//                    e[0].setSpotsLeft(e[0].getSpotsLeft() + i[0]);
-
-
-
-//                    ref.child("Customers").child(user).child("Spots").child(key).removeValue();
-//                    ref.child("Customers").child(user).child("Events").child(key).removeValue();
-
-                    //fix it in admin
-//                    ref.child("Admins").child(e[0].admin).child("Venues").child(e[0].address).child("Events").child(key)
-//                            .setValue(e[0]);
-
-//                    ref = database.getReference("Admins/" + e[0].getAdmin()+ "/Venues/" +
-//                            e[0].getAddress()+"/Events/" + key);
-//                    ref.setValue(e[0]);
-
-
-                    //fix it in venues
-
-//                    ref.child("Venues").child(e[0].address).child("Events").child(key)
-//                            .child("spotsLeft").setValue(e[0].spotsLeft);
-
-//                    ref = database.getReference("Venues/"+ e[0].getAddress() + "/Events/"+key);
-//                    ref.setValue(e[0]);
-
-                    //fix it in events
-
-
-//                    ref.child("Events").child(key).setValue(e[0]);
-
-//                    ref = database.getReference("Events/" + key);
-//                    ref.setValue(e[0]);
-
-
-
                     adapter.events.remove(getAdapterPosition());
                     adapter.notifyItemRemoved(getAdapterPosition());}
             });
         }
 
-//        private void createDialog() {
-//            d_builder = new AlertDialog.Builder(adapter.context);
-//            LayoutInflater inflater2 = LayoutInflater.from(adapter.context);
-//            View view = inflater2.inflate(R.layout.yes_or_no, null);
-//            yes = view.findViewById(R.id.yes);
-//            no = view.findViewById(R.id.no);
-//            d_builder.setView(view);
-//            dialog = d_builder.create();
-//            dialog.show();
-//
-//            yes.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    adapter.events.remove(getAdapterPosition());
-//                    adapter.notifyItemRemoved(getAdapterPosition());
-//                    dialog.dismiss();
-//                }
-//            });
-//
-//            no.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    dialog.dismiss();
-//                }
-//            });
-//        }
 
         public MyViewHolder linkAdapter(AdapterMyEvents adapter){
             this.adapter = adapter;

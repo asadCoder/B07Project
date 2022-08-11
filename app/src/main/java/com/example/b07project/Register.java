@@ -87,7 +87,6 @@ public class Register extends AppCompatActivity {
                 if (password.length() < 6) {
                     mPassword.setError("Password has to be >= 6 characters");
                 }
-                // register user
                 DatabaseReference rootRef = db.getReference();
                 rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -115,7 +114,6 @@ public class Register extends AppCompatActivity {
                                         Admin a = new Admin(username,email,new ArrayList<Venue>());
                                         ArrayList<Venue> v = new ArrayList<Venue>();
                                         a.setVenues(v);
-//
                                         ArrayList<Event> e = new ArrayList<Event>();
                                         DB_Write.createAdmin(a,Register.this);
                                         Customer c = new Customer(username,email,e);
@@ -132,9 +130,6 @@ public class Register extends AppCompatActivity {
                                             editor.putBoolean("value",true);
                                             editor.apply();
                                             Toast.makeText(Register.this, email, Toast.LENGTH_SHORT).show();
-//                                            Intent intent = new Intent(Register.this, CreateVenue.class);
-//                                            intent.putExtra("admin",a);
-//                                            startActivity(intent);
 
                                             startActivity(new Intent(getApplicationContext(),AdminMasterActivity.class));
                                             finish();
@@ -145,8 +140,6 @@ public class Register extends AppCompatActivity {
                                             editor.apply();
                                             intent.putExtra("Customer",c);
                                             startActivity(intent);
-
-                                            //asad changed
                                             startActivity(new Intent(getApplicationContext(), CustomerMain.class));
                                         }
                                     }

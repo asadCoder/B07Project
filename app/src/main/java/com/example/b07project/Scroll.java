@@ -30,7 +30,6 @@ public class Scroll extends Fragment {
     ArrayList<Event> events = new ArrayList<Event>();
     ArrayList<Event> myEvents = new ArrayList<Event>();
     AdapterUpcomingEvents adapterUP;
-    DB_ReadEvents reader;
     String user;
 
     public void setUser(String user) {
@@ -42,20 +41,17 @@ public class Scroll extends Fragment {
         View mView = inflater.inflate(R.layout.activity_scroll, container, false);
         RecyclerView recyclerView = (RecyclerView) mView.findViewById(R.id.recycler_view);
 
-        //  events =  setUpEventsU();
         events = new ArrayList<Event>();
         myEvents = new ArrayList<Event>();
 
         adapterUP = new AdapterUpcomingEvents(getActivity(), events, user, myEvents);
         DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("Events");
-        //The following code loops through the database and creates objects from the database
         ref1.addValueEventListener(new ValueEventListener() {@Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                 System.out.println(snapshot.toString());
 
                     String date = snapshot.child("date").getValue().toString();
-//                    System.out.println(date);
                 int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
                 int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
                 int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
@@ -68,7 +64,6 @@ public class Scroll extends Fragment {
                 int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
                 int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
-                //Eventually a sorting alorithm will go here so that the location is priority
                 Event event = new Event(admin, venueName, eventName, address, startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
                 if(!events.contains(event)) adapterUP.events.add(event);
 
@@ -84,13 +79,11 @@ public class Scroll extends Fragment {
         });
 
         DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Customers/" + user + "/Events");
-        //The following code loops through the database and creates objects from the database
         ref2.addValueEventListener(new ValueEventListener() {@Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             for (DataSnapshot snapshot : datasnapshot.getChildren()) {
 
                 String date = snapshot.child("date").getValue().toString();
-//                    System.out.println(date);
                 int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
                 int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
                 int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
@@ -104,14 +97,11 @@ public class Scroll extends Fragment {
                 int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
                 int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
-                //Eventually a sorting alorithm will go here so that the location is priority
                 Event event = new Event(admin, venueName, eventName, address, startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
                 if(!myEvents.contains(event)) myEvents.add(event);
                 for(Event e : myEvents){
                     if(e.changes(event)) {
-//                        adapterUP.myEvents.remove(e);
                         adapterUP.myEvents.add(event);
-//                        adapterUP.notifyDataSetChanged();
                     };
                 }
 

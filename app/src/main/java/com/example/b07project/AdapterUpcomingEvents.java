@@ -53,10 +53,6 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
         Event event = events.get(position);
         holder.location.setText(event.getVenueName() + " @ " + event.getLocation());
         holder.sport.setText(event.getEventName());
-//        String start = getTime(event.getStartHour(), event.getStartMin()) ;
-//        String end = getTime(event.getEndHour(), event.getEndMin());
-//        holder.time.setText(String.valueOf(event.date.getDayOfMonth())+ "/" + String.valueOf(event.date.getMonthValue())
-//                + "/" + String.valueOf(event.date.getYear()) + "  " + start + "-" + end);
         holder.time.setText(String.valueOf( event.getDate() + " @ " + event.starttime() + "-" + event.endtime()));
         holder.cap.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getSpotsLeft());
@@ -162,7 +158,6 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
 
                         Event e = events.get(Integer.parseInt(saver.getText().toString()));
 
-                        // fixing the spots left straight away
                         int i = Integer.parseInt(numPlayers.getText().toString());
 
                         e.spotsLeft = e.spotsLeft - i;
@@ -170,7 +165,6 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
 
                         String key = e.toString();
 
-                        //adding it to the customers events
 
                         FirebaseDatabase database= FirebaseDatabase.getInstance();
 
@@ -178,32 +172,19 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
 
                         ref = database.getReference("Customers/" + user + "/Spots/"+ key);
                         ref.setValue(i);
-//                        ref.child("Customers").child(user).child("Spots").child(key).setValue(i);
 
                         ref = database.getReference("Customers/" + user + "/Events/"+ key);
                         ref.setValue(e);
-//                        ref.child("Customers").child(user).child("Events").child(key).setValue(e);
 
-                        //fix it in admin
                         ref = database.getReference("Admins/" + e.getAdmin() + "/Venues/"+
                                 e.getAddress()+ "/Events/" + key);
                         ref.setValue(e);
-//                        ref.child("Admins").child(e.admin).child("Venues").child(e.address).
-//                                child("Events").child(key)
-//                                .setValue(e);
-
-                        //fix it in venues
 
                         ref = database.getReference("Venues/"+e.getAddress()+"/Events/"+key);
                         ref.setValue(e);
-//                        ref.child("Venues").child(e.address).child("Events").child(key)
-//                                .child("spotsLeft").setValue(e.spotsLeft);
 
-                        //fix it in events
                         ref = database.getReference("Events/" + key);
                         ref.setValue(e);
-//                        ref.child("Events").child(key).child("spotsLeft").setValue(e.spotsLeft);
-
 
                         dialog.dismiss();
                     }

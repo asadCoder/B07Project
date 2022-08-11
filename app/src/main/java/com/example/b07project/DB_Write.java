@@ -21,27 +21,12 @@ public class DB_Write {
 
 
     public static void createAdmin( Admin u,Context context){
-
-     //
-
         DatabaseReference ref = db.getReference("Admins/"+u.username);
-
         ref.setValue(u);
-        // creates a user by adding it to the database
-        // type of user can only be either "customers" or "owners"
-
     }
     public static void createCustomer( Customer u, Context context){
         DatabaseReference ref = db.getReference("Customers/"+u.username);
-//        auth = FirebaseAuth.getInstance();
-
-
-
         ref.setValue(u);
-        // creates a user by adding it to the database
-        // type of user can only be either "customers" or "owners"
-
-
     }
     public static void write_username(String Username,String email){
         DatabaseReference ref = db.getReference("Usernames/"+Username);

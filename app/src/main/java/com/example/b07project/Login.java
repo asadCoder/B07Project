@@ -142,7 +142,6 @@ public class Login extends AppCompatActivity {
                                 finish();
                             }
                             else {
-//                                System.out.println("HELLOOOOOOO");
                                 editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                                 editor.putBoolean("value",false);
                                 editor.apply();

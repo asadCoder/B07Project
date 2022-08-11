@@ -47,10 +47,6 @@ public class AdapterEventsAdmin extends RecyclerView.Adapter<AdapterEventsAdmin.
         Event event = events.get(position);
         holder.location.setText(event.getVenueName() + " @ " + event.getLocation());
         holder.sport.setText(event.getEventName());
-//        String start = getTime(event.getStartHour(), event.getStartMin()) ;
-//        String end = getTime(event.getEndHour(), event.getEndMin());
-//        holder.time.setText(String.valueOf(event.date.getDayOfMonth())+ "/" + String.valueOf(event.date.getMonthValue())
-//                + "/" + String.valueOf(event.date.getYear()) + "  " + start + "-" + end);
         holder.time.setText(String.valueOf( event.getDate() + " @ " + event.starttime() + "-" + event.endtime()));
         holder.cap.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getSpotsLeft());

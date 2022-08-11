@@ -206,9 +206,6 @@ public class Event implements Serializable, Comparable<Event> {
 
     @Override
     public int compareTo(Event event) {
-//        int day;
-//        int month;
-//        int year;
         String[] mainDates = this.date.trim().split("/");
         String[] comparedDates = event.date.trim().split("/");
         int mainDay = Integer.parseInt(mainDates[1]);

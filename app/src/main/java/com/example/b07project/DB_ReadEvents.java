@@ -29,7 +29,6 @@ import java.util.ArrayList;
                     int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
                     int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
-                    //Eventually a sorting alorithm will go here so that the location is priority
                     Event event = new Event("","", eventName, "", startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
                     events.add(event);
                 }
