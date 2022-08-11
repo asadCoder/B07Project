@@ -36,8 +36,6 @@ public class SpecificVenueAdmin extends Fragment {
     FloatingActionButton but, backbut;
     TextView venName;
     Venue v;
-    Switch isBooked;
-
 
 
     public void setLocation(String loc)
@@ -103,14 +101,12 @@ public class SpecificVenueAdmin extends Fragment {
         });
         DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("Admins/" + admin
                 + "/Venues/" + location + "/Events");
-        //The following code loops through the database and creates objects from the database
         ref1.addValueEventListener(new ValueEventListener() {@Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                 System.out.println(snapshot.toString());
 
                 String date = snapshot.child("date").getValue().toString();
-//                    System.out.println(date);
                 int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
                 int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
                 int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
@@ -123,7 +119,6 @@ public class SpecificVenueAdmin extends Fragment {
                 int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
                 int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
-                //Eventually a sorting alorithm will go here so that the location is priority
                 Event event = new Event(admin, venueName, eventName, address, startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
                 if(!venueEvents.contains(event)) venueEvents.add(event);
 
@@ -138,14 +133,7 @@ public class SpecificVenueAdmin extends Fragment {
             }
         });
 
-
-
-
-
-
-
         RecyclerView recyclerView = (RecyclerView) mView.findViewById(R.id.recycleViewSpecificAdmin);
-        //FIX HERE
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return mView;

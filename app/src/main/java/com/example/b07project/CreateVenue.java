@@ -37,7 +37,6 @@ public class CreateVenue extends AppCompatActivity {
     Button sTime, eTime;
     int shour, sminute;
     int ehour, eminute;
-//    private TextView Date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     Venue venue;
     TextView location;
@@ -103,12 +102,7 @@ public class CreateVenue extends AppCompatActivity {
                     String use = sharedPref.getString("username","false");
                     venue.setAdmin(use);
                     venue.setEvents(new ArrayList<Event>());
-                    //Add to users set of created events
 
-
-//                    ArrayList<Venue> ss = new ArrayList<Venue>();
-//                    ss.add(venue);
-//                    a.setVenues(ss);
                     reference = database.getReference("Venues/"+venue.getLocation());
 
                     reference.setValue(venue).addOnSuccessListener(new OnSuccessListener<Void>() {

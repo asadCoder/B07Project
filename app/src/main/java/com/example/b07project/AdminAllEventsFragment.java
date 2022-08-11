@@ -29,40 +29,6 @@ import java.util.Collections;
 public class AdminAllEventsFragment extends Fragment {
     ArrayList<Event> venueEvents = new ArrayList<Event>();
     AdapterEventsAdmin adapter;
-//    String location, admin, vname;
-//    int startH, startM, endH, endM;
-//    FloatingActionButton but;
-//    TextView venName;
-//    Venue v;
-
-//    public void setLocation(String loc)
-//    {
-//        location = loc;
-//    }
-//    public void setAdmin(String adm)
-//    {
-//        admin = adm;
-//    }
-//
-//    public void setVname(String vname) {
-//        this.vname = vname;
-//    }
-//
-//    public void setStartH(int startH) {
-//        this.startH = startH;
-//    }
-//
-//    public void setStartM(int startM) {
-//        this.startM = startM;
-//    }
-//
-//    public void setEndH(int endH) {
-//        this.endH = endH;
-//    }
-//
-//    public void setEndM(int endM) {
-//        this.endM = endM;
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,7 +40,6 @@ public class AdminAllEventsFragment extends Fragment {
 
         DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("Admins/" + admin
                 + "/Venues");
-        //The following code loops through the database and creates objects from the database
         ref1.addValueEventListener(new ValueEventListener() {@Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             for (DataSnapshot snapshot : datasnapshot.getChildren()) {
@@ -82,7 +47,6 @@ public class AdminAllEventsFragment extends Fragment {
 
                 DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Admins/" + admin
                         + "/Venues/" + vloc + "/Events");
-//                    System.out.println(date);
                 ref2.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot datasnapshot) {
@@ -99,8 +63,6 @@ public class AdminAllEventsFragment extends Fragment {
                             int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
                             int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
                             String date = snapshot.child("date").getValue().toString();
-
-                            //Eventually a sorting alorithm will go here so that the location is priority
                             Event event = new Event(admin, venueName, eventName, address, startHour, startMin, endHour, endMin, capacity, spotsLeft, location, date);
                             if (!venueEvents.contains(event)) venueEvents.add(event);
 
@@ -123,7 +85,6 @@ public class AdminAllEventsFragment extends Fragment {
 
 
         RecyclerView recyclerView = (RecyclerView) mView.findViewById(R.id.recycleAllEventsAdmin);
-        //FIX HERE
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return mView;

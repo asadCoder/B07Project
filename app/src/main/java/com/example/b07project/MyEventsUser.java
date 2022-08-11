@@ -47,13 +47,11 @@ public class MyEventsUser extends Fragment{
 
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Customers").child(user).child("Events");
-        //The following code loops through the database and creates objects from the database
         ref.addValueEventListener(new ValueEventListener() {@Override
         public void onDataChange(@NonNull DataSnapshot datasnapshot) {
             for (DataSnapshot snapshot : datasnapshot.getChildren()) {
 
                     String date = snapshot.child("date").getValue().toString();
-//                    System.out.println(date);
                 int startHour = Integer.parseInt(snapshot.child("startHour").getValue().toString());
                 int startMin = Integer.parseInt(snapshot.child("startMin").getValue().toString());
                 int endHour = Integer.parseInt(snapshot.child("endHour").getValue().toString());
@@ -67,7 +65,6 @@ public class MyEventsUser extends Fragment{
                 int capacity = Integer.parseInt(snapshot.child("capacity").getValue().toString());
                 int spotsLeft = Integer.parseInt(snapshot.child("spotsLeft").getValue().toString());
 
-                //Eventually a sorting alorithm will go here so that the location is priority
                 Event event = new Event(admin, venueName, eventName, address, startHour,startMin,endHour,endMin,capacity,spotsLeft,location,date);
                 if(!events.contains(event))  events.add(event);
 
@@ -85,8 +82,6 @@ public class MyEventsUser extends Fragment{
         recyclerView.setAdapter(adapterMY);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return mView;
-
-//        Intent intent = getIntent();
 
     }
 
